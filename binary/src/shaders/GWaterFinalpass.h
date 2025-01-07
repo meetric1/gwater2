@@ -20,6 +20,7 @@ BEGIN_SHADER_PARAMS
 	SHADER_PARAM(REFLECTANCE, SHADER_PARAM_TYPE_FLOAT, "0.0", "Reflectance of water")
 	SHADER_PARAM(ENVMAP, SHADER_PARAM_TYPE_TEXTURE, "env_cubemap", "envmap")
 	SHADER_PARAM(FLASHLIGHTTEXTURE, SHADER_PARAM_TYPE_TEXTURE, "effects/flashlight001", "Flashlight")
+	SHADER_PARAM(OPAQUELIGHTING, SHADER_PARAM_TYPE_BOOL, "0", "Do we want opaque lighting")
 END_SHADER_PARAMS
 
 SHADER_INIT_PARAMS() {
@@ -59,6 +60,7 @@ SHADER_FALLBACK{
 
 SHADER_DRAW {
 	bool bHasFlashlight = UsingFlashlight(params);
+	bool bOpaqueLighting = params[OPAQUELIGHTING]->GetIntValue() == 1;
 	SHADOW_STATE {
 		// Note: Removing VERTEX_COLOR makes the shader work on all objects (Like props)
 		pShaderShadow->VertexShaderVertexFormat(VERTEX_GWATER2, 1, 0, 0);
@@ -99,6 +101,7 @@ SHADER_DRAW {
 		DECLARE_STATIC_PIXEL_SHADER(GWaterFinalpass_ps30);
 		SET_STATIC_PIXEL_SHADER_COMBO(FLASHLIGHT, bHasFlashlight);
 		SET_STATIC_PIXEL_SHADER_COMBO(FLASHLIGHTDEPTHFILTERMODE, nShadowFilterMode);
+		SET_STATIC_PIXEL_SHADER_COMBO(OPAQUE_LIGHTING, bOpaqueLighting);
 		SET_STATIC_PIXEL_SHADER(GWaterFinalpass_ps30);
 	}
 

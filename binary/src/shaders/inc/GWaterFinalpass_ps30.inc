@@ -6,25 +6,29 @@
 // defined $LIGHTING_PREVIEW && defined $FASTPATHENVMAPCONTRAST && $LIGHTING_PREVIEW && $FASTPATHENVMAPCONTRAST
 // defined $LIGHTING_PREVIEW && defined $FASTPATH && $LIGHTING_PREVIEW && $FASTPATH
 // ($FLASHLIGHT || $FLASHLIGHTSHADOWS) && $LIGHTING_PREVIEW
-// defined $HDRTYPE && defined $HDRENABLED && !$HDRTYPE && $HDRENABLED
-// defined $PIXELFOGTYPE && defined $WRITEWATERFOGTODESTALPHA && ( $PIXELFOGTYPE != 1 ) && $WRITEWATERFOGTODESTALPHA
-// defined $LIGHTING_PREVIEW && defined $HDRTYPE && $LIGHTING_PREVIEW && $HDRTYPE != 0
-// defined $LIGHTING_PREVIEW && defined $FASTPATHENVMAPTINT && $LIGHTING_PREVIEW && $FASTPATHENVMAPTINT
-// defined $LIGHTING_PREVIEW && defined $FASTPATHENVMAPCONTRAST && $LIGHTING_PREVIEW && $FASTPATHENVMAPCONTRAST
-// defined $LIGHTING_PREVIEW && defined $FASTPATH && $LIGHTING_PREVIEW && $FASTPATH
-// ($FLASHLIGHT || $FLASHLIGHTSHADOWS) && $LIGHTING_PREVIEW
 
 #pragma once
 #include "shaderlib/cshader.h"
 class GWaterFinalpass_ps30_Static_Index
 {
+	unsigned int m_nOPAQUE_LIGHTING : 2;
 	unsigned int m_nFLASHLIGHT : 2;
 	unsigned int m_nFLASHLIGHTDEPTHFILTERMODE : 2;
 #ifdef _DEBUG
+	bool m_bOPAQUE_LIGHTING : 1;
 	bool m_bFLASHLIGHT : 1;
 	bool m_bFLASHLIGHTDEPTHFILTERMODE : 1;
 #endif	// _DEBUG
 public:
+	void SetOPAQUE_LIGHTING( int i )
+	{
+		Assert( i >= 0 && i <= 1 );
+		m_nOPAQUE_LIGHTING = i;
+#ifdef _DEBUG
+		m_bOPAQUE_LIGHTING = true;
+#endif	// _DEBUG
+	}
+
 	void SetFLASHLIGHT( int i )
 	{
 		Assert( i >= 0 && i <= 1 );
@@ -43,11 +47,13 @@ public:
 #endif	// _DEBUG
 	}
 
-	GWaterFinalpass_ps30_Static_Index( )
+	GWaterFinalpass_ps30_Static_Index()
 	{
+		m_nOPAQUE_LIGHTING = 0;
 		m_nFLASHLIGHT = 0;
 		m_nFLASHLIGHTDEPTHFILTERMODE = 0;
 #ifdef _DEBUG
+		m_bOPAQUE_LIGHTING = false;
 		m_bFLASHLIGHT = false;
 		m_bFLASHLIGHTDEPTHFILTERMODE = false;
 #endif	// _DEBUG
@@ -55,12 +61,12 @@ public:
 
 	int GetIndex() const
 	{
-		Assert( m_bFLASHLIGHT && m_bFLASHLIGHTDEPTHFILTERMODE );
-		return ( 40 * m_nFLASHLIGHT ) + ( 80 * m_nFLASHLIGHTDEPTHFILTERMODE ) + 0;
+		Assert( m_bOPAQUE_LIGHTING && m_bFLASHLIGHT && m_bFLASHLIGHTDEPTHFILTERMODE );
+		return ( 40 * m_nOPAQUE_LIGHTING ) + ( 80 * m_nFLASHLIGHT ) + ( 160 * m_nFLASHLIGHTDEPTHFILTERMODE ) + 0;
 	}
 };
 
-#define shaderStaticTest_GWaterFinalpass_ps30 psh_forgot_to_set_static_FLASHLIGHT + psh_forgot_to_set_static_FLASHLIGHTDEPTHFILTERMODE
+#define shaderStaticTest_GWaterFinalpass_ps30 psh_forgot_to_set_static_OPAQUE_LIGHTING + psh_forgot_to_set_static_FLASHLIGHT + psh_forgot_to_set_static_FLASHLIGHTDEPTHFILTERMODE
 
 
 class GWaterFinalpass_ps30_Dynamic_Index
@@ -112,7 +118,7 @@ public:
 #endif	// _DEBUG
 	}
 
-	GWaterFinalpass_ps30_Dynamic_Index( )
+	GWaterFinalpass_ps30_Dynamic_Index()
 	{
 		m_nOPAQUE = 0;
 		m_nNUM_LIGHTS = 0;
