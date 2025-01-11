@@ -745,7 +745,7 @@ hook.Add("GUIMousePressed", "gwater2_menuclose", function(mouse_code, aim_vector
 end)
 
 hook.Add("PopulateToolMenu", "gwater2_menu", function()
-    spawnmenu.AddToolMenuOption("Utilities", "gwater2", "gwater2_menu", "Menu Options", "", "", function(panel)
+    spawnmenu.AddToolMenuOption("Utilities", "GWater2", "gwater2_menu", "Menu Options", "", "", function(panel)
 		panel:ClearControls()
 		panel:Button("Open Menu", "gwater2_menu")
         panel:KeyBinder("Menu Key", "gwater2_menukey")
