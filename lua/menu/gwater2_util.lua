@@ -351,6 +351,7 @@ local function make_parameter_color(tab, locale_parameter_name, parameter_name, 
 	pcall(color_functions.init_setvalue, panel)
 	-- if we can't get parameter, let's hope .setup() does that for us
 
+	
 	local mixer = panel:Add("DColorMixer")
 	panel.mixer = mixer
 	mixer:Dock(FILL)
