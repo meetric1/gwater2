@@ -215,11 +215,12 @@ local performance = {
 
 				slider:SetValue(gwater2.solver:GetMaxParticles())
 				local panel = slider:GetParent()
-				local button = panel:Add("DButton")
+				local button = panel:Add("DImageButton")
 				button:Dock(RIGHT)
-				button:SetText("")
 				button:SetImage("icon16/accept.png")
-				button:SetWide(button:GetTall())
+				button:SizeToContents()
+				button:SetKeepAspect(true)
+				button:SetStretchToFit(false)
 				button.Paint = nil
 				panel.button_apply = button
 				function button:DoClick()
@@ -227,6 +228,7 @@ local performance = {
 					frame:SetSize(600, 300)
 					frame:Center()
 					frame:SetScreenLock(false)
+					frame:ShowCloseButton(false)
 
 					local label = frame:Add("DLabel")
 					label:Dock(TOP)
@@ -253,7 +255,9 @@ local performance = {
 					local confirm = vgui.Create("DImageButton", buttons)
 					confirm:SetPos(600 * (3/4) - 10, 0)
 					confirm:SetSize(20, 20)
-					confirm:SetImage("icon16/accept.png")
+					confirm:SetText("5")
+					confirm:SetFont("GWater2TextMono")
+					confirm:SetKeepAspect(true)
 					confirm.Paint = nil
 					function confirm:DoClick() 
 						gwater2.solver:Destroy()
@@ -266,9 +270,25 @@ local performance = {
 						_util.emit_sound("select_ok")
 					end
 
+					confirm:SetEnabled(false)
+					confirm:SetColor(Color(255, 255, 255))
+					for i=1, 4 do
+						timer.Simple(i, function()
+							if not IsValid(confirm) then return end
+							confirm:SetText(tostring(5-i))
+						end)
+					end
+					timer.Simple(5, function()
+						if not IsValid(confirm) then return end
+						confirm:SetImage("icon16/accept.png")
+						confirm:SetText("")
+						confirm:SetEnabled(true)
+					end)
+
 					local deny = vgui.Create("DImageButton", buttons)
 					deny:SetPos(600 * (1/4) - 10, 0)
 					deny:SetSize(20, 20)
+					deny:SetKeepAspect(true)
 					deny:SetImage("icon16/cross.png")
 					deny.Paint = nil
 					function deny:DoClick() 

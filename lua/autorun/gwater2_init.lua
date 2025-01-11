@@ -4,6 +4,12 @@ AddCSLuaFile()
 
 gwater2 = nil
 
+local toload = (BRANCH == "x86-64" or BRANCH == "chromium") and "gwater2" or "gwater2_main" -- carrying
+
+local load_stub = not util.IsBinaryModuleInstalled(toload) and (system.IsLinux() or system.IsOSX())
+-- whether to load stub instead of actual module
+-- useful for testing lua side of gw2 on native linux gmod
+
 if SERVER then 
 	include("gwater2_net.lua")
 	include("gwater2_interactions.lua")
@@ -55,29 +61,32 @@ local function gw2_error(text)
 	)
 end
 
-local toload = (BRANCH == "x86-64" or BRANCH == "chromium") and "gwater2" or "gwater2_main" -- carrying
-if !util.IsBinaryModuleInstalled(toload) then
-	gw2_error(string.format(
-		"===========================================================\n\n" ..
-		language.GetPhrase("gwater2.error.modulenotinstalled") .."\n\n" ..
-		language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
-		"===========================================================\n",
-		"NONE", BRANCH, jit.arch
-	))
-	return
-end
+if not load_stub then
+	if !util.IsBinaryModuleInstalled(toload) then
+		gw2_error(string.format(
+			"===========================================================\n\n" ..
+			language.GetPhrase("gwater2.error.modulenotinstalled") .."\n\n" ..
+			language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
+			"===========================================================\n",
+			"NONE", BRANCH, jit.arch
+		))
+		return
+	end
 
-local noerror, pcerr = pcall(function() require(toload) end)
-if !noerror then
-	gw2_error(string.format(
-		"===========================================================\n\n" ..
-		language.GetPhrase("gwater2.error.modulefailedtoload.1").."\n"..
-		language.GetPhrase("gwater2.error.modulefailedtoload.2").."\n\n"..
-		language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
-		"===========================================================\n",
-		pcerr or "NONE", BRANCH, jit.arch
-	))
-	return
+	local noerror, pcerr = pcall(function() require(toload) end)
+	if !noerror then
+		gw2_error(string.format(
+			"===========================================================\n\n" ..
+			language.GetPhrase("gwater2.error.modulefailedtoload.1").."\n"..
+			language.GetPhrase("gwater2.error.modulefailedtoload.2").."\n\n"..
+			language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
+			"===========================================================\n",
+			pcerr or "NONE", BRANCH, jit.arch
+		))
+		return
+	end
+else
+	include("gwater2_stub.lua")
 end
 
 print("[GWater2]: Loaded successfully with language: " .. lang)
@@ -271,8 +280,8 @@ hook.Add("HUDPaint", "gwater2_status", function()
 	end
 	if gwater2.solver:GetActiveParticles() <= 0 and frac >= 1 then return end
 	local text = format_int(gwater2.solver:GetActiveParticles()) .. " / " .. format_int(gwater2.solver:GetMaxParticles())
-	draw.DrawText(text, "CloseCaption_Normal", ScrW()/2+2, 18-18*(1-frac), Color(0, 0, 0, 255*frac), TEXT_ALIGN_CENTER)
-	draw.DrawText(text, "CloseCaption_Normal", ScrW()/2, 16-18*(1-frac), ColorAlpha(color_white, 255*frac), TEXT_ALIGN_CENTER)
+	draw.DrawText(text, "GWater2Text", ScrW()/2+2, 18-18*(1-frac), Color(0, 0, 0, 255*frac), TEXT_ALIGN_CENTER)
+	draw.DrawText(text, "GWater2Text", ScrW()/2, 16-18*(1-frac), ColorAlpha(color_white, 255*frac), TEXT_ALIGN_CENTER)
 
 	last = math.Approach(last, gwater2.solver:GetActiveParticles(), FrameTime()*100000)
 	local part_frac = last / gwater2.solver:GetMaxParticles()

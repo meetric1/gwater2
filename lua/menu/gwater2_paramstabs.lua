@@ -45,7 +45,7 @@ local function init_tab(tabs, tab_name, image, recursive)
 
 	styling.define_scrollbar(tab:GetVBar())
 
-	local _ = tab:Add("DLabel") _:SetText(" ") _:SetFont("GWater2Title") _:Dock(TOP) _:SizeToContents()
+	local _ = tab:Add("DLabel") _:SetText(" ") _:SetFont("GWater2Title") _:Dock(TOP) _:SizeToContents() _:SetTall(_:GetTall() + 5)
 	function _:Paint(w, h)
 		draw.DrawText(util.get_localised(tab_name .. ".titletext"), "GWater2Title", 6, 6, Color(0, 0, 0), TEXT_ALIGN_LEFT)
 		draw.DrawText(util.get_localised(tab_name .. ".titletext"), "GWater2Title", 5, 5, Color(187, 245, 255), TEXT_ALIGN_LEFT)
