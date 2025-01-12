@@ -631,7 +631,7 @@ end
 surface.CreateFont("GWater2TextSmall", {
 	font = (system.IsWindows() and "Titillium Web[RUS By Daymarius]" or "TitilliumWebRegular.ttf"), 
     extended = true,
-    size = 18,
+    size = 16,
     weight = 700,
     blursize = 0,
     scanlines = 0,
