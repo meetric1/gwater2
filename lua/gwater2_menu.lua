@@ -629,12 +629,10 @@ local function create_menu(init)
 end
 
 surface.CreateFont("GWater2TextSmall", {
-    font = (system.IsWindows() and "Roboto" or "RobotoVariable.ttf"), 
-	--font = (system.IsWindows() and "Space Mono" or "SpaceMonoRegular.ttf"), 
-	--font = (system.IsWindows() and "Titillium Web" or "TitilliumWeb-Regular.ttf"), 
-    extended = false,
-    size = 16,
-    weight = 500,
+	font = (system.IsWindows() and "Titillium Web[RUS By Daymarius]" or "TitilliumWebRegular.ttf"), 
+    extended = true,
+    size = 18,
+    weight = 700,
     blursize = 0,
     scanlines = 0,
     antialias = true,
@@ -649,11 +647,9 @@ surface.CreateFont("GWater2TextSmall", {
 })
 
 surface.CreateFont("GWater2Text", {
-    font = (system.IsWindows() and "Roboto" or "RobotoVariable.ttf"), 
-	--font = (system.IsWindows() and "Space Mono" or "SpaceMonoRegular.ttf"), 
-	--font = (system.IsWindows() and "Titillium Web" or "TitilliumWeb-Regular.ttf"), 
-    extended = false,
-    size = 20,
+	font = (system.IsWindows() and "Titillium Web[RUS By Daymarius]" or "TitilliumWebRegular.ttf"), 
+    extended = true,
+    size = 24,
     weight = 500,
     blursize = 0,
     scanlines = 0,
@@ -669,11 +665,9 @@ surface.CreateFont("GWater2Text", {
 })
 
 surface.CreateFont("GWater2TextMono", {
-    font = (system.IsWindows() and "Roboto Mono" or "RobotoMonoVariable.ttf"), 
-	--font = (system.IsWindows() and "Space Mono" or "SpaceMonoRegular.ttf"), 
-	--font = (system.IsWindows() and "Titillium Web" or "TitilliumWeb-Regular.ttf"), 
-    extended = false,
-    size = 20,
+	font = (system.IsWindows() and "Source Code Pro" or "SourceCodeProVariable.ttf"),
+    extended = true,
+    size = 16,
     weight = 500,
     blursize = 0,
     scanlines = 0,
@@ -689,10 +683,9 @@ surface.CreateFont("GWater2TextMono", {
 })
 
 surface.CreateFont("GWater2Title", {
-    font = (system.IsWindows() and "Roboto" or "RobotoVariable.ttf"), 
-	--font = (system.IsWindows() and "coolvetica" or "coolvetica.ttf"),
-    extended = false,
-    size = 24,
+	font = (system.IsWindows() and "Titillium Web[RUS By Daymarius]" or "TitilliumWebRegular.ttf"),
+    extended = true,
+    size = 28,
     weight = 500,
     blursize = 0,
     scanlines = 0,
