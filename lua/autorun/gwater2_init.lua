@@ -422,3 +422,4 @@ end
 timer.Create("gwater2_tick", 1 / gwater2.options.simulation_fps:GetInt(), 0, gwater_tick2)
 hook.Add("InitPostEntity", "!gwater2_addprop", gwater2.reset_solver)
 hook.Add("OnEntityCreated", "!gwater2_addprop", function(ent) timer.Simple(0, function() add_prop(ent) end) end)	// timer.0 so data values are setup correctly
+hook.Add("PreCleanupMap","!gwater2_cleanup",function() gwater2.ResetSolver() end)
