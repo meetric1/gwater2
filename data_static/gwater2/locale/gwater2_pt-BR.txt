@@ -268,7 +268,7 @@ Créditos
 "gwater2.menu.Credits.help"=[[
 Essa aba tem a lista de todas as pessoas que ajudaram no desenvolvimento direto ou indireto do GWater2.
 
-A lista dos Patrons está organizada em ordem alfabética e será atualizada rotinamente até o lançamento.
+A lista dos Patrons está organizada em ordem alfabética.
 
 Todo o dinheiro gerado desse projeto vai diretamente ao meu fundo de faculdade. Muito obrigado pessoal :)
 ]]

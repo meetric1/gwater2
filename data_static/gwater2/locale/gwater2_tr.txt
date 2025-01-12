@@ -240,7 +240,7 @@ Katkıda Bulunanlar
 "gwater2.menu.Credits.help"=[[
 Burda GWater2'nin apımına yardım eden kişiler var.
 
-Patron listesi alphabetikal sırada olarak her gün rutinli güncellenecek.
+Patron listesi alfabetik sıraya göre düzenlenmiştir.
 
 Bu projeden yapılan bütün para benim universite harçlığıma gidiyor. Çok teşekkürler :D
 ]]

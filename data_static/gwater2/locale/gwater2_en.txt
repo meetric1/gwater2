@@ -268,7 +268,7 @@ Credits
 "gwater2.menu.Credits.help"=[[
 This tab has a list of all people who helped in development of GWater2 directly or indirectly.
 
-The Patron list is sorted in alphabetical order and will be updated routinely until release.
+The Patron list is sorted in alphabetical order.
 
 All revenue generated from this project goes directly to my college fund. Thanks so much guys :)
 ]]
