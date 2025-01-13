@@ -123,8 +123,9 @@ local visuals = {
 		setup=function(mixer)
 			mixer:SetColor(gwater2.parameters.color)
 		end,
-		func=function(col) 
-			gwater2.materials.water:SetVector4D("$color2", 
+		func=function(col)
+			local finalpass = Material("gwater2/finalpass")
+			finalpass:SetVector4D("$color2",  
 				col.r * gwater2.parameters.color_value_multiplier,
 				col.g * gwater2.parameters.color_value_multiplier,
 				col.b * gwater2.parameters.color_value_multiplier,
@@ -143,7 +144,8 @@ local visuals = {
 		end,
 		func=function(val)
 			local col = gwater2.parameters.color
-			gwater2.materials.water:SetVector4D("$color2", 
+			local finalpass = Material("gwater2/finalpass")
+			finalpass:SetVector4D("$color2", 
 				col.r * val, 
 				col.g * val, 
 				col.b * val, 
@@ -158,11 +160,13 @@ local visuals = {
 		max=10,
 		decimals=3,
 		func=function(val)
-			gwater2.materials.water:SetFloat("$ior", val)
+			local finalpass = Material("gwater2/finalpass")
+			finalpass:SetFloat("$ior", val)
 			return true
 		end,
 		setup=function(slider)
-			slider:SetValue(gwater2.materials.water:GetFloat("$ior"))
+			local finalpass = Material("gwater2/finalpass")
+			slider:SetValue(finalpass:GetFloat("$ior"))
 			return true
 		end
 	}

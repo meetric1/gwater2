@@ -18,7 +18,7 @@ local cache_absorption = get_gwater_rt("gwater2_absorption", 1 / 4, MATERIAL_RT_
 local cache_normals = get_gwater_rt("gwater2_normals", 1 / 1, MATERIAL_RT_DEPTH_SEPARATE)
 local cache_blur = get_gwater_rt("gwater2_blur", 1 / 2)
 
-gwater2.materials.water = Material("gwater2/finalpass") 
+local water_final = Material("gwater2/finalpass") 
 local water_blur = Material("gwater2/smooth")
 local water_volumetric = Material("gwater2/volumetric")
 local water_normals = Material("gwater2/normals")
@@ -63,7 +63,7 @@ local function do_absorption()
 	render.UpdateScreenEffectTexture()	-- _rt_framebuffer is used in refraction shader
 
 	-- depth absorption (disabled when opaque liquids are enabled)
-	local _, _, _, a = gwater2.materials.water:GetVector4D("$color2")
+	local _, _, _, a = water_final:GetVector4D("$color2")
 	if water_volumetric:GetFloat("$alpha") != 0 and a > 0 and a < 255 then
 		-- ANTIALIAS FIX! (courtesy of Xenthio)
 			-- how it works: 
@@ -94,7 +94,7 @@ end
 
 local function do_diffuse_inside()
 	-- dont render bubbles underwater if opaque
-	local _, _, _, a = gwater2.materials.water:GetVector4D("$color2")
+	local _, _, _, a = water_final:GetVector4D("$color2")
 	if a < 255 then
 		-- Bubble particles inside water
 		-- Make sure the water screen texture has bubbles but the normal framebuffer does not
@@ -168,29 +168,21 @@ end
 
 -- Debug command to print entity info
 concommand.Add("gwater2_toggle_lighting", function()
-	if gwater2.materials.water:GetName() == "gwater2/finalpass" then
-		gwater2.materials.water = Material("gwater2/finalpass_opaque_lit");
+	if water_final:GetInt("$opaquelighting") == 1 then
+		water_final:SetInt("$opaquelighting", 0 )
 	else
-		gwater2.materials.water = Material("gwater2/finalpass");
-	end
-	local col = gwater2.parameters.color
-	local val = gwater2.parameters.color_value_multiplier
-	gwater2.materials.water:SetVector4D("$color2", 
-		col.r * val, 
-		col.g * val, 
-		col.b * val, 
-		col.a
-	)
+		water_final:SetInt("$opaquelighting", 1 )
+	end 
 end)
 
 local function do_finalpass()
 	local radius = gwater2.solver:GetParameter("radius")
 
 	-- Setup water material parameters
-	gwater2.materials.water:SetFloat("$radius", radius * 1.5)
-	gwater2.materials.water:SetTexture("$normaltexture", cache_normals)
-	gwater2.materials.water:SetTexture("$depthtexture", cache_absorption)
-	render.SetMaterial(gwater2.materials.water)
+	water_final:SetFloat("$radius", radius * 1.5)
+	water_final:SetTexture("$normaltexture", cache_normals)
+	water_final:SetTexture("$depthtexture", cache_absorption)
+	render.SetMaterial(water_final)
 	gwater2.renderer:DrawWater()
 	render.RenderFlashlights(function() gwater2.renderer:DrawWater() end)
 

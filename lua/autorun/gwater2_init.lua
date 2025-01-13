@@ -172,9 +172,6 @@ gwater2 = {
 	cloth_pos = Vector(),
 	parameters = {},
 	defaults = {},
-	materials = {
-		water = nil
-	},
 	update_colliders = function(index, id, rep)
 		if id == 0 then return end	-- skip, entity is world
 

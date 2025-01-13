@@ -60,7 +60,6 @@ SHADER_FALLBACK{
 
 SHADER_DRAW {
 	bool bHasFlashlight = UsingFlashlight(params);
-	bool bOpaqueLighting = params[OPAQUELIGHTING]->GetIntValue() == 1;
 	SHADOW_STATE {
 		// Note: Removing VERTEX_COLOR makes the shader work on all objects (Like props)
 		pShaderShadow->VertexShaderVertexFormat(VERTEX_GWATER2, 1, 0, 0);
@@ -101,7 +100,6 @@ SHADER_DRAW {
 		DECLARE_STATIC_PIXEL_SHADER(GWaterFinalpass_ps30);
 		SET_STATIC_PIXEL_SHADER_COMBO(FLASHLIGHT, bHasFlashlight);
 		SET_STATIC_PIXEL_SHADER_COMBO(FLASHLIGHTDEPTHFILTERMODE, nShadowFilterMode);
-		SET_STATIC_PIXEL_SHADER_COMBO(OPAQUE_LIGHTING, bOpaqueLighting);
 		SET_STATIC_PIXEL_SHADER(GWaterFinalpass_ps30);
 	}
 
@@ -114,6 +112,7 @@ SHADER_DRAW {
 		float reflectance = params[REFLECTANCE]->GetFloatValue();
 		const float* color2 = params[COLOR2]->GetVecValue();
 		const float color2_normalized[4] = { color2[0] / 255.0, color2[1] / 255.0, color2[2] / 255.0, color2[3] / 255.0 };
+		bool bOpaqueLighting = params[OPAQUELIGHTING]->GetIntValue() == 1;
 
 		pShaderAPI->SetPixelShaderConstant(0, scr_s);
 		pShaderAPI->SetPixelShaderConstant(1, &radius);
@@ -208,6 +207,7 @@ SHADER_DRAW {
 		DECLARE_DYNAMIC_PIXEL_SHADER(GWaterFinalpass_ps30);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(NUM_LIGHTS, lightState.m_nNumLights);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(FLASHLIGHTSHADOWS, bFlashlightShadows);
+		SET_DYNAMIC_PIXEL_SHADER_COMBO(OPAQUE_LIGHTING, bOpaqueLighting);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(OPAQUE, color2[3] > 254);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(HDR, gwater2_hdr_fix->GetInt());
 		SET_DYNAMIC_PIXEL_SHADER(GWaterFinalpass_ps30);
