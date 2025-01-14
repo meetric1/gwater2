@@ -108,7 +108,7 @@ local default_presets = {
 }
 
 local presets
-if file.Exists("DATA", "gwater2/presets.txt") then
+if file.Exists("gwater2/presets.txt", "DATA") then
     presets = util.JSONToTable(file.Read("gwater2/presets.txt", "DATA"))
 else
     presets = default_presets
@@ -125,25 +125,7 @@ function gwater2.options.detect_preset_type(preset)
 			return nil
 		end
 	end
-
-
-	local preset_parts = preset:Split(',')
-
-	if preset_parts[2] == '' and preset_parts[3] ~= nil then
-		if preset_parts[4] == '' and preset_parts[5] ~= nil and preset_parts[5] ~= '' then
-			return "Extension w/ Author"
-		end
-		if preset_parts[4] ~= nil then
-			return nil
-		end
-		return "Extension"
-	end
-	if preset_parts[2] ~= '' and preset_parts[2] ~= nil then
-		if preset_parts[3] ~= nil then
-			return nil
-		end
-		return "CustomPresets"
-	end
+	
 	return nil
 end
 
@@ -191,7 +173,7 @@ local function get_parameter(param)
     })[param:sub(0, 4)]
     if not list_ then return end
     local param_panel = list_[param:sub(6)]
-    if param_panel.mixer then return {param_panel.mixer:GetColor():Unpack()} end
+    if param_panel.mixer then local c = param_panel.mixer:GetColor() return {c.r, c.g, c.b, c.a} end -- GetColor returns color without metatable, damnit
     if param_panel.check then return param_panel.check:GetChecked() end
     if param_panel.slider then return param_panel.slider:GetValue() end
 end
@@ -283,7 +265,7 @@ button_functions = {
         end)
         menu:Open()
     end,
-    create_preset = function(local_presets, name, preset, write)
+    create_preset = function(local_presets, name, preset, write, fullid)
         if write == nil then write = true end
         local m = 0
         for k,v in SortedPairs(presets) do m = tonumber(k:sub(1, 3)) end
@@ -293,10 +275,10 @@ button_functions = {
         selector.Paint = button_functions.paint
         selector.name = name
         selector.preset = preset
-        selector.id = string.format("%03d-%s", m+1, name)
+        selector.id = fullid or string.format("%03d-%s", m+1, name)
         selector.DoClick = button_functions.apply_preset
         selector.DoRightClick = button_functions.selector_right_click
-        local_presets:SetTall(local_presets:GetTall()+25)
+        local_presets:SetTall(local_presets:GetTall()+30)
 
         if write then
             presets[string.format("%03d-%s", m+1, name)] = preset
@@ -646,7 +628,7 @@ local function presets_tab(tabs, params)
 
     local_presets:SetTall(0)
     for name,preset in SortedPairs(presets) do
-        button_functions.create_preset(local_presets, name:sub(5), preset, false)
+        button_functions.create_preset(local_presets, name:sub(5), preset, false, name)
     end
     local_presets:SetTall(local_presets:GetTall()-20)
 end

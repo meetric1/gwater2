@@ -179,9 +179,10 @@ local function do_finalpass()
 	local radius = gwater2.solver:GetParameter("radius")
 
 	-- Setup water material parameters
-	water_final:SetFloat("$radius", radius * 1.5)
-	water_final:SetTexture("$normaltexture", cache_normals)
-	water_final:SetTexture("$depthtexture", cache_absorption)
+	water:SetFloat("$radius", radius * 1.5)
+	water:SetFloat("$reflectance", blur_passes:GetBool() and 0.7 or 0)
+	water:SetTexture("$normaltexture", cache_normals)
+	water:SetTexture("$depthtexture", cache_absorption)
 	render.SetMaterial(water_final)
 	gwater2.renderer:DrawWater()
 	render.RenderFlashlights(function() gwater2.renderer:DrawWater() end)
@@ -225,7 +226,7 @@ hook.Add("PostDrawOpaqueRenderables", "gwater2_render", function(depth, sky, sky
 	if vrmod and vrmod.IsPlayerInVR(LocalPlayer()) then
 		render.SetMaterial(vrmod_material)
 		gwater2.renderer:DrawWater()
-		
+
 		return 
 	end
 	

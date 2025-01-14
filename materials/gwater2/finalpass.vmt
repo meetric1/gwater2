@@ -2,7 +2,7 @@ GWaterFinalpass {
 	$envmap "env_cubemap"
 	$radius 10
 	$ior 1.333
-	$reflectance 0.7	
+	$reflectance 0.7
 	$screentexture "_rt_fullframefb"
 	$color2 "[209 237 255 25]"
 	$flashlight 1

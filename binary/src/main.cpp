@@ -1055,7 +1055,7 @@ LUA_FUNCTION(GWATER2_SET_CONTACTS) {
 		else {
 			Warning("[GWater2 Internal Error]: _G.Entity Is returning a non-function! (%i)\n", LUA_SERVER->GetType(-1));
 		}
-		LUA_SERVER->Pop();	// Pop _G*/
+		LUA_SERVER->Pop();	// Pop _G
 	}
 
 	return 0;
@@ -1095,7 +1095,6 @@ GMOD_MODULE_OPEN() {
 	desc.computeType = eNvFlexD3D11;
 
 #ifdef _LINUX
-	desc.deviceIndex = -1;
 	desc.computeType = eNvFlexCUDA;	// no DirectX on linux
 #endif
 
@@ -1234,10 +1233,10 @@ GMOD_MODULE_OPEN() {
 	void* UTIL_EntityByIndexAddr = finder.FindPatternFromBinary("server.dll", sig, sizeof(sig) - 1);
 	if (UTIL_EntityByIndexAddr == nullptr) {
 		Warning("[GWater2 Internal Error] Couldn't find UTIL_EntityByIndex!\n");
-		return 0;
 	}
-
-	UTIL_EntityByIndex = (UTIL_EntityByIndexFN)UTIL_EntityByIndexAddr;
+	else {
+		UTIL_EntityByIndex = (UTIL_EntityByIndexFN)UTIL_EntityByIndexAddr;
+	}
 
 	return 0;
 }

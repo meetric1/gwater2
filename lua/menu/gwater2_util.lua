@@ -372,6 +372,7 @@ local function make_parameter_color(tab, locale_parameter_name, parameter_name, 
 	panel:SizeToContents()
 
 	if parameter.setup then parameter.setup(mixer) end
+
 	gwater2.options.initialised[parameter_id] = {parameter, mixer}
 
 	-- TODO: find something to reset editing to false when user stops editing color
@@ -423,6 +424,7 @@ local function make_parameter_check(tab, locale_parameter_name, parameter_name, 
 	pcall(check_functions.init_setvalue, panel)
 	-- if we can't get parameter, let's hope .setup() does that for us
 	if parameter.setup then parameter.setup(check) end
+
 	gwater2.options.initialised[parameter_id] = {parameter, check}
 
 	button.DoClick = check_functions.reset

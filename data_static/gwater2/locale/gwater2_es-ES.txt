@@ -4,7 +4,7 @@ Note that the translation cannot be longer than 4000 bytes (1 english character 
 
 Input format:
 "gwater2.key_here"=[[
-Your translation here
+data_static/gwater2/locale/gwater2_es_ES.txt
 ]]
 
 Do NOT edit 'gwater2.key_here'
@@ -16,29 +16,29 @@ Use decent language, be literate and don't be a barbarian. :)
 ------------------------
 
 "gwater2.error.modulenotinstalled"=[[
-!!!PLEASE READ ME!!!
+!!!LEEME POR FAVOR!!!
 
-GWATER2 FAILED TO FIND MODULE!
+GWATER2 FALLO EN ENCONTRAR EL MÓDULO!
 
-This likely means you did not install the GWater2 DLL files.
-Please install the binaries and ensure the GWater2 DLLs are in GarrysMod/garrysmod/lua/bin.
-Note that GWater2 does NOT natively work on Linux or Mac systems.
+Esto probablemente significa que no instaló los archivos DLL de GWATER2.
+Por favor instala los binarios y asegurese de que los DLLS se encuentran en GarrysMod/garrysmod/lua/bin.
+Tenga en cuenta que nativamente GWATER2 no funciona en Linux o sistemas Mac.
 ]]
 
 "gwater2.error.modulefailedtoload.1"=[[
-!!!PLEASE READ ME!!!
+!!!LEEME POR FAVOR!!!
 
-GWATER2 FAILED TO LOAD MODULE!
-This likely means you did not install the FleX binaries correctly into GarrysMod/
-Please check your installation and restart the game.
+GWATER2 FALLO EN CARGAR EL MÓDULO!
+Esto probablemente significa que no instalo correctamente los binarios FleX en Garrysmod/
+Compruebe su instalación y reinicie el juego.
 ]]
 
 "gwater2.error.modulefailedtoload.2"=[[
-If you are 100%% sure you have installed it correctly, restart the game a few times. This is a problem with Garry's code and I cannot fix it.
+Si está 100%% seguro de que lo ha instalado correctamente, reinicia el juego un par de veces. Esto es un error en el código de Garry y no se puede arreglar.
 ]]
 
 "gwater2.error.modulefailedtoload.3"=[[
-Feel free to ask for help if the issue persists. PLEASE provide the upcoming 3 lines when asking for help:
+Siéntase libre de pedir ayuda si este error persiste. POR FAVOR proporcione las siguientes 3 líneas cuando pregunte por ayuda:
 
 Error: %s
 BRANCH: %s
@@ -46,12 +46,12 @@ jit.arch: %s
 ]]
 
 "gwater2.error.chatlog"=[[
-Failed to load! Please check the Problems menu for more information (ESC menu -> bottom right)
+Error al cargar! Compruebe el menú problemas para más información (menú ESC - Inferior izquierda)
 ]]
 
 "gwater2.gun.adv.notloaded"=[[
-GWater2 failed to load!
-Check console and Problems menu (ESC menu -> bottom left) for errors
+GWater2 Falló al cargar!
+Revise la consola y el menú problemas (menú ESC -> inferior izquierda) para ver si hay errores
 ]]
 
 ------------------------
@@ -59,15 +59,15 @@ Check console and Problems menu (ESC menu -> bottom left) for errors
 ------------------------
 
 "gwater2.gun.adv.controls.lclk"=[[
-Left-Click to spawn particles
+Clic izquierdo para spawnear partículas
 ]]
 
 "gwater2.gun.adv.controls.rclk"=[[
-Right-Click to open gun menu
+Clic derecho para abrir el menú
 ]]
 
 "gwater2.gun.adv.controls.reload"=[[
-Reload to remove all
+Recargar para eliminar todo
 ]]
 
 ------------------------
@@ -75,49 +75,49 @@ Reload to remove all
 ------------------------
 
 "gwater2.ent.drain.side"=[[
-THIS SIDE
-DRAINS LIQUID
+ESTE LADO
+DRENA LÍQUIDO
 ]]
 
 "gwater2.ent.emitter.side"=[[
-THIS SIDE
-EMITS LIQUID
+ESTE LADO
+EMITE LÍQUIDO
 ]]
 
 "gwater2.ent.on"=[[
-On
+Encendido
 ]]
 
 "gwater2.ent.off"=[[
-Off
+Apagado
 ]]
 
 "gwater2.ent.radius"=[[
-%s radius
+%s radio
 ]]
 
 "gwater2.ent.radius2"=[[
-%sx%s radius
+%sx%s radio
 ]]
 
 "gwater2.ent.strength"=[[
-%s strength
+%s fuerza
 ]]
 
 "gwater2.ent.spread"=[[
-%s spread
+%s propagación
 ]]
 
 "gwater2.ent.lifetime"=[[
-%s lifetime
+%s tiempo de vida
 ]]
 
 "gwater2.ent.transporter.queue"=[[
-Particles in queue: %s
+Partículas en fila: %s
 ]]
 
 "gwater2.ent.transporter.link"=[[
-Linked to %s
+Vinculado a %s
 ]]
 
 --------------------------------------------
@@ -140,107 +140,107 @@ GWater2 (%s)
 ]]
 
 "gwater2.menu.About Tab.title"=[[
-About
+Acerca de
 ]]
 
 "gwater2.menu.About Tab.titletext"=[[
-Welcome to GWater2 (v%s)
+Bienvenido a GWATER2 (v%s)
 ]]
 
 "gwater2.menu.About Tab.welcome"=[[
-Thank you for downloading gwater2! This menu is the interface that you will be using to control everything about gwater. So get used to it! :D
+Gracias por descargar gwater2! Este menú es la interfaz que usara para controlar todo de gwater2. Acostumbrate a él! :D
 
-Make sure to read the changelog to see what has been updated!
+Asegurate de leer la lista de cambios para ver que ha sido actualizado!
 
-Changelog (v1.0):
+Lista de cambios (v1.0):
 
-- Initial Release
+- Lanzamiento inicial
 
 ]]
 
 "gwater2.menu.About Tab.help"=[[
-On each tab, this area will contain useful information.
+En cada pestaña, esta área contendrá información útil.
 
-For example:
-Clicking anywhere outside the menu, or re-pressing the menu button will close it.
+Por ejemplo:
+Clicar afuera del menú, o volver a presionar el botón que lo habré cerrara este menú.
 
-Make sure to read this area!
+Asegurate de leer esta área!
 ]]
 
 "gwater2.menu.Parameters.title"=[[
-Parameters
+Parámetros
 ]]
 
 "gwater2.menu.Parameters.titletext"=[[
-Parameters
+Parámetros
 ]]
 
 "gwater2.menu.Parameters.help"=[[
-This tab is where you can change how the water interacts with itself and the environment.
+Esta es la pestaña donde puedes cambiar cómo el agua interactúa con sí misma y el entorno.
 
-Hover over a parameter to reveal its functionality.
+Coloque el cursor sobre un parámetro para revelar su funcionalidad.
 ]]
 
 "gwater2.menu.Visuals.title"=[[
-Visuals
+Visuales
 ]]
 
 "gwater2.menu.Visuals.titletext"=[[
-Visuals
+Visuales
 ]]
 
 "gwater2.menu.Visuals.help"=[[
-This tab controls what the fluid looks like.
+Esta pestaña controla cómo se verá el líquido.
 
-Hover over a parameter to reveal its functionality.
+Coloque el cursor sobre un parámetro para revelar su funcionalidad.
 ]]
 
 "gwater2.menu.Performance.title"=[[
-Performance
+Rendimiento
 ]]
 
 "gwater2.menu.Performance.titletext"=[[
-Performance
+Rendimiento
 ]]
 
 "gwater2.menu.Performance.help"=[[
-This tab has options which can help and alter your performance.
+Esta pestaña tiene opciones que ayudarán a alterar tu rendimiento.
 
-Each option is colored between green and red to indicate its performance hit. All parameters directly impact the GPU.
+Cada opción está coloreada entre verde y rojo para indicar su impacto en el rendimiento. Todos los parámetros impactan directamente a la GPU.
 
-These options ARE NOT synced and CANNOT be edited by other players because they are strictly performance related.
+Estas opciones NO ESTÁN SINCRONIZADAS y NO PUEDEN ser editadas por otros jugadores porque están relacionadas estrictamente al rendimiento.
 
-Hover over a parameter to reveal its functionality.
+Coloque el cursor sobre un parámetro para revelar su funcionalidad.
 ]]
 
 "gwater2.menu.Interactions.title"=[[
-Interactions
+Interacciones
 ]]
 
 "gwater2.menu.Interactions.titletext"=[[
-Interactions
+Interacciones
 ]]
 
 "gwater2.menu.Interactions.help"=[[
-A few parameters that control how water interacts with players and props.
+Un par de parámetros que controlan cómo el agua interactúa con jugadores y objetos.
 ]]
 
 "gwater2.menu.Developer.title"=[[
-Developer
+Desarrollador
 ]]
 
 "gwater2.menu.Developer.titletext"=[[
-Developer
+Desarrollador
 ]]
 
 "gwater2.menu.Developer.help"=[[
-Various settings that are not intended to be used and can break your game.
+Varias opciones que no están destinadas a ser usadas y podrían romper tu juego.
 
-Most of these settings probably do not do anything or are not tuned properly (eg. have really small or big min/max values) and are only meant to be used by me.
+La mayoría de estas opciones probablemente no hagan o no estén sintetizadas correctamente (ej. tienen valores mínimos/máximos demasiado pequeños o grandes) y solo están destinadas a ser usadas por mí.
 
-I added descriptions anyways so feel free to play around I guess
+Añadí descripciones de todas formas, así que siéntete libre de jugar un poco, supongo.
 
-This tab only appears when 'developer 1' is enabled in console
+Esta pestaña solo aparece cuando "developer 1" es habilitado en la consola.
 ]]
 
 "gwater2.menu.Presets.title"=[[
@@ -252,21 +252,21 @@ Presets
 ]]
 
 "gwater2.menu.Presets.help"=[[
-Preset tab, load, edit and save any fluids you make.
+Pestaña de presets: carga, edita y guarda cualquier fluido que hagas.
 
-Right clicking on a preset will let you delete or copy its information (to be sent to friends if desired)
+Presionar el clic derecho sobre un preset te dejará eliminarlo o copiar su información (para ser enviada a amigos si lo deseas).
 ]]
 
 "gwater2.menu.Credits.title"=[[
-Credits
+Créditos
 ]]
 
 "gwater2.menu.Credits.titletext"=[[
-Credits
+Créditos
 ]]
 
 "gwater2.menu.Credits.help"=[[
-This tab has a list of all people who helped in development of GWater2 directly or indirectly.
+Esta pestaña tiene una lista de toda la gente que ayudó en el desarrollo de GWater 2 de forma directa o indirecta.
 
 The Patron list is sorted in alphabetical order and will be updated routinely until release.
 
@@ -274,20 +274,20 @@ All revenue generated from this project goes directly to my college fund. Thanks
 ]]
 
 "gwater2.menu.Credits.text"=[[
-v------------+----- Developers ------------------v
-Meetric      | Main Developer
-googer       | Menu rewrite, adv water gun, Wiremod support, Transporter
-jn           | Water-player interactions, Forcefield entity
-Xenthio      | Diffuse and lighting improvements, VVIS culling
-MyUsername   | Linux help
-Stickrpg     | Reaction force sigs
+v------------+----- Desarrolladores ------------------v
+Meetric      | Desarrollador principal
+googer       | Reescritura del menú, pistola de agua avanzada, soporte a Wiremod, transportador
+jn           | Interacciones Agua-Jugador, entidad Forcefield
+Xenthio      | Mejoras difusas e iluminación, VVIS culling
+MyUsername   | Ayuda con Linux
+Stickrpg     | Sigs de fuerza de reacción
 Mikey        | StarfallEx API
-Joka         | Water gun icon
-Spanky       | Particle stretching code
-PotatoOS     | Quaternion math
-AndrewEathan | GWater1 entities
-Kodya        | Swimming code
-Nvidia       | FleX library
+Joka         | Icono de la pistola de agua
+Spanky       | Código de estiramiento de partículas
+PotatoOS     | Matemática de Cuaterniones
+AndrewEathan | Entidades de GWater1
+Kodya        | Código de natación
+Nvidia       | Librería FleX
 v------------+------- Patrons -------------------v
 ]]
 
@@ -296,151 +296,151 @@ v------------+------- Patrons -------------------v
 ------------------------
 
 "gwater2.menu.Parameters.Physics Parameters"=[[
-Physics Parameters
+Parámetros de física
 ]]
 
 "gwater2.menu.Parameters.Advanced Physics Parameters"=[[
-Advanced Physics Parameters
+Parámetros de física avanzada
 ]]
 
 "gwater2.menu.Parameters.Sound Parameters"=[[
-Sound Parameters
+Parámetros de sonido
 ]]
 
 "gwater2.menu.Parameters.Adhesion"=[[
-Adhesion
+Adhesión
 ]]
 
 "gwater2.menu.Parameters.Adhesion.desc"=[[
-Controls how well particles stick to surfaces.
+Controla qué tan bien las partículas se pegan a las superficies.
 
-Note that this specific parameter doesn't reflect changes in the preview very well and may need to be viewed externally.
+Ten en cuenta que este parámetro no refleja muy bien los cambios en la preview y necesitará ser comprobada extremadamente.
 ]]
 
 "gwater2.menu.Parameters.Gravity"=[[
-Gravity
+Gravedad
 ]]
 
 "gwater2.menu.Parameters.Gravity.desc"=[[
-Controls how strongly fluid is pulled down. This value is measured in meters per second.
+Controla qué tan fuerte el fluido es atraído hacia abajo. Este valor se mide en metros por segundo.
 
-Note that the default source gravity is -15.24 which is NOT the same as Earths gravity of -9.81.
+Ten en cuenta que la gravedad por defecto en Source es de -15.24, que no es la misma que ala gravedad de la Tierra, que es de -9.81.
 ]]
 
 "gwater2.menu.Parameters.Cohesion"=[[
-Cohesion
+Cohesión
 ]]
 
 "gwater2.menu.Parameters.Cohesion.desc"=[[
-Controls how well particles hold together.
+Controla qué tan bien las partículas se mantienen juntas.
 
-Higher values make the fluid more solid/rigid, while lower values make it more fluid and loose.
+Valores altos hacen que el fluido sea más sólido/rígido, mientras que los valores bajos lo hacen fluido y flojo.
 ]]
 
 "gwater2.menu.Parameters.Surface Tension"=[[
-Surface Tension
+Tensión superficial
 ]]
 
 "gwater2.menu.Parameters.Surface Tension.desc"=[[
-Controls how strongly particles minimize surface area.
+Controla qué tan fuerte las partículas minimizan el área de la superficie.
 
-This parameter tends to make particles behave oddly if set too high
+Este parámetro tiende a hacer que las partículas actúen raro si se deja muy alto.
 
-Usually bundled with cohesion.
+Usualmente agrupado con cohesión.
 ]]
 
 "gwater2.menu.Parameters.Viscosity"=[[
-Viscosity
+Viscosidad
 ]]
 
 "gwater2.menu.Parameters.Viscosity.desc"=[[
-Controls how much particles resist movement.
+Controla que tanto las partículas resisten el movimiento.
 
-Higher values look more like honey or syrup, while lower values look like water or oil.
+Valores altos se verán como miel o jarabe, mientras que valores bajos se verán como agua o aceite..
 
-This parameter will make liquid sound goopier
+Este parámetro hará sonar el líquido más pegajoso
 ]]
 
 "gwater2.menu.Parameters.Radius"=[[
-Radius
+Radio
 ]]
 
 "gwater2.menu.Parameters.Radius.desc"=[[
-Controls the size of each particle.
+Controla el tamaño de cada partícula.
 
-In the preview it is clamped to 15 to avoid weirdness.
+En la preview está limitado a 15 para evitar que se vea raro.
 
-Radius is measured in source units and is the same for all particles.
+El radio está medido en unidades Source y es el mismo para cada partícula.
 ]]
 
 "gwater2.menu.Parameters.Timescale"=[[
-Timescale
+Escala de tiempo
 ]]
 
 "gwater2.menu.Parameters.Timescale.desc"=[[
-Sets the speed of the simulation.
+Establece la velocidad de la simulación.
 
-Note that some parameters like cohesion and surface tension may behave differently due to smaller or larger compute times
+Ten en cuenta que algunos parámetros como cohesión o tensión superficial se comportarán diferente debido a los largos o pequeños tiempos de computación.
 ]]
 
 "gwater2.menu.Parameters.Dynamic Friction"=[[
-Dynamic Friction
+Fricción dinámica
 ]]
 
 "gwater2.menu.Parameters.Dynamic Friction.desc"=[[
-Controls the amount of friction particles receive on surfaces.
+Controla la cantidad de partículas de fricción que reciben sobre las superficies.
 
-Causes Adhesion to behave weirdly when set to 0.
+Causa que la adhesión se comporte raro cuando se deja en 0.
 ]]
 
 "gwater2.menu.Parameters.Vorticity Confinement"=[[
-Vorticity Confinement
+Confinamiento de vorticidad
 ]]
 
 "gwater2.menu.Parameters.Vorticity Confinement.desc"=[[
-Increases the vorticity effect by applying rotational forces to particles.
+Incrementa el efecto de vorticidad aplicando fuerza de rotación en las partículas.
 
-This exists because air pressure cannot be efficiently simulated.
+Esto existe porque la presión del aire no puede ser eficientemente simulada.
 ]]
 
 "gwater2.menu.Parameters.Collision Distance"=[[
-Collision Distance
+Distancia de colisión
 ]]
 
 "gwater2.menu.Parameters.Collision Distance.desc"=[[
-Controls the collision distance between particles and objects.
+Controla la distancia de colisión entre partículas y objetos.
 
-Note that a lower collision distance will cause particles to clip through objects more often.
+Ten en cuenta que una baja distancia de colisión provocará que las partículas traspasen objetos más seguido.
 ]]
 
 "gwater2.menu.Parameters.Fluid Rest Distance"=[[
-Fluid Rest Distance
+Distancia de reposo de fluidos
 ]]
 
 "gwater2.menu.Parameters.Fluid Rest Distance.desc"=[[
-Controls the collision distance between particles.
+Controla la distancia de colisión entre partículas.
 
-Higher values cause more lumpy liquids while lower values cause smoother liquids
+Valores altos provocan líquidos grumosos, mientras que valores bajos hacen líquidos más suaves.
 
-Note that lower values may slightly impact performance
+Ten en cuenta que valores más bajos podrán afectar un poco el rendimiento
 ]]
 
 "gwater2.menu.Parameters.Sound Pitch"=[[
-Sound Pitch
+Tono de sonido
 ]]
 
 "gwater2.menu.Parameters.Sound Pitch.desc"=[[
-Controls the pitch of the liquid.
+Controla el tono del sonido.
 ]]
 
 "gwater2.menu.Parameters.Sound Volume"=[[
-Sound Volume
+Volumen del sonido
 ]]
 
 "gwater2.menu.Parameters.Sound Volume.desc"=[[
-Controls the volume of the liquid. 
+Controla el volumen del líquido. 
 
-Setting this to 0 will disable water sounds
+Establecer esto a 0 desactivará los sonidos del agua.
 ]]
 
 ------------------------
@@ -448,11 +448,11 @@ Setting this to 0 will disable water sounds
 ------------------------
 
 "gwater2.menu.Visuals.Diffuse Threshold"=[[
-Foam Threshold
+Fuerza mínima difusa
 ]]
 
 "gwater2.menu.Visuals.Diffuse Threshold.desc"=[[
-Controls the amount of force required to make a bubble/foam particle.
+Controla la cantidad de fuerza requerida para hacer una partícula difusa (burbuja/espuma).
 ]]
 
 "gwater2.menu.Visuals.Color"=[[
@@ -460,43 +460,43 @@ Color
 ]]
 
 "gwater2.menu.Visuals.Color.desc"=[[
-Controls the color of the fluid.
+Controla el color del líquido.
 
-The alpha (transparency) channel controls the amount of color absorption.
+El canal alpha (transparencia) controla la absorción de color.
 
-An alpha value of 255 (all the way up) will make the fluid opaque.
+Un valor alpha de 255 (el máximo) hará el líquido opaco.
 ]]
 
 "gwater2.menu.Visuals.Diffuse Lifetime"=[[
-Foam Lifetime
+Tiempo de vida de partículas difusas
 ]]
 
 "gwater2.menu.Visuals.Diffuse Lifetime.desc"=[[
-Controls how long bubbles/foam particles last after being created.
+Controla cuánto durarán las partículas de burbujas/espuma después de ser creadas.
 
-This is affected by the Timescale parameter.
+Esto es afectado por el parámetro de escala de tiempo.
 
-Setting this to 0 will spawn no diffuse particles
+Establecer esto en 0 hará que no spawneen partículas difusas.
 ]]
 
 "gwater2.menu.Visuals.Reflectance"=[[
-Reflectance
+Reflectividad
 ]]
 
 "gwater2.menu.Visuals.Reflectance.desc"=[[
-Changes how reflective water is.
+Cambia qué tan reflectiva es el agua.
 
-Internally this is linked to the IOR (Index Of Refraction).
+Internamente esto está vinculado al IDR (Índice de Refracción).
 ]]
 
 "gwater2.menu.Visuals.Color Value Multiplier"=[[
-Brightness
+Brillo
 ]]
 
 "gwater2.menu.Visuals.Color Value Multiplier.desc"=[[
-Multiplies the current water color.
+Multiplica el color actual del agua
 
-Setting this to anything higher than 1 will make liquid appear to glow.
+Establecerno en un valor superior a 1 hará que el líquido parezca brillar.
 ]]
 
 ------------------------
@@ -504,151 +504,151 @@ Setting this to anything higher than 1 will make liquid appear to glow.
 ------------------------
 
 "gwater2.menu.Performance.Physics"=[[
-Physics
+Físicas
 ]]
 
 "gwater2.menu.Performance.Visuals"=[[
-Visuals
+Visuales
 ]]
 
 "gwater2.menu.Performance.Absorption"=[[
-Absorption
+Absorción
 ]]
 
 "gwater2.menu.Performance.Absorption.desc"=[[
-Enables absorption of light over distance inside of fluid.
-(more depth=darker color)
+Habilita la absorción de la luz a distancia dentro del fluido..
+(Más profundidad=color más oscuro)
 
-Medium performance impact.
+Impacto medio al rendimiento.
 ]]
 
 "gwater2.menu.Performance.Substeps"=[[
-Substeps
+Subpasos
 ]]
 
 "gwater2.menu.Performance.Substeps.desc"=[[
-Controls the number of physics steps done per tick.
+Controla el número de pasos de física por tick.
 
-Note that parameters may not be properly tuned for different substeps!
+Ten en cuenta que los parámetros no podrán estar sintonizados para diferentes subpasos!
 
-This parameter does not save.
+Este parámetro no se guarda.
 
-Medium-High performance impact.
+Impacto medio-alto en el rendimiento.
 ]]
 
 "gwater2.menu.Performance.Depth Fix"=[[
-Depth Fix
+Solución de profundidad
 ]]
 
 "gwater2.menu.Performance.Depth Fix.desc"=[[
-Makes particles appear spherical instead of flat, creating a cleaner and smoother water surface.
+Hace que las partículas aparezcan esféricas en vez de planas, creando una superficie de agua líquida más limpia y suave.
 
-Causes shader overdraw.
+Causa overdraw de shaders
 
-Medium-High performance impact.
+Impacto medio-alto al rendimiento
 ]]
 
 "gwater2.menu.Performance.Particle Limit"=[[
-Particle Limit
+Límite de partículas
 ]]
 
 "gwater2.menu.Performance.Particle Limit.desc"=[[
-USE THIS PARAMETER AT YOUR OWN RISK.
+USA ESTE PARÁMETRO BAJO TU PROPIO RIESGO.
 
-Changes the limit of particles.
+Cambia el límite de partículas.
 
-This parameter does not save.
+Este parámetro no se guarda.
 
-Note that a higher limit will negatively impact performance even with the same number of particles spawned.
+Ten en cuenta que un límite alto tendrá un impacto negativo en al rendimiento, incluso con la misma cantidad de partículas spawneadas.
 ]]
 
 "gwater2.menu.Performance.Particle Limit.title"=[[
-You are about to change the fluid limit to %d particles
-Are you sure?
+Estas apunto de cambiar el limite de fluidos a %d partículas
+Estas seguro?
 ]]
 
 "gwater2.menu.Performance.Particle Limit.warning"=[[
-This can be dangerous, because all particles must be allocated on the GPU.
-DO NOT set the limit to a number higher then you think your computer can handle.
-I DO NOT take responsiblity for any hardware damage this may cause
+Esto puede ser peligroso porque todas las partículas deben ubicarse en la GPU.
+NO establezcas el valor a un número que creas que tu PC no pueda soportar.
+YO NO me hago responsable de cualquier daño al hardware que esto pueda provocar.
 ]]
 
 "gwater2.menu.Performance.Iterations"=[[
-Iterations
+Iteraciones
 ]]
 
 "gwater2.menu.Performance.Iterations.desc"=[[
-Controls how many times the physics solver attempts to converge to a solution per substep.
+Controla cuántas veces el solucionador de física intenta converger a una solución por subpaso.
 
-This parameter does not save.
+Este parámetro no se guarda.
 
-Medium performance impact.
+Impacto medio al rendimiento
 ]]
 
 "gwater2.menu.Performance.Player Collision"=[[
-Player Collision
+Colisión del jugador
 ]]
 
 "gwater2.menu.Performance.Player Collision.desc"=[[
 Enables / disables collision with the player (you).
 
-This doesn't actually impact performance that much, but I put it in this tab anyways because presets cannot set this value
+En realidad, esto no afecta mucho el rendimiento, pero lo pongo en esta pestaña de todos modos porque los no pueden establecer este valor.
 ]]
 
 "gwater2.menu.Performance.Diffuse Enabled"=[[
-Diffuse / Sound Enabled
+Difuso / Sonido Habilitado
 ]]
 
 "gwater2.menu.Performance.Diffuse Enabled.desc"=[[
-Enables / disables diffuse particles
-(foam/bubbles)
+Activa/desactiva las particulas difusas
+(burbujas/espuma)
 
-Because this setting is in the performance tab, it CANNOT be set via presets. If you desire to disable diffuse particles for a custom preset, go to the Visuals tab and set Diffuse Lifetime to 0.
+Debido a que esta configuración se encuentra en la pestaña de rendimiento, NO SE PUEDE configurar mediante presets. Si desea desactivar las partículas difusas para un preset personalizado, vaya a la pestaña Visuales y establezca "Tiempo de vida de partículas difusas" en 0.
 
-NOTE THAT THIS WILL ALSO DISABLE SOUND, AS SOUND IS CALCULATED VIA DIFFUSE PARTICLES
+TENGA EN CUENTA QUE ESTO TAMBIÉN DESHABILITARÁ EL SONIDO, YA QUE EL SONIDO SE CALCULA A TRAVÉS DE PARTÍCULAS DIFUSAS
 
-Medium performance impact.
+Impacto medio en el rendimiento.
 ]]
 
 "gwater2.menu.Performance.Simulation FPS"=[[
-Simulation FPS
+FPS de la simulación
 ]]
 
 "gwater2.menu.Performance.Simulation FPS.desc"=[[
-Controls the framerate of the simulation (How fast it is updated).
+Controla la velocidad de fotogramas de la simulación (qué tan rápido se actualiza).
 
-This setting may change the behavior of the liquid due to smaller or larger compute times.
+Esta configuración puede cambiar el comportamiento del líquido debido a tiempos de cálculo más pequeños o más grandes.
 
-Medium-High performance impact.
+Impacto en el rendimiento Medio-Alto.
 ]]
 
 "gwater2.menu.Performance.Mirror Rendering"=[[
-Mirror Rendering
+Renderizado en espejos
 ]]
 
 "gwater2.menu.Performance.Mirror Rendering.desc"=[[
-Enables fluid rendering in reflections like source water and mirrors.
+Habilita el renderizado de fluido en reflejos como el source water y los espejos.
 
-When VRMod is enabled, this setting is set to 1
+Cuando el VRMod está habilitado, este ajuste estará establecido en 1.
 
-0 = No reflections
+0 = Sin reflejos
 
-1 = Cheap reflections
+1 = Reflejos simples
 (Frustrum / screen space)
-(This will disable fluid PVS culling)
+(Esto desactivará el PVS culling fluido)
 
-2 = Expensive reflections 
-(Renders fluid more than once)
+2 = Reflejos Elegantes
+(Renderiza el fluido más de una vez)
 ]]
 
 "gwater2.menu.Performance.Blur Passes"=[[
-Blur Passes
+Pases borrosos
 ]]
 
 "gwater2.menu.Performance.Blur Passes.desc"=[[
-Controls the number of blur passes done per frame. More passes creates a smoother water surface. 0 passes will do no blurring.
+Controla el número de pases borrosos hechos por frame. Más pases crearán una superficie de agua más suave. 0 pases no aplicarán ningún efecto.
 
-Low performance impact.
+Bajo impacto al rendimiento.
 ]]
 
 ------------------------
@@ -656,123 +656,123 @@ Low performance impact.
 ------------------------
 
 "gwater2.menu.Interactions.Reaction Force Parameters"=[[
-Reaction Force Parameters
+Parámetros de fuerza de reacción
 ]]
 
 "gwater2.menu.Interactions.Force Buoyancy"=[[
-Force Buoyancy
+Fuerza de flotabilidad
 ]]
 
 "gwater2.menu.Interactions.Force Buoyancy.desc"=[[
-Buoyant force which is applied to props in water.
+Fuerza de flotabilidad que se aplica a los objetos en el agua.
 
-The implementation is by no means accurate and probably should not be used for prop boats.
+La implementación no es de ninguna manera precisa y probablemente no debería usarse para barcos.
 
-Reaction forces must be enabled for this parameter to do anything
+Las fuerzas de reacción debe esta habilitada para que este parámetro haga algo.
 ]]
 
 "gwater2.menu.Interactions.Force Dampening"=[[
-Force Dampening
+Fuerza de amortiguación
 ]]
 
 "gwater2.menu.Interactions.Force Dampening.desc"=[[
-Dampening force applied to props.
+Fuerza de amortiguación aplicada a objetos
 
-Helps a little bit if props tend to bounce on the water surface.
+Ayuda un poco si los objetos tienden a rebotar afuera de la superficie de agua.
 
-Reaction forces must be enabled for this parameter to do anything
+Las fuerzas de reacción debe esta habilitada para que este parámetro haga algo.
 ]]
 
 "gwater2.menu.Interactions.Force Multiplier"=[[
-Force Multiplier
+Multiplicador de fuerza
 ]]
 
 "gwater2.menu.Interactions.Force Multiplier.desc"=[[
-Determines the amount of force which is applied to props by water.
+Determina la cantidad de fuerza que es aplicada a los objetos por el agua.
 
-Reaction forces must be enabled for this parameter to do anything
+Las fuerzas de reacción debe esta habilitada para que este parámetro haga algo.
 ]]
 
 "gwater2.menu.Interactions.Water Interactions"=[[
-Water Interactions
+Interacciones con el agua
 ]]
 
 "gwater2.menu.Interactions.Player Interaction"=[[
-Player interaction
+Interacciones con el jugador
 ]]
 
 "gwater2.menu.Interactions.Player Interaction.desc"=[[
-When enabled, players can physically interact with water.
+Cuando está habilitado, el jugador puede interactuar físicamente con el agua.
 
-Enables things like swimming and the walk/jump multipliers
+Permite cosas como nadar y los multiplicadores de caminar/saltar.
 ]]
 
 "gwater2.menu.Interactions.Reaction Forces"=[[
-Prop interaction
+Interacción con objetos
 ]]
 
 "gwater2.menu.Interactions.Reaction Forces.desc"=[[
-When enabled, water can force props around.
+Cuando esté habilitado, el agua podrá mover objetos.
 
-This is by no means accurate and uses some very botched math, so expect instability.
+Esto de ninguna manera es exacto y utiliza algunas matemáticas muy fallidas, así que espere inestabilidad.
 
-Performance heavy parameter, beefy computer required.
+Parámetro con impacto negativo al rendimiento, beefy computer required.
 ]]
 
 "gwater2.menu.Interactions.SwimSpeed"=[[
-Swim Speed
+Velocidad de natación
 ]]
 
 "gwater2.menu.Interactions.SwimSpeed.desc"=[[
-Controls how fast you swim when underwater
+Controla qué tan rápido nadas bajo el agua.
 ]]
 
 "gwater2.menu.Interactions.SwimFriction"=[[
-Swim Friction
+Fricción de natación
 ]]
 
 "gwater2.menu.Interactions.SwimFriction.desc"=[[
-Controls how difficult it is to swim through water.
+Controla qué tan difícil es nadar en el agua.
 
-Note that in real life, viscosity does not affect swim speed.
+Tenga en cuenta que en la vida real la viscosidad no afecta la velocidad de natación.
 ]]
 
 "gwater2.menu.Interactions.SwimBuoyancy"=[[
-Swim Buoyancy
+Flotabilidad al nadar
 ]]
 
 "gwater2.menu.Interactions.SwimBuoyancy.desc"=[[
-Controls the density of the liquid.
+Controla la densidad del líquido.
 
-Larger values will push you out of the water more.
+Los valores altos te empujarán más del agua.
 
-Negative values will suck you down
+Los valores negativos te absorberán
 ]]
 
 "gwater2.menu.Interactions.MultiplyParticles"=[[
-Multiply Particles
+Multiplicar partículas
 ]]
 
 "gwater2.menu.Interactions.MultiplyParticles.desc"=[[
-Controls the number of particles you need to touch before walk/jump speed are changed.
+Controla el número de partículas que tienes que tocar para que la velocidad de caminar/saltar sea afectada.
 
-This also affects the 'Touch Damage' parameter
+Esto también afecta al parámetro de 'Touch Damage'.
 ]]
 
 "gwater2.menu.Interactions.MultiplyWalk"=[[
-Walk Speed Multiplier
+Multiplicador de velocidad al caminar
 ]]
 
 "gwater2.menu.Interactions.MultiplyWalk.desc"=[[
-Changes how quickly you move while touching liquid
+Cambia qué tan rápido te mueves mientras estás en contacto con líquido.
 ]]
 
 "gwater2.menu.Interactions.MultiplyJump"=[[
-Jump Power Multiplier
+Multiplicador de fuerza de salto
 ]]
 
 "gwater2.menu.Interactions.MultiplyJump.desc"=[[
-Changes how high you can jump while touching liquid
+Cambia qué tan alto puedes saltar mientras estás en contacto con líquido.
 ]]
 
 "gwater2.menu.Interactions.TouchDamage"=[[
@@ -780,7 +780,8 @@ Touch Damage
 ]]
 
 "gwater2.menu.Interactions.TouchDamage.desc"=[[
-How much damage is done while in water.
+Qué tanto daño se provoca mientras estás en contacto con agua.
+
 
 Negative values will heal you.
 ]]
@@ -790,51 +791,51 @@ Negative values will heal you.
 ------------------------
 
 "gwater2.menu.Presets.import_preset"=[[
-Import preset
+Importar preset
 ]]
 
 "gwater2.menu.Presets.import.paste_here"=[[
-Paste preset here
+Pegar preset aquí
 ]]
 
 "gwater2.menu.Presets.import.detected"=[[
-Detected: %s preset
+Detectado: %s preset
 ]]
 
 "gwater2.menu.Presets.import.detected.multiple"=[[
-Detected: %s presets
+Detectado: %s presets
 ]]
 
 "gwater2.menu.Presets.import.bad_data"=[[
-Data is malformed or preset type is unknown at preset #%d
+Los datos tienen un formato incorrecto o se desconoce el tipo de preset en el preset #%d
 ]]
 
 "gwater2.menu.Presets.save"=[[
-Save preset
+Guardar preset
 ]]
 
 "gwater2.menu.Presets.save.preset_name"=[[
-Preset name
+Nombre del preset
 ]]
 
 "gwater2.menu.Presets.save.include_params"=[[
-Included parameters:
+Parámetros incluidos:
 ]]
 
 "gwater2.menu.Presets.copy"=[[
-Copy to clipboard
+Copiar al portapapeles
 ]]
 
 "gwater2.menu.Presets.copy.as_json"=[[
-...as JSON
+...como JSON
 ]]
 
 "gwater2.menu.Presets.copy.as_b64pi"=[[
-...as B64-PI
+...como B64-PI
 ]]
 
 "gwater2.menu.Presets.delete"=[[
-Delete
+Eliminar
 ]]
 
 ------------------------
@@ -842,29 +843,29 @@ Delete
 ------------------------
 
 "gwater2.menu.Developer.Anisotropy Max"=[[
-Anisotropy Max
+Anisotropía máxima
 ]]
 
 "gwater2.menu.Developer.Anisotropy Max.desc"=[[
-Controls the maximum visual size that particles are allowed to stretch between particles.
+Controla el tamaño visual máximo que las partículas pueden estirarse entre partículas.
 ]]
 
 "gwater2.menu.Developer.Anisotropy Min"=[[
-Anisotropy Min
+Anisotropía mínima
 ]]
 
 "gwater2.menu.Developer.Anisotropy Min.desc"=[[
-Controls the minimum visual size that particles can be.
+Controla el tamaño mínimo visual que pueden tener las partículas.
 ]]
 
 "gwater2.menu.Developer.Anisotropy Scale"=[[
-Anisotropy Scale
+Escala de anisotropía
 ]]
 
 "gwater2.menu.Developer.Anisotropy Scale.desc"=[[
-Controls the visual size of stretching between particles.
+Controla el tamaño visual del estiramiento entre partículas.
 
-Making this value 0 will turn off stretching.
+Establecer este valor a 0 desactivará el estiramiento.
 ]]
 
 "gwater2.menu.Developer.static_friction"=[[
@@ -872,7 +873,7 @@ static_friction
 ]]
 
 "gwater2.menu.Developer.static_friction.desc"=[[
-initial amount of force required to move the particle when it is at rest
+Cantidad inicial de fuerza necesaria para mover la partícula cuando está en reposo.
 ]]
 
 "gwater2.menu.Developer.particle_friction"=[[
@@ -880,7 +881,7 @@ particle_friction
 ]]
 
 "gwater2.menu.Developer.particle_friction.desc"=[[
-friction between particles
+fricción entre partículas
 
 duh.
 ]]
@@ -1088,51 +1089,51 @@ controls the relaxation factor for global particle interaction. can cause explos
 ------------------------
 
 "gwater2.menu.Menu.title"=[[
-Menu
+Menú
 ]]
 
 "gwater2.menu.Menu.titletext"=[[
-Menu
+Menú
 ]]
 
 "gwater2.menu.Menu.help"=[[
-This tab controls visuals and behavior of the menu.
+Esta pestaña controla cómo se ve/comporta este menú.
 
-Hover over a parameter to reveal its functionality.
+Pasa el cursor encima de un parámetro para revelar su funcionalidad.
 ]]
 
 "gwater2.menu.Menu.sounds"=[[
-Play sounds
+Reproducir sonido
 ]]
 
 "gwater2.menu.Menu.sounds.desc"=[[
-Enable/disable menu sounds
+Activar/desactivar sonidos del menú
 ]]
 
 "gwater2.menu.Menu.animations"=[[
-Animate menu
+Menú animado
 ]]
 
 "gwater2.menu.Menu.animations.desc"=[[
-Enable/disable simple menu load-in animations.
+Activar/desactivar animaciones simples de carga en el menú.
 ]]
 
 "gwater2.menu.Menu.preview"=[[
-Show fluid preview
+Mostrar preview de fluidos
 ]]
 
 "gwater2.menu.Menu.preview.desc"=[[
-Enables/disables the fluid preview (seen on left)
+Activar/desactivar preview de fluidos (mostrada a la izquierda).
 
-Helps performance while in the menu a bit
+Ayuda al rendimiento dentro del menú un poco.
 ]]
 
 "gwater2.menu.Menu.pixelate_preview"=[[
-Pixelated fluid preview
+Preview de fluidos pixelada
 ]]
 
 "gwater2.menu.Menu.pixelate_preview.desc"=[[
-Enable / disables pixelated fluid preview.
+Activa/desactiva una preview de fluidos pixelada.
 ]]
 
 "gwater2.menu.Menu.admin_only"=[[
@@ -1140,11 +1141,11 @@ Admin only menu
 ]]
 
 "gwater2.menu.Menu.admin_only.desc"=[[
-Enable/disables the menu only being accessable to admins.
+Permite que solo los admins puedan acceder al menú.
 
-NOTE THAT ONLY THE SERVER HOST CAN CHANGE THIS VALUE. IF THIS SETTING DOESN'T WORK, RUN THE COMMAND:
+TEN EN CUENTA QUE SOLO EL HOST DEL SERVER PUEDE CAMBIAR ESTA OPCIÓN. SI ESTA OPCIÓN NO FUNCIONA, EJECUTA EL COMANDO:
 gwater2_adminonly (0-1)
-IN CONSOLE
+EN LA CONSOLA
 ]]
 
 "gwater2.menu.Menu.soundpack"=[[
@@ -1152,7 +1153,7 @@ Menu Soundpack
 ]]
 
 "gwater2.menu.Menu.soundpack.desc"=[[
-Selects menu soundpack - sounds that play when you interact with menu.
+Selecciona menú soundpack: sonidos que solo suenan cuando interactúas con el menú.
 ]]
 
 ------------------------
@@ -1160,19 +1161,19 @@ Selects menu soundpack - sounds that play when you interact with menu.
 ------------------------
 
 "gwater2.menu.Fluid Preview.title"=[[
-Fluid Preview
+Preview de fluidos
 ]]
 
 "gwater2.menu.Explanation Area.title"=[[
-Explanation Area
+Área de explicación
 ]]
 
 "gwater2.menu.qaccess.Reset Solvers"=[[
-Reset solvers (clean all water)
+Restablecer solucionadores (eliminar toda el agua)
 ]]
 
 "gwater2.menu.qaccess.Give Watergun"=[[
-Give yourself watergun swep
+Date un swep con la pistola de agua
 ]]
 
 ------------------------
@@ -1180,35 +1181,35 @@ Give yourself watergun swep
 ------------------------
 
 "gwater2.menu.WaterGun.Velocity"=[[
-Particle Velocity
+Velocidad de partículas
 ]]
 
 "gwater2.menu.WaterGun.Velocity.Explanation"=[[
-How fast particles should go out of the gun.
+La velocidad de las partículas al ser disparadas fuera de la pistola de agua.
 ]]
 
 "gwater2.menu.WaterGun.Distance"=[[
-Max Distance
+Distancia máxima
 ]]
 
 "gwater2.menu.WaterGun.Distance.Explanation"=[[
-How far should we try to trace starting position
+Hasta dónde debemos intentar trazar la posición inicial
 ]]
 
 "gwater2.menu.WaterGun.Spread"=[[
-Particle Spread
+Propagación de partículas
 ]]
 
 "gwater2.menu.WaterGun.Spread.Explanation"=[[
-How spread out particles are
+Qué tan dispersas salndran las partículas
 ]]
 
 "gwater2.menu.WaterGun.SpawnMode"=[[
-Shoot Mode
+Modo de disparo
 ]]
 
 "gwater2.menu.WaterGun.SpawnMode.Explanation"=[[
-1=Circle, 2=Box
-Please note that same parameters with different
-modes behave differently.
+1=Circulo, 2=Caja
+Ten en cuenta que mismos parámetros con diferentes
+modos se comportan diferente.
 ]]

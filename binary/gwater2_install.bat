@@ -45,7 +45,7 @@ goto prompt
 :install
 pushd %gmod_dir%
 echo Downloading gwater2...
-powershell -command [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest 'https://www.dropbox.com/scl/fi/zeg5vwverh4fruaubv4v7/gwater2.zip?rlkey=d28tyewk1pq47e684mz3h15ir"&"st=gwvla5ww"&"dl=1' -Out gwater2.zip
+powershell -command [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest 'https://github.com/meetric1/gwater2/releases/download/v1.0/gwater2_1.0.zip' -Out gwater2.zip
 
 if not exist gwater2.zip (
 	echo Download failed, Invalid Link
@@ -56,6 +56,7 @@ if not exist gwater2.zip (
 echo Decompressing...
 powershell -command Expand-Archive gwater2.zip -Force
 echo Installing...
+rmdir ".\garrysmod\addons\gwater2" /s /q
 xcopy /e /y /q gwater2 .
 rmdir /s /q gwater2
 del gwater2.zip

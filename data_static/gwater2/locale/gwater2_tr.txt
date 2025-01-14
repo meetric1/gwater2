@@ -1,0 +1,908 @@
+
+Bu GWater2'nin dil dosyası.Bunu hepsi gmod'a dil olarak eklenir.
+Not: Çeviri 4000 byte'dan daha yüksek olamaz. (1 İngiliz karakteri 1 byte'dır)
+
+Yazı Formatı format:
+"gwater2.key_here"=[[
+Buraya çeviri gelir.
+]]
+
+SAKIN 'gwater2.key_here'ı DEĞİŞTİRMEYİN
+
+Normal dil kullanın,küfür kullanmayın,kabadayı olmayın :)
+
+------------------------
+-------- HATALAR --------
+------------------------
+
+"gwater2.error.modulenotinstalled"=[[
+!!!LÜTFEN BENİ OKU!!!!
+
+GWATER2 MODÜLÜ BULMAYI BAŞARAMADI!
+
+Bunun anlamı GWater2'nin .ddl dosyalarını indirmemeniz olabilir.
+Lütfen ikilileri yükleyin ve GWater2'nin .dll'lerinin GarrysMod/garrysmod/lua/bin'de olduğunu kontrol edin.
+Not:GWater2 doğal olarak Mac Os ve Linux için ÇALIŞMAZ.
+]]
+
+"gwater2.error.modulefailedtoload.1"=[[
+!!!LÜTFEN BENİ OKU!!!!
+
+GWATER2 MODÜLÜ BULMAYI BAŞARAMADI!
+FleX ikilerini GarrysMod/'a yüklediğinizden emin olun.
+Lütfen yüklemenize göz atın ve oyunu yeniden açın.
+]]
+
+"gwater2.error.modulefailedtoload.2"=[[
+Mod'u doğru yülediğinizden eminseniz, otunu birkaç kere yeniden açın. Bu Garry's Mod'un codunon hatasıdır ve ben bunu çözemem.
+]]
+
+"gwater2.error.modulefailedtoload.3"=[[
+Eğer hata daha hala ortadaysa yardim istemekten çekinmeyin. Yardım isterken LÜTFEN bu 3 kodları yazın:
+
+Error: %s
+BRANCH: %s
+jit.arch: %s
+]]
+
+"gwater2.error.chatlog"=[[
+Yüklenemedi! Lütfen  daha fazla bilgi için Problemler menüsüne bakın. (ESC menüsü -> sol alt)
+]]
+
+"gwater2.gun.adv.notloaded"=[[
+GWater2 yüklenemedi!
+Hatalar için Konsol'a bakın.
+]]
+
+------------------------
+------ SU SILAHI -------
+------------------------
+
+"gwater2.gun.adv.controls.lclk"=[[
+Parçacıklar yaratmak için Sol-Tıklatın
+]]
+
+"gwater2.gun.adv.controls.rclk"=[[
+Silah menüsünü açmak için Sağ-Tıklatın
+]]
+
+"gwater2.gun.adv.controls.reload"=[[
+Bütün parçacıkları silmek için R'ye bas
+]]
+
+------------------------
+------- VARLIKLAR -------
+------------------------
+
+"gwater2.ent.drain.side"=[[
+BU TARAF
+SIVIYI BOŞALTIR
+]]
+
+"gwater2.ent.emitter.side"=[[
+BU TARAF
+SIVIYI YAYAR
+]]
+
+"gwater2.ent.on"=[[
+Açık
+]]
+
+"gwater2.ent.off"=[[
+Kapalı
+]]
+
+"gwater2.ent.radius"=[[
+%s yarıçapı
+]]
+
+"gwater2.ent.radius2"=[[
+%sx%s yarıçapı
+]]
+
+"gwater2.ent.strength"=[[
+%s güç
+]]
+
+"gwater2.ent.spread"=[[
+%s yayılma
+]]
+
+"gwater2.ent.lifetime"=[[
+%s ömürü
+]]
+
+"gwater2.ent.transporter.queue"=[[
+Bekleyen Parçacıklar: %s
+]]
+
+"gwater2.ent.transporter.link"=[[
+Buna Bağlı: %s
+]]
+
+--------------------------------------------
+--------------------------------------------
+----                MENÜ                ----
+--------------------------------------------
+--------------------------------------------
+
+------------------------
+------- SEKME BİLGİLERİ -------
+------------------------
+
+"gwater2.menu.title"=[[
+GWater2 (%s)
+]]
+
+""gwater2.menu.About Tab.title"=[[
+Hakkında
+]]
+
+"gwater2.menu.About Tab.titletext"=[[
+GWater2'ye hoş geldiniz. (v%s)
+]]
+
+"gwater2.menu.About Tab.welcome"=[[
+gwater2'nin betasını yüklediğiniz için teşekkürler! Bu menü gwater'ın control menüsüdür. Bu yüzden bu menüye alışın! :D
+
+Değişklikleri okumayı unutmayın!
+
+Değişiklikler (v1.0):
+
+- İlk Yayın
+
+]]
+
+"gwater2.menu.About Tab.help"=[[
+Burada,farklı kısımlarda yardım-edici yazılar var.
+
+Burayı okumayı unutma!!
+]]
+
+"gwater2.menu.Parameters.title"=[[
+Parametreler
+]]
+
+"gwater2.menu.Parameters.titletext"=[[
+Parametreler
+]]
+
+"gwater2.menu.Parameters.help"=[[
+Burada suyun etrafla ve kendiyle ne yapacağı yazar.
+
+Bir parametrenin özelliğini görmek için üstüne fareyi koyun.
+]]
+
+"gwater2.menu.Visuals.title"=[[
+Görseller
+]]
+
+"gwater2.menu.Visuals.titletext"=[[
+Görseller
+]]
+
+"gwater2.menu.Visuals.help"=[[
+Sıvının rengini ve görünümünü değiştirir.
+
+Bir parametrenin özelliğini görmek için üstüne fareyi koyun.
+]]
+
+"gwater2.menu.Performance.title"=[[
+Performans
+]]
+
+"gwater2.menu.Performance.titletext"=[[
+Performance
+]]
+
+"gwater2.menu.Performance.help"=[[
+Performansını burdan değiştirebilirsin
+Kırmızı ve yeşil performansını etkileyen renker hakkındadır. Bunalrın hepsi GPU'yu etkiler.
+BU AYARLAR KİŞİ TARAFINDAN YAPILAN SIVILARLA SENKRONİZE OLMAZ! 
+
+Bir parametrenin özelliğini görmek için üstüne fareyi koyun.
+]]
+
+"gwater2.menu.Interactions.title"=[[
+Etkileşimler
+]]
+
+"gwater2.menu.Interactions.titletext"=[[
+Etkileşimler
+]]
+
+"gwater2.menu.Interactions.help"=[[
+Suyun eşyaları ve oyuncuyu nasıl etkilediğini değiştiren parametrelerdir.
+]]
+
+"gwater2.menu.Presets.title"=[[
+Ön Ayarlar
+]]
+
+"gwater2.menu.Presets.titletext"=[[
+Ön Ayarlar
+]]
+
+"gwater2.menu.Presets.help"=[[
+Ön Ayarlar, Yaptığın sıvıları kaydet ve yükle
+
+Bir kişi tarafından yapılan sıvıya sağ-tıklatırsanız bunun bilgilerini kopyalayabilir yada silebilirsiniz.
+]]
+
+"gwater2.menu.Credits.title"=[[
+Katkıda Bulunanlar
+]]
+
+"gwater2.menu.Credits.titletext"=[[
+Katkıda Bulunanlar
+]]
+
+"gwater2.menu.Credits.help"=[[
+Burda GWater2'nin apımına yardım eden kişiler var.
+
+Patron listesi alphabetikal sırada olarak her gün rutinli güncellenecek.
+
+Bu projeden yapılan bütün para benim universite harçlığıma gidiyor. Çok teşekkürler :D
+]]
+
+"gwater2.menu.Credits.text"=[[
+v------------+----- Yapımcılar ------------------v
+Meetric      | Ana Geliştirici
+googer       | Menü yeniden-yazılımı, gelişmiş su tabancası, Wiremod Desteği, Taşıyıcı
+jn           | Su-oyuncu tepkisi, kuvvet alanı varlığı
+Xenthio      | Yaygınlaşma ve aydınlatma iyileştirmeleri, VVIS ayıklama
+MyUsername   | Linux yardımı
+Stickrpg     | Reaksiyon güçü imzası
+Mikey        | StarfallEx API'si
+Joka         | Su Tabancası İkonu
+Spanky       | Parçacık streç kodu
+PotatoOS     | Quaternion matematiği
+AndrewEathan | GWater1 varlıkları
+Kodya        | Yüzme kodu
+Nvidia       | FleX kütüphanesi
+v------------+------ Çeviriciler -------------------v
+pigeor       | Türkçeye Çeviren Kişi
+v------------+------- Patronlar --------------------v
+]]
+
+------------------------
+------ PARAMETERELER ------
+------------------------
+
+"gwater2.menu.Parameters.Physics Parameters"=[[
+Fizik Parametreleri
+]]
+
+"gwater2.menu.Parameters.Advanced Physics Parameters"=[[
+Gelişmiş Fizik Parametreleri
+]]
+
+"gwater2.menu.Parameters.Sound Parameters"=[[
+Ses Parametreleri
+]]
+
+"gwater2.menu.Parameters.Adhesion"=[[
+Yapışkanlık
+]]
+
+"gwater2.menu.Parameters.Adhesion.desc"=[[
+Sıvının ne kadar yapışkan olduğunu değiştirir.
+
+Not: Bu parametre ön izlemede görünmez.
+]]
+
+"gwater2.menu.Parameters.Gravity"=[[
+Yer Çekimi
+]]
+
+"gwater2.menu.Parameters.Gravity.desc"=[[
+Bence isimden anlayabilirsiniz.
+
+Normal yer çekimi (-15.24),dünyanın yerçekimine eşit değildir. (-9.81)
+]]
+
+"gwater2.menu.Parameters.Cohesion"=[[
+Bağlaşıklık
+]]
+
+"gwater2.menu.Parameters.Cohesion.desc"=[[
+Birbirlerine nekadar tutunduklarını ayarlar.
+
+Daha yüksekse sıvı sertleşir.
+]]
+
+"gwater2.menu.Parameters.Surface Tension"=[[
+Yüzeyt Tensiyonu
+]]
+
+"gwater2.menu.Parameters.Surface Tension.desc"=[[
+Yüzey tensiyonunu değiştirir.
+
+Eğer çok yüksek ise parçacıklar bozulabilir.
+]]
+
+"gwater2.menu.Parameters.Viscosity"=[[
+Viskozite
+]]
+
+"gwater2.menu.Parameters.Viscosity.desc"=[[
+Viskozite'yi değiştirir.
+
+Daha yüksekse bala,azsa suya benzer.
+]]
+
+"gwater2.menu.Parameters.Radius"=[[
+Yarıçapı
+]]
+
+"gwater2.menu.Parameters.Radius.desc"=[[
+Parçacıkların boyunu değiştirir.
+]]
+
+"gwater2.menu.Parameters.Timescale"=[[
+Simulasyon Zaman Hızı
+]]
+
+"gwater2.menu.Parameters.Timescale.desc"=[[
+Simulasyonun hızını değiştirir.
+]]
+
+"gwater2.menu.Parameters.Dynamic Friction"=[[
+Dinamik Sürtünm
+]]
+
+"gwater2.menu.Parameters.Dynamic Friction.desc"=[[
+Değişik yüzeylerde sürtünmeyi değiştirir.
+]]
+
+"gwater2.menu.Parameters.Vorticity Confinement"=[[
+Vorticity Confinement
+]]
+
+"gwater2.menu.Parameters.Vorticity Confinement.desc"=[[
+Parçacıklara dönme kuvvetleri uygulayarak girdap etkisini artırır.
+
+Bu, hava basıncının verimli bir şekilde simüle edilememesi nedeniyle mevcuttur.
+]]
+
+"gwater2.menu.Parameters.Collision Distance"=[[
+Çarpışma Aralığı
+]]
+
+"gwater2.menu.Parameters.Collision Distance.desc"=[[
+Çarpışma aralığını değiştirir.
+]]
+
+"gwater2.menu.Parameters.Fluid Rest Distance"=[[
+Sıvı Dinlenme Mesafesi
+]]
+
+"gwater2.menu.Parameters.Fluid Rest Distance.desc"=[[
+Parçacık arasındaki boşluğu değiştirir.
+]]
+
+"gwater2.menu.Parameters.Sound Pitch"=[[
+Ses Perdesi
+]]
+
+"gwater2.menu.Parameters.Sound Pitch.desc"=[[
+Sesin perdesini değiştirir. 2=200%% (1=100%%)
+]]
+
+"gwater2.menu.Parameters.Sound Volume"=[[
+Ses Seviyesi
+]]
+
+"gwater2.menu.Parameters.Sound Volume.desc"=[[
+İsimden belli. 2=200%% (1=100%%)
+
+0 sesi kapatır.
+]]
+
+------------------------
+------- VISUALS --------
+------------------------
+
+"gwater2.menu.Visuals.Diffuse Threshold"=[[
+Yaygın Eşiği
+]]
+
+"gwater2.menu.Visuals.Diffuse Threshold.desc"=[[
+Bir kabarcık/köpük parçacığı oluşturmak için gereken kuvvet miktarını kontrol eder.
+]]
+
+"gwater2.menu.Visuals.Color"=[[
+Renk
+]]
+
+"gwater2.menu.Visuals.Color.desc"=[[
+Birşey demem gerekiyormu?
+]]
+
+"gwater2.menu.Visuals.Diffuse Lifetime"=[[
+Yaygın Kullanım Ömrü
+]]
+
+"gwater2.menu.Visuals.Diffuse Lifetime.desc"=[[
+Kabarcıkların/köpük parçacıklarının oluşturulduktan sonra ne kadar süre dayanacağını kontrol eder.
+
+Bu, Zaman Ölçeği parametresinden etkilenir.
+
+Bunu 0'a ayarlamak hiçbir dağınık parçacık ortaya çıkarmaz
+]]
+
+"gwater2.menu.Visuals.Reflectance"=[[
+Yansıma
+]]
+
+"gwater2.menu.Visuals.Reflectance.desc"=[[
+Yansımayı değiştirir.
+IOR'a bağlıdır.
+]]
+
+"gwater2.menu.Visuals.Color Value Multiplier"=[[
+Parlaklık
+]]
+
+"gwater2.menu.Visuals.Color Value Multiplier.desc"=[[
+Geçerli su rengini çarpar.
+
+Bunu 1'den yüksek bir değere ayarlamak sıvının parlıyor gibi görünmesini sağlayacaktır.
+]]
+
+------------------------
+------ PERFORMANS ------
+------------------------
+
+"gwater2.menu.Performance.Physics"=[[
+Fizikler
+]]
+
+"gwater2.menu.Performance.Visuals"=[[
+Görüntü
+]]
+
+"gwater2.menu.Performance.Absorption"=[[
+Emilim
+]]
+
+"gwater2.menu.Performance.Absorption.desc"=[[
+Sıvının parlak/mat olmasını değiştirir.
+
+Orta düzeyde performans etkisi.
+]]
+
+"gwater2.menu.Performance.Substeps"=[[
+Alt-Adımlar
+]]
+
+"gwater2.menu.Performance.Substeps.desc"=[[
+Onay başına gerçekleştirilen fizik adımlarının sayısını kontrol eder.
+
+Farklı alt adımlar için parametrelerin düzgün şekilde ayarlanmayabileceğini unutmayın!
+
+Bu parametre kaydedilmez.
+
+Orta-Yüksek performans etkisi.
+]]
+
+"gwater2.menu.Performance.Depth Fix"=[[
+Derinlik Düzeltme
+]]
+
+"gwater2.menu.Performance.Depth Fix.desc"=[[
+Parçacıkların düz yerine küresel görünmesini sağlayarak daha temiz ve pürüzsüz bir su yüzeyi oluşturur.
+
+Gölgelendiricinin aşırı çizilmesine neden olur.
+
+Orta-Yüksek performans etkisi.
+]]
+
+"gwater2.menu.Performance.Particle Limit"=[[
+Parçacık Sınırı
+]]
+
+"gwater2.menu.Performance.Particle Limit.desc"=[[
+BU PARAMETREYİ KULLANMANIN RİSKİ SİZE AİTTİR.
+
+Parçacıkların sınırını değiştirir.
+
+Bu parametre kaydedilmez.
+
+Daha yüksek bir sınırın, aynı sayıda parçacık üretildiğinde bile performansı olumsuz yönde etkileyeceğini unutmayın.
+]]
+
+"gwater2.menu.Performance.Particle Limit.title"=[[
+Parçacık limitini %d 'ye değiştireceksiniz.
+Emin misiniz?
+]]
+
+"gwater2.menu.Performance.Particle Limit.warning"=[[
+Bu tehlikeli olabilir çünkü tüm parçacıkların GPU'ya tahsis edilmesi gerekir.
+Limiti, bilgisayarınızın kaldırabileceğini düşündüğünüzden daha yüksek bir sayıya AYARLAMAYIN.
+Bunun neden olabileceği herhangi bir donanım hasarının sorumluluğunu kabul etmiyorum
+]]
+
+"gwater2.menu.Performance.Iterations"=[[
+İterasyonlar
+]]
+
+"gwater2.menu.Performance.Iterations.desc"=[[
+Fizik çözücünün her alt adımda bir çözüme yakınsamaya kaç kez çalışacağını kontrol eder.
+
+Bu parametre kaydedilmez.
+
+Orta performans etkileme.
+]]
+
+"gwater2.menu.Performance.Player Collision"=[[
+Oyuncu Kolisyonu
+]]
+
+"gwater2.menu.Performance.Player Collision.desc"=[[
+Oyuncuların suyla kolisyonunu etkiler.
+
+Performansı pek çok etkilemez.
+]]
+
+"gwater2.menu.Performance.Diffuse Enabled"=[[
+Dağınıklık / Ses Açık
+]]
+
+"gwater2.menu.Performance.Diffuse Enabled.desc"=[[
+Dağınık parçacıkları Açar/Kapatır
+(köpük/baloncuklar)
+
+NOT:BU AYAR SESİ KAPATIR.
+
+Orta performans etkileme.
+]]
+
+"gwater2.menu.Performance.Simulation FPS"=[[
+Simulasyon FPS'i
+]]
+
+"gwater2.menu.Performance.Simulation FPS.desc"=[[
+Simulasyonun FPS'ini kontrol eder. (Nekadar hızlı günzellendiği).
+
+Orta-yüksek performans etkileme.
+]]
+
+"gwater2.menu.Performance.Mirror Rendering"=[[
+Ayna İşlemesi
+]]
+
+"gwater2.menu.Performance.Mirror Rendering.desc"=[[
+Sıvının refleksyonlarını değiştirir.
+
+VRMod açıkken bu ayar 1'e ayarlıdır.
+
+0 = Refleksyon Yok
+1 = Kalitesiz Refleksyonlar
+2 = Kaliteli Refleksyon
+
+(Sıvıyı birden fazla kez işler)
+]]
+
+
+"gwater2.menu.Performance.Blur Passes"=[[
+Geçişleri Bulanıklaştırma
+]]
+
+"gwater2.menu.Performance.Blur Passes.desc"=[[
+Kare başına yapılan bulanıklaştırma geçişlerinin sayısını kontrol eder. Daha fazla geçiş daha pürüzsüz bir su yüzeyi oluşturur. 0 geçiş bulanıklığa neden olmaz.
+
+Düşük performans etkisi.
+]]
+
+------------------------
+---- INTEAKSYONLAR -----
+------------------------
+
+"gwater2.menu.Interactions.Reaction Force Parameters"=[[
+Tepki Kuvveti Parametreleri
+]]
+
+"gwater2.menu.Interactions.Force Buoyancy"=[[
+Su Kaldırma Kuvveti
+]]
+
+"gwater2.menu.Interactions.Force Buoyancy.desc"=[[
+Sudaki desteklere uygulanan kaldırma kuvveti.
+
+Uygulama hiçbir şekilde doğru değildir ve muhtemelen pervaneli tekneler için kullanılmamalıdır.
+
+Bu parametrenin herhangi bir işlem yapabilmesi için reaksiyon kuvvetlerinin etkinleştirilmesi gerekir
+]]
+
+"gwater2.menu.Interactions.Force Dampening"=[[
+Kuvvet Sönümleme
+]]
+
+"gwater2.menu.Interactions.Force Dampening.desc"=[[
+Desteklere uygulanan sönümleme kuvveti.
+
+Eğer aksesuarlar su yüzeyinde sıçrama eğilimi gösteriyorsa biraz yardımcı olur.
+
+Bu parametrenin herhangi bir işlem yapabilmesi için reaksiyon kuvvetlerinin etkinleştirilmesi gerekir]]
+
+"gwater2.menu.Interactions.Force Multiplier"=[[
+Kuvvet Çarpanı
+]]
+
+"gwater2.menu.Interactions.Force Multiplier.desc"=[[
+Suyun desteklere uyguladığı kuvvet miktarını belirler.
+
+Bu parametrenin herhangi bir işlem yapabilmesi için reaksiyon kuvvetlerinin etkinleştirilmesi gerekir
+]]
+
+"gwater2.menu.Interactions.Water Interactions"=[[
+Su İnteraksyonları
+]]
+
+"gwater2.menu.Interactions.Player Interaction"=[[
+Oyuncu Etkileşimi
+]]
+
+"gwater2.menu.Interactions.Player Interaction.desc"=[[
+Etkinleştirildiğinde oyuncular suyla fiziksel olarak etkileşime girebilir.
+
+Yüzme ve yürüme/zıplama çarpanları gibi şeyleri etkinleştirir
+]]
+
+"gwater2.menu.Interactions.Reaction Forces"=[[
+Nesne Etkileşimi
+]]
+
+"gwater2.menu.Interactions.Reaction Forces.desc"=[[
+Etkinleştirildiğinde su, sahne malzemelerini zorlayabilir.
+
+Bu hiçbir şekilde doğru değildir ve çok beceriksiz bir matematik kullanır, bu nedenle istikrarsızlık bekliyoruz.
+
+Performans açısından ağır parametre, güçlü bir bilgisayar gerekir.
+]]
+
+"gwater2.menu.Interactions.SwimSpeed"=[[
+Yüzme Hızı
+]]
+
+"gwater2.menu.Interactions.SwimSpeed.desc"=[[
+Ne kadar hızlı yüzdüğünü değiştirir.
+]]
+
+"gwater2.menu.Interactions.SwimFriction"=[[
+Yüzme Sürtünmesi
+]]
+
+"gwater2.menu.Interactions.SwimFriction.desc"=[[
+Yüzmenin ne kadar zor olduğunu değiştirir.
+]]
+
+"gwater2.menu.Interactions.SwimBuoyancy"=[[
+Yüzmenin Kaldırma kuvveti
+]]
+
+"gwater2.menu.Interactions.SwimBuoyancy.desc"=[[
+Daha yüksek ayalar seni yukarıya kaldırır,daha azlar seni aşağıya çeker.
+]]
+
+"gwater2.menu.Interactions.MultiplyParticles"=[[
+Parçacıkları Topla
+]]
+
+"gwater2.menu.Interactions.MultiplyParticles.desc"=[[
+Ne kadar fazla parçacıklara basıp yürüme/zıplama hızının değiştiğini değiştirir.
+]]
+
+"gwater2.menu.Interactions.MultiplyWalk"=[[
+Yürüme Hızı
+]]
+
+"gwater2.menu.Interactions.MultiplyWalk.desc"=[[
+Sıvıya dokununca nekadar hızlı olduğunu değiştirir.
+]]
+
+"gwater2.menu.Interactions.MultiplyJump"=[[
+Zıplama Hızı
+]]
+
+"gwater2.menu.Interactions.MultiplyJump.desc"=[[
+Sıvıya dokununca nekadar yükarı atlayabileceğinizi değiştirir.
+]]
+
+"gwater2.menu.Interactions.TouchDamage"=[[
+Dokunma Hasarı
+]]
+
+"gwater2.menu.Interactions.TouchDamage.desc"=[[
+Ne kadar hasar alıp vermeyi değiştirir.
+
+Negativ sayılar size can verir.
+]]
+
+------------------------
+------ ÖN AYARLAR ------
+------------------------
+
+"gwater2.menu.Presets.import_preset"=[[
+Ön ayarı içe aktar
+]]
+
+"gwater2.menu.Presets.import.paste_here"=[[
+Ön ayarı buraya yapıştırın
+]]
+
+"gwater2.menu.Presets.import.detected"=[[
+Tespit Edildi: %s Ön Ayarı
+]]
+
+"gwater2.menu.Presets.import.detected.multiple"=[[
+Tespit Edildi: %s Ön Ayarkarı
+]]
+
+"gwater2.menu.Presets.import.bad_data"=[[
+Bilgiler bozuk veya ön ayar tipi burda bilimiyor: #%d
+]]
+
+"gwater2.menu.Presets.save"=[[
+Ön ayarı kaydet
+]]
+
+"gwater2.menu.Presets.save.preset_name"=[[
+Ayarları Sıvı İsmi
+]]
+
+"gwater2.menu.Presets.save.include_params"=[[
+Parametreler:
+]]
+
+"gwater2.menu.Presets.copy"=[[
+Panoya kaydet
+]]
+
+"gwater2.menu.Presets.copy.as_json"=[[
+...JSON olarak kaydet
+]]
+
+"gwater2.menu.Presets.copy.as_b64pi"=[[
+...B64-PI olarak kaydet
+]]
+
+"gwater2.menu.Presets.delete"=[[
+Sil
+]]
+
+------------------------
+------ DEVELOPER -------
+------------------------
+
+
+
+------------------------
+--------- MENÜ ---------
+------------------------
+
+"gwater2.menu.Menu.title"=[[
+Menü
+]]
+
+"gwater2.menu.Menu.titletext"=[[
+Menü
+]]
+
+"gwater2.menu.Menu.help"=[[
+Bu kısım menü'nün ayarlarını değiştirir.
+
+Bir parametrenin üstüne basarak bilgilerine bakın.
+]]
+
+"gwater2.menu.Menu.sounds"=[[
+Menü Sesleri
+]]
+
+"gwater2.menu.Menu.sounds.desc"=[[
+Menü seslerini aç/kapat
+]]
+
+"gwater2.menu.Menu.animations"=[[
+Menü'nün Animasyonlarını Aç/Kapa
+]]
+
+"gwater2.menu.Menu.animations.desc"=[[
+İsimden anlayabilirsiniz heralde.
+]]
+
+"gwater2.menu.Menu.preview"=[[
+Sıvının Menüdeki Görünümü
+]]
+
+"gwater2.menu.Menu.preview.desc"=[[
+Sıvıların menü'deki görünümünü açar/kapatır
+
+Perfonmansa azcık yardım eder.
+]]
+
+"gwater2.menu.Menu.pixelate_preview"=[[
+Sıvının Menüdeki Görümününü Pixelleştir
+]]
+
+"gwater2.menu.Menu.pixelate_preview.desc"=[[
+İsimden anlarsınız.
+]]
+
+"gwater2.menu.Menu.admin_only"=[[
+Admin Menüsü
+]]
+
+"gwater2.menu.Menu.admin_only.desc"=[[
+Admin Menüsünü Açıp Kapatır.
+
+NOT:SADECE SUNUCU SAHİBİ BUNU DEĞİŞTİREBİLİR. BU AYAR ÇALIŞMIYORSA BUNU KONSOLA YAZIN;
+gwater2_adminonly (0-1)
+]]
+
+"gwater2.menu.Menu.soundpack"=[[
+Menü Ses Tipi
+]]
+
+"gwater2.menu.Menu.soundpack.desc"=[[
+Menü'nün sesini değiştirir - menüyle interaksiyon yapılınca gelen sesler
+]]
+
+------------------------
+-------- DİĞER ---------
+------------------------
+
+"gwater2.menu.Fluid Preview.title"=[[
+Önizleme
+]]
+
+"gwater2.menu.Explanation Area.title"=[[
+Anlatılma Alanı
+]]
+
+"gwater2.menu.qaccess.Reset Solvers"=[[
+Çözücüleri Sıfırla
+]]
+
+"gwater2.menu.qaccess.Give Watergun"=[[
+Su Tabancasını Ver
+]]
+
+------------------------
+------ SU SILAHI -------
+------------------------
+
+"gwater2.menu.WaterGun.Velocity"=[[
+Parçacık Hızı
+]]
+
+"gwater2.menu.WaterGun.Velocity.Explanation"=[[
+Silahtan parçacıkların ne kadar hızlı çıkacağını değiştirir.
+]]
+
+"gwater2.menu.WaterGun.Distance"=[[
+Maksimum Aralık
+]]
+
+"gwater2.menu.WaterGun.Distance.Explanation"=[[
+Sıvıyı nekadar uzağa atmasını değiştirir.
+]]
+
+"gwater2.menu.WaterGun.Spread"=[[
+Parçacık Yayılması
+]]
+
+"gwater2.menu.WaterGun.Spread.Explanation"=[[
+Parçacıkların nekadar yayıldığını değiştirir.
+]]
+
+"gwater2.menu.WaterGun.SpawnMode"=[[
+Dökme Modu
+]]
+
+"gwater2.menu.WaterGun.SpawnMode.Explanation"=[[
+1=Yuvarlak, 2=Kutu
+Aynı parametreler farklı ayarda değişik
+sonuçlar verebilir.
+]]

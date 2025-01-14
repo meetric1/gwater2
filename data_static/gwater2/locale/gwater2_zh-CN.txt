@@ -1,0 +1,1211 @@
+
+This is the gwater localization file. Everything in this file is added as a language string to gmod.
+Note that the translation cannot be longer than 4000 bytes (1 english character is 1 byte).
+
+Input format:
+"gwater2.key_here"=[[
+Your translation here
+]]
+
+Do NOT edit 'gwater2.key_here'
+
+Use decent language, be literate and don't be a barbarian. :)
+
+------------------------
+-------- ERRORS --------
+------------------------
+
+"gwater2.error.modulenotinstalled"=[[
+!!!请仔细阅读我!!!
+
+GWater2 未能找到模组文件！
+
+这一般意味着你没有安装 GWater2 的 DLL 文件。
+请安装需要的 GWater2 DLL 文件并确保他们在 GarrysMod/garrysmod/lua/bin 路径内。
+请注意，GWater2 无法原生支持 Linux 或 Mac 操作系统。
+]]
+
+"gwater2.error.modulefailedtoload.1"=[[
+!!!请仔细阅读我!!!
+
+GWater2 未能成功加载模组文件！
+这一般意味着你没有安装需要的 FleX 二进制文件到 GarrysMod/ 路径内。
+请检查你的安装文件并重启游戏。
+]]
+
+"gwater2.error.modulefailedtoload.2"=[[
+如果你 100%% 确定你的安装没有问题，请尝试重启游戏多次。这可能是 Garry 的游戏代码问题，我无法解决。
+]]
+
+"gwater2.error.modulefailedtoload.3"=[[
+如果问题持续无法解决，请不要犹豫请求帮助。请求帮助时，请一定提供以下三行信息：
+
+错误: %s
+游戏分支: %s
+jit.arch: %s
+]]
+
+"gwater2.error.chatlog"=[[
+加载失败！请检查问题菜单获得更多信息（ESC 菜单 -> 左下角）
+]]
+
+"gwater2.gun.adv.notloaded"=[[
+GWater2 加载失败！
+请检查控制台和问题菜单里的错误（ESC 菜单 -> 左下角）
+]]
+
+------------------------
+------ WATER GUN -------
+------------------------
+
+"gwater2.gun.adv.controls.lclk"=[[
+左键生成粒子
+]]
+
+"gwater2.gun.adv.controls.rclk"=[[
+右键打开武器菜单
+]]
+
+"gwater2.gun.adv.controls.reload"=[[
+装填键删除全部粒子
+]]
+
+------------------------
+------- ENTITIES -------
+------------------------
+
+"gwater2.ent.drain.side"=[[
+此面排水
+]]
+
+"gwater2.ent.emitter.side"=[[
+此面产水
+]]
+
+"gwater2.ent.on"=[[
+开
+]]
+
+"gwater2.ent.off"=[[
+关
+]]
+
+"gwater2.ent.radius"=[[
+%s 半径
+]]
+
+"gwater2.ent.radius2"=[[
+%sx%s 半径
+]]
+
+"gwater2.ent.strength"=[[
+%s 强度
+]]
+
+"gwater2.ent.spread"=[[
+%s 扩散
+]]
+
+"gwater2.ent.lifetime"=[[
+%s 存活时间
+]]
+
+"gwater2.ent.transporter.queue"=[[
+队列粒子量：%s
+]]
+
+"gwater2.ent.transporter.link"=[[
+连接实体 %s
+]]
+
+--------------------------------------------
+--------------------------------------------
+----                MENU                ----
+----  This section contains by far the  ----
+---- most amount of translation strings ----
+----  When translating, be careful as   ----
+----   mistakes there are more noticed  ----
+----          by the end user           ----
+--------------------------------------------
+--------------------------------------------
+
+------------------------
+------- TAB INFO -------
+------------------------
+
+"gwater2.menu.title"=[[
+GWater2 (%s)
+]]
+
+"gwater2.menu.About Tab.title"=[[
+有关
+]]
+
+"gwater2.menu.About Tab.titletext"=[[
+欢迎使用 GWater2 (v%s)
+]]
+
+"gwater2.menu.About Tab.welcome"=[[
+感谢你下载并使用 GWater2！这个菜单是控制 GWater 所有相关信息的界面，所以熟悉一下我吧！:D
+不要忘记阅读版本记录看看有什么新东西！
+
+版本记录 (v1.0):
+
+- 首次发布
+
+]]
+
+"gwater2.menu.About Tab.help"=[[
+在每个页面里，这个栏目会显示有用的解释信息。
+
+举个例子：
+点击菜单外任何地方，或者再次按下菜单绑定键位，就会关掉菜单。
+
+请仔细阅读这个栏目哦！
+]]
+
+"gwater2.menu.Parameters.title"=[[
+参数
+]]
+
+"gwater2.menu.Parameters.titletext"=[[
+参数
+]]
+
+"gwater2.menu.Parameters.help"=[[
+在这个页面可以控制水如何与自己或环境互动。
+
+用鼠标高亮一个参数可显示它的功能。
+]]
+
+"gwater2.menu.Visuals.title"=[[
+视觉
+]]
+
+"gwater2.menu.Visuals.titletext"=[[
+视觉
+]]
+
+"gwater2.menu.Visuals.help"=[[
+在这个页面可以控制水的视觉效果。
+
+用鼠标高亮一个参数可显示它的功能。
+]]
+
+"gwater2.menu.Performance.title"=[[
+性能
+]]
+
+"gwater2.menu.Performance.titletext"=[[
+性能
+]]
+
+"gwater2.menu.Performance.help"=[[
+这个页面可以调整并改善游戏性能。
+
+每个选项有从红到绿的颜色，标记这个选项的性能负载。所有参数直接影响 GPU 性能。
+
+这些选项不和其他玩家同步也不能被其他玩家修改，因为它们只影响你的电脑和性能。
+
+用鼠标高亮一个参数可显示它的功能。
+]]
+
+"gwater2.menu.Interactions.title"=[[
+互动
+]]
+
+"gwater2.menu.Interactions.titletext"=[[
+互动
+]]
+
+"gwater2.menu.Interactions.help"=[[
+这个页面有几个控制水如何和玩家和物品互动的参数。
+
+用鼠标高亮一个参数可显示它的功能。
+]]
+
+"gwater2.menu.Developer.title"=[[
+开发者
+]]
+
+"gwater2.menu.Developer.titletext"=[[
+开发者
+]]
+
+"gwater2.menu.Developer.help"=[[
+这个页面有几个一般用不到并可能会玩坏你的游戏的设定。
+
+这里的参数大概基本没有用或者没有校准过数值（比如数值条最大最小值很极端），基本只是给我使用的。
+
+但我还是加了一些简介，想试试的话也不是不行吧。
+
+这个菜单只有在控制台使用了 'developer 1' 指令后才会出现。
+]]
+
+"gwater2.menu.Presets.title"=[[
+预设
+]]
+
+"gwater2.menu.Presets.titletext"=[[
+预设
+]]
+
+"gwater2.menu.Presets.help"=[[
+在预设页面读取，修改并保存你做出来的液体。
+
+右键一个预设来删除或复制它（复制后可以发给朋友玩）。
+]]
+
+"gwater2.menu.Credits.title"=[[
+制作者名单
+]]
+
+"gwater2.menu.Credits.titletext"=[[
+制作者名单
+]]
+
+"gwater2.menu.Credits.help"=[[
+这个页面鸣谢所有直接或间接帮助 GWater2 开发的人。
+
+Patron 赞助名单以字母序列排序，并在发布前会定期更新。
+
+这个项目的所有利润直接资助我读大学。衷心感谢大家的支持！ :)
+]]
+
+"gwater2.menu.Credits.text"=[[
+v------------+----- Developers ------------------v
+Meetric      | 核心开发者
+googer       | 菜单重写，高级水枪，Wiremod 支持，运送器实体
+jn           | 水-玩家互动逻辑，立场实体
+Xenthio      | 光影和漫射改良， VVIS 切算逻辑
+MyUsername   | Linux 帮助
+Stickrpg     | 反应力签名
+Mikey        | StarfallEx API
+Joka         | 水枪图标
+Spanky       | 粒子拉伸代码
+PotatoOS     | 四元数运算
+AndrewEathan | GWater1 实体
+Kodya        | 游泳代码
+Nvidia       | FleX 代码库
+v------------+------- Patrons -------------------v
+]]
+
+------------------------
+------ PARAMETERS ------
+------------------------
+
+"gwater2.menu.Parameters.Physics Parameters"=[[
+物理参数
+]]
+
+"gwater2.menu.Parameters.Advanced Physics Parameters"=[[
+高级物理参数
+]]
+
+"gwater2.menu.Parameters.Sound Parameters"=[[
+音效参数
+]]
+
+"gwater2.menu.Parameters.Adhesion"=[[
+黏着度
+]]
+
+"gwater2.menu.Parameters.Adhesion.desc"=[[
+控制粒子黏着表面的强度。
+
+注意，这个参数的预览效果不太好，可能需要在游戏里看实际效果。
+]]
+
+"gwater2.menu.Parameters.Gravity"=[[
+重力
+]]
+
+"gwater2.menu.Parameters.Gravity.desc"=[[
+控制液体向下拉力的强度。参数的单位是米每秒。
+
+注意，默认起源引擎重力是 -15.24，和地球重力的 -9.81 不一样！
+]]
+
+"gwater2.menu.Parameters.Cohesion"=[[
+凝聚力
+]]
+
+"gwater2.menu.Parameters.Cohesion.desc"=[[
+控制液体凝聚在一起的力度。
+
+高凝聚力会让液体更结实和固状，低凝聚力会让液体更松散和液状。
+]]
+
+"gwater2.menu.Parameters.Surface Tension"=[[
+表面张力
+]]
+
+"gwater2.menu.Parameters.Surface Tension.desc"=[[
+控制粒子最小化表面面积的力度。
+
+这个参数设置太高会让粒子物理变得奇怪。
+
+一般和凝聚力捆绑在一起。
+]]
+
+"gwater2.menu.Parameters.Viscosity"=[[
+粘稠度
+]]
+
+"gwater2.menu.Parameters.Viscosity.desc"=[[
+控制粒子排斥移动的程度。
+
+高粘稠度看上去像会蜂蜜和糖浆，低粘稠度看上去会像水和油。
+
+这个参数也会让液体听上去更粘稠。
+]]
+
+"gwater2.menu.Parameters.Radius"=[[
+半径
+]]
+
+"gwater2.menu.Parameters.Radius.desc"=[[
+控制每个粒子的大小。
+
+预览中的大小不会超过 15，以避免奇怪的效果。
+
+半径的单位是起源引擎单位，所有粒子使用同一个半径。
+]]
+
+"gwater2.menu.Parameters.Timescale"=[[
+模拟速度
+]]
+
+"gwater2.menu.Parameters.Timescale.desc"=[[
+设置液体模拟速度的快慢。
+
+有些参数，像表面张力和凝聚力，会因为模拟速度快慢改变效果。
+]]
+
+"gwater2.menu.Parameters.Dynamic Friction"=[[
+动态摩擦力
+]]
+
+"gwater2.menu.Parameters.Dynamic Friction.desc"=[[
+控制液体在表面收到的摩擦力。
+
+如果设置为 0，黏着效果会变得奇怪。
+]]
+
+"gwater2.menu.Parameters.Vorticity Confinement"=[[
+涡度约束
+]]
+
+"gwater2.menu.Parameters.Vorticity Confinement.desc"=[[
+通过对粒子施加旋转力来提升涡度效果。
+
+这个参数存在的原因是我们无法高性能地模拟气压。
+]]
+
+"gwater2.menu.Parameters.Collision Distance"=[[
+碰撞距离
+]]
+
+"gwater2.menu.Parameters.Collision Distance.desc"=[[
+控制粒子和物体碰撞的距离。
+
+注意，如果碰撞距离太低，粒子会更经常地穿过物体。
+]]
+
+"gwater2.menu.Parameters.Fluid Rest Distance"=[[
+液体稳定距离
+]]
+
+"gwater2.menu.Parameters.Fluid Rest Distance.desc"=[[
+控制液体之间的碰撞距离。
+
+高距离会让液体呈现块状，低距离会让液体更光滑。
+
+低碰撞距离可能会略微影响性能。
+]]
+
+"gwater2.menu.Parameters.Sound Pitch"=[[
+音调
+]]
+
+"gwater2.menu.Parameters.Sound Pitch.desc"=[[
+控制液体音效的音调高低。
+]]
+
+"gwater2.menu.Parameters.Sound Volume"=[[
+音量
+]]
+
+"gwater2.menu.Parameters.Sound Volume.desc"=[[
+控制液体音效的响度。
+
+设置为 0 会禁用所有液体声音。
+]]
+
+------------------------
+------- VISUALS --------
+------------------------
+
+"gwater2.menu.Visuals.Diffuse Threshold"=[[
+泡沫阈值
+]]
+
+"gwater2.menu.Visuals.Diffuse Threshold.desc"=[[
+控制产生泡沫需要多少力度。
+]]
+
+"gwater2.menu.Visuals.Color"=[[
+颜色
+]]
+
+"gwater2.menu.Visuals.Color.desc"=[[
+控制液体的颜色。
+
+Alpha 值（透明度）控制颜色吸收量。
+
+将 alpha 设为 255（最大值）会让液体完全不透明。
+]]
+
+"gwater2.menu.Visuals.Diffuse Lifetime"=[[
+泡沫存活时间
+]]
+
+"gwater2.menu.Visuals.Diffuse Lifetime.desc"=[[
+控制泡沫粒子生成后会存活多久。
+
+这个参数受模拟速度影响。
+
+设置为 0 后不会生成任何漫射粒子。
+]]
+
+"gwater2.menu.Visuals.Reflectance"=[[
+反光度
+]]
+
+"gwater2.menu.Visuals.Reflectance.desc"=[[
+控制粒子反光效果强弱。
+
+这个参数在逻辑里关联着折射率。
+]]
+
+"gwater2.menu.Visuals.Color Value Multiplier"=[[
+亮度
+]]
+
+"gwater2.menu.Visuals.Color Value Multiplier.desc"=[[
+乘算当前的液体颜色。
+
+设置大于 1 的值会让液体看上去发光。
+]]
+
+------------------------
+----- PERFORMANCE ------
+------------------------
+
+"gwater2.menu.Performance.Physics"=[[
+物理
+]]
+
+"gwater2.menu.Performance.Visuals"=[[
+视觉
+]]
+
+"gwater2.menu.Performance.Absorption"=[[
+吸光
+]]
+
+"gwater2.menu.Performance.Absorption.desc"=[[
+让光在液体里随着距离吸收颜色。
+（深度越高，颜色越暗）
+
+中等性能负担。
+]]
+
+"gwater2.menu.Performance.Substeps"=[[
+运算步数
+]]
+
+"gwater2.menu.Performance.Substeps.desc"=[[
+控制每 tick 的物理运算步数。
+
+注意，参数可能没有对不同运算步数设定校准过！
+
+这个参数不会自动保存。
+
+中-高性能负担。
+]]
+
+"gwater2.menu.Performance.Depth Fix"=[[
+深度效果
+]]
+
+"gwater2.menu.Performance.Depth Fix.desc"=[[
+让粒子看上去圆形而不是扁的，产生一个更干净和光环的液体表面。
+
+会导致光源效果重叠渲染。
+
+中-高性能负担。
+]]
+
+"gwater2.menu.Performance.Particle Limit"=[[
+粒子上限
+]]
+
+"gwater2.menu.Performance.Particle Limit.desc"=[[
+使用这个参数，后果自负！
+
+改变最多能有多少粒子。
+
+这个参数不会自动保存。
+
+哪怕粒子数量不变，提高粒子上限也会影响性能。
+]]
+
+"gwater2.menu.Performance.Particle Limit.title"=[[
+你将要把液体粒子上限改为 %d 粒子
+确定要这么做吗？
+]]
+
+"gwater2.menu.Performance.Particle Limit.warning"=[[
+这样做很危险，因为每个粒子必须在 GPU 里分配位置。
+不要把这个值设到高于你电脑能承担的程度。
+如果这导致你的硬件受损，我不承担任何责任！
+]]
+
+"gwater2.menu.Performance.Iterations"=[[
+迭代次数
+]]
+
+"gwater2.menu.Performance.Iterations.desc"=[[
+控制物理求解器每个运算步进行多少次迭代来收敛求解。
+
+这个参数不会自动保存。
+
+中等性能负担。
+]]
+
+"gwater2.menu.Performance.Player Collision"=[[
+玩家碰撞
+]]
+
+"gwater2.menu.Performance.Player Collision.desc"=[[
+启用/禁用液体和玩家的碰撞（就是你）。
+
+这其实没什么性能负担，但预设不能设这个值所以我放到了这里。
+]]
+
+"gwater2.menu.Performance.Diffuse Enabled"=[[
+漫射/音效
+]]
+
+"gwater2.menu.Performance.Diffuse Enabled.desc"=[[
+启用或禁用漫射粒子（泡沫）。
+
+由于这个设定在性能力，预设不能改变这个值。如果你想要在预设里禁用漫射粒子，在视觉页面里设置 '泡沫存活时间' 到 0。
+
+禁用漫射粒子也会禁用音效，因为音效运算基于它！
+
+中等性能负担。
+]]
+
+"gwater2.menu.Performance.Simulation FPS"=[[
+运算帧数
+]]
+
+"gwater2.menu.Performance.Simulation FPS.desc"=[[
+控制液体模拟的帧数（更新频率）。
+
+这个设定可能会影响液体行为，由于它会改变运算时间间隔长短。
+
+中-高性能负担。
+]]
+
+"gwater2.menu.Performance.Mirror Rendering"=[[
+反射渲染
+]]
+
+"gwater2.menu.Performance.Mirror Rendering.desc"=[[
+让液体在反射里也看得见，比如起源引擎的水和镜子。
+
+开启 VRMod 时，这个设定固定为 1。
+
+0 = 无反射
+
+1 = 低性能反射
+（截头体/屏幕空间）
+（这个设定会禁用液体 PVS 切算逻辑）
+
+2 = 高性能反射
+（渲染液体多次）
+]]
+
+"gwater2.menu.Performance.Blur Passes"=[[
+模糊次数
+]]
+
+"gwater2.menu.Performance.Blur Passes.desc"=[[
+控制每帧进行多少次模糊效果。提高次数会让液体表面更平滑。0 次不会进行任何模糊。
+
+低性能负担。
+]]
+
+------------------------
+----- INTERACTIONS -----
+------------------------
+
+"gwater2.menu.Interactions.Reaction Force Parameters"=[[
+反应力参数
+]]
+
+"gwater2.menu.Interactions.Force Buoyancy"=[[
+浮力
+]]
+
+"gwater2.menu.Interactions.Force Buoyancy.desc"=[[
+浮力会应用在液体中的物体上。
+
+这个浮力实现不太准确，最好不要依靠它来做物体船。
+
+必须启用反应力这个参数才有效果。
+]]
+
+"gwater2.menu.Interactions.Force Dampening"=[[
+抑制力
+]]
+
+"gwater2.menu.Interactions.Force Dampening.desc"=[[
+对物体应用的抑制力。
+
+如果物体在水面弹来弹去，这个参数会有点帮助。
+
+必须启用反应力这个参数才有效果。
+]]
+
+"gwater2.menu.Interactions.Force Multiplier"=[[
+力度倍率
+]]
+
+"gwater2.menu.Interactions.Force Multiplier.desc"=[[
+乘算液体对物体施加的力度强弱。
+
+必须启用反应力这个参数才有效果。
+]]
+
+"gwater2.menu.Interactions.Water Interactions"=[[
+液体互动
+]]
+
+"gwater2.menu.Interactions.Player Interaction"=[[
+玩家互动
+]]
+
+"gwater2.menu.Interactions.Player Interaction.desc"=[[
+启用后，玩家可以和水物理上互动。
+
+这会启用一些效果，比如游泳和移动/跳跃倍率。
+]]
+
+"gwater2.menu.Interactions.Reaction Forces"=[[
+物体互动
+]]
+
+"gwater2.menu.Interactions.Reaction Forces.desc"=[[
+启用后，液体可以推动物体。
+
+这个效果不太准确并用了比较蹩脚的算法，所以可能会出现不稳定的物理。
+
+超高性能负载，需要强力电脑。
+]]
+
+"gwater2.menu.Interactions.SwimSpeed"=[[
+游泳速度
+]]
+
+"gwater2.menu.Interactions.SwimSpeed.desc"=[[
+控制玩家在液体里游泳的速度。
+]]
+
+"gwater2.menu.Interactions.SwimFriction"=[[
+游泳阻力
+]]
+
+"gwater2.menu.Interactions.SwimFriction.desc"=[[
+控制在液体中游泳的困难程度。
+
+在现实中，粘稠度不会影响游泳速度。
+]]
+
+"gwater2.menu.Interactions.SwimBuoyancy"=[[
+游泳浮力
+]]
+
+"gwater2.menu.Interactions.SwimBuoyancy.desc"=[[
+控制游泳时液体的密度。
+
+高浮力会把你往水面推。
+
+低浮力会把你向下拉。
+]]
+
+"gwater2.menu.Interactions.MultiplyParticles"=[[
+互动粒子阈值
+]]
+
+"gwater2.menu.Interactions.MultiplyParticles.desc"=[[
+决定碰撞多少个粒子时启用移动/跳跃速度倍率。
+
+这也影响 '接触伤害' 参数。
+]]
+
+"gwater2.menu.Interactions.MultiplyWalk"=[[
+移动速度倍率
+]]
+
+"gwater2.menu.Interactions.MultiplyWalk.desc"=[[
+控制你接触液体时的移动速度。
+]]
+
+"gwater2.menu.Interactions.MultiplyJump"=[[
+跳跃力倍率
+]]
+
+"gwater2.menu.Interactions.MultiplyJump.desc"=[[
+控制你接触液体时的跳跃力高低。
+]]
+
+"gwater2.menu.Interactions.TouchDamage"=[[
+接触伤害
+]]
+
+"gwater2.menu.Interactions.TouchDamage.desc"=[[
+控制在接触液体时受到的伤害。
+
+负伤害值会治疗你。
+]]
+
+------------------------
+------- PRESETS --------
+------------------------
+
+"gwater2.menu.Presets.import_preset"=[[
+导入预设
+]]
+
+"gwater2.menu.Presets.import.paste_here"=[[
+在此黏贴预设
+]]
+
+"gwater2.menu.Presets.import.detected"=[[
+检测到：%s 个预设
+]]
+
+"gwater2.menu.Presets.import.detected.multiple"=[[
+检测到：%s 个预设
+]]
+
+"gwater2.menu.Presets.import.bad_data"=[[
+预设 #%d 的数据格式错误，或预设类型未知。
+]]
+
+"gwater2.menu.Presets.save"=[[
+保存预设
+]]
+
+"gwater2.menu.Presets.save.preset_name"=[[
+预设名
+]]
+
+"gwater2.menu.Presets.save.include_params"=[[
+预设内含参数：
+]]
+
+"gwater2.menu.Presets.copy"=[[
+复制到剪切板
+]]
+
+"gwater2.menu.Presets.copy.as_json"=[[
+...以 JSON 格式
+]]
+
+"gwater2.menu.Presets.copy.as_b64pi"=[[
+...以 B64-PI 格式
+]]
+
+"gwater2.menu.Presets.delete"=[[
+删除
+]]
+
+------------------------
+------ DEVELOPER -------
+------------------------
+
+"gwater2.menu.Developer.Anisotropy Max"=[[
+各向异性最大值
+]]
+
+"gwater2.menu.Developer.Anisotropy Max.desc"=[[
+控制粒子拉伸的视觉大小。
+]]
+
+"gwater2.menu.Developer.Anisotropy Min"=[[
+各向异性最小值
+]]
+
+"gwater2.menu.Developer.Anisotropy Min.desc"=[[
+控制粒子的最小视觉大小。
+]]
+
+"gwater2.menu.Developer.Anisotropy Scale"=[[
+各向异性比例
+]]
+
+"gwater2.menu.Developer.Anisotropy Scale.desc"=[[
+控制粒子之间拉伸的视觉效果大小。
+
+设置为 0 会禁用拉伸。
+]]
+
+"gwater2.menu.Developer.static_friction"=[[
+静态摩擦力
+]]
+
+"gwater2.menu.Developer.static_friction.desc"=[[
+粒子静止时移动需要的力度。
+]]
+
+"gwater2.menu.Developer.particle_friction"=[[
+粒子摩擦力
+]]
+
+"gwater2.menu.Developer.particle_friction.desc"=[[
+粒子之间的摩擦力。
+
+不然呢？
+]]
+
+"gwater2.menu.Developer.free_surface_drag"=[[
+自由表面阻力
+]]
+
+"gwater2.menu.Developer.free_surface_drag.desc"=[[
+在外围的液体粒子受到的阻力。
+]]
+
+"gwater2.menu.Developer.drag"=[[
+阻力
+]]
+
+"gwater2.menu.Developer.drag.desc"=[[
+影响动态三角粒子的阻力。
+
+这本来会影响布匹之类的效果，但我没定义三角缓存，所以这个设定没用。
+]]
+
+"gwater2.menu.Developer.lift"=[[
+升力
+]]
+
+"gwater2.menu.Developer.lift.desc"=[[
+影响动态三角粒子的升力。
+
+这本来会影响布匹之类的效果，但我没定义三角缓存，所以这个设定没用。
+]]
+
+"gwater2.menu.Developer.solid_rest_distance"=[[
+固体稳定距离
+]]
+
+"gwater2.menu.Developer.solid_rest_distance.desc"=[[
+固体粒子的碰撞距离（布匹/刚体）
+
+只影响布匹效果，所以没用。
+]]
+
+"gwater2.menu.Developer.smoothing"=[[
+平滑
+]]
+
+"gwater2.menu.Developer.smoothing.desc"=[[
+粒子受到的拉普拉斯平滑强度。简单来说会视觉上收缩表面。
+
+我用这个进行渲染，所以别设为 0，不然粒子不会动。
+]]
+
+"gwater2.menu.Developer.dissipation"=[[
+耗散
+]]
+
+"gwater2.menu.Developer.dissipation.desc"=[[
+和接触粒子数成比例的阻力
+]]
+
+"gwater2.menu.Developer.damping"=[[
+粘性阻力
+]]
+
+"gwater2.menu.Developer.damping.desc"=[[
+对当前液体粒子速度反向附加的粘性阻力
+]]
+
+"gwater2.menu.Developer.particle_collision_margin"=[[
+粒子碰撞边沿
+]]
+
+"gwater2.menu.Developer.particle_collision_margin.desc"=[[
+搜索粒子邻居的半径，对快速移动的粒子有帮助
+]]
+
+"gwater2.menu.Developer.shape_collision_margin"=[[
+形状碰撞边沿
+]]
+
+"gwater2.menu.Developer.shape_collision_margin.desc"=[[
+检测碰撞形状的半径。我建议不改这个参数，如果改错了会导致粒子经常穿透物体。
+]]
+
+"gwater2.menu.Developer.sleep_threshold"=[[
+睡眠阈值
+]]
+
+"gwater2.menu.Developer.sleep_threshold.desc"=[[
+粒子进入睡眠状态的最大速度。
+]]
+
+"gwater2.menu.Developer.shock_propagation"=[[
+冲击波传播
+]]
+
+"gwater2.menu.Developer.shock_propagation.desc"=[[
+基于高度降低粒子重量。除了一个具体的技术 demo 外这个值基本没用，并会让粒子爆炸。
+]]
+
+"gwater2.menu.Developer.restitution"=[[
+归还系数
+]]
+
+"gwater2.menu.Developer.restitution.desc"=[[
+和形状进行碰撞的归还效果强度，非 0 值会让粒子弹跳。
+]]
+
+"gwater2.menu.Developer.max_speed"=[[
+最大速度
+]]
+
+"gwater2.menu.Developer.max_speed.desc"=[[
+粒子的最大速度。一目了然。
+]]
+
+"gwater2.menu.Developer.max_acceleration"=[[
+最大加速度
+]]
+
+"gwater2.menu.Developer.max_acceleration.desc"=[[
+粒子每帧最大的加速度。
+]]
+
+"gwater2.menu.Developer.solid_pressure"=[[
+固体压力
+]]
+
+"gwater2.menu.Developer.solid_pressure.desc"=[[
+固体给粒子施加的压力。我没设置任何刚体，所以这个参数没用。
+]]
+
+"gwater2.menu.Developer.buoyancy"=[[
+浮力
+]]
+
+"gwater2.menu.Developer.buoyancy.desc"=[[
+大概是控制液体密度的。不过我没设置任何刚体，所以这个参数没用。
+]]
+
+"gwater2.menu.Developer.diffuse_buoyancy"=[[
+漫射浮力
+]]
+
+"gwater2.menu.Developer.diffuse_buoyancy.desc"=[[
+漫射粒子的浮力。
+]]
+
+"gwater2.menu.Developer.diffuse_drag"=[[
+漫射阻力
+]]
+
+"gwater2.menu.Developer.diffuse_drag.desc"=[[
+漫射粒子的阻力系数。
+]]
+
+"gwater2.menu.Developer.Show absorption debug"=[[
+显示吸光调试效果
+]]
+
+"gwater2.menu.Developer.Show absorption debug.desc"=[[
+显示开发者用的吸光调试材质。
+]]
+
+"gwater2.menu.Developer.Show mipmap debug"=[[
+显示 mipmap 调试效果
+]]
+
+"gwater2.menu.Developer.Show mipmap debug.desc"=[[
+显示开发者用的吸光 mipmap 调试材质。
+]]
+
+"gwater2.menu.Developer.Show normals debug"=[[
+显示法线贴图调试效果
+]]
+
+"gwater2.menu.Developer.Show normals debug.desc"=[[
+显示开发者用的吸光法线贴图调试材质。
+]]
+
+"gwater2.menu.Developer.relaxation_mode"=[[
+放松模式
+]]
+
+"gwater2.menu.Developer.relaxation_mode.desc"=[[
+决定粒子互动的逻辑。
+
+0 = 全局放松（固定值，基于 '放松因素' 参数）
+
+1 = 本地放松（每个粒子单独计算）
+
+此参数为 0 时，粒子会更快但更不稳定地汇聚（更容易爆炸）。
+]]
+
+"gwater2.menu.Developer.relaxation_factor"=[[
+放松因素
+]]
+
+"gwater2.menu.Developer.relaxation_factor.desc"=[[
+控制全局放松模式下的放松因素。可能会导致爆炸。
+]]
+
+------------------------
+--------- MENU ---------
+------------------------
+
+"gwater2.menu.Menu.title"=[[
+菜单
+]]
+
+"gwater2.menu.Menu.titletext"=[[
+菜单
+]]
+
+"gwater2.menu.Menu.help"=[[
+这个页面控制菜单的视觉和功能。
+
+用鼠标高亮一个参数可显示它的功能。
+]]
+
+"gwater2.menu.Menu.sounds"=[[
+播放音效
+]]
+
+"gwater2.menu.Menu.sounds.desc"=[[
+控制是否在菜单中播放音效。
+]]
+
+"gwater2.menu.Menu.animations"=[[
+动态菜单
+]]
+
+"gwater2.menu.Menu.animations.desc"=[[
+控制是否显示简单的菜单加载动画。
+]]
+
+"gwater2.menu.Menu.preview"=[[
+显示液体预览
+]]
+
+"gwater2.menu.Menu.preview.desc"=[[
+控制是否显示液体预览（页面左侧）。
+
+关掉可在菜单中稍微提升性能。
+]]
+
+"gwater2.menu.Menu.pixelate_preview"=[[
+像素化液体预览
+]]
+
+"gwater2.menu.Menu.pixelate_preview.desc"=[[
+控制液体预览里是否使用像素化效果。
+]]
+
+"gwater2.menu.Menu.admin_only"=[[
+管理员菜单
+]]
+
+"gwater2.menu.Menu.admin_only.desc"=[[
+控制这个菜单是否只有管理员可以使用。
+Enable/disables the menu only being accessable to admins.
+
+只有服务器端可以修改这个值。如果调整这个参数没用，在控制台里使用这个指令：
+gwater2_adminonly (0-1)
+]]
+
+"gwater2.menu.Menu.soundpack"=[[
+菜单音效包
+]]
+
+"gwater2.menu.Menu.soundpack.desc"=[[
+选择菜单中播放哪些音效。
+]]
+
+------------------------
+--------- MISC ---------
+------------------------
+
+"gwater2.menu.Fluid Preview.title"=[[
+液体预览
+]]
+
+"gwater2.menu.Explanation Area.title"=[[
+解释区域
+]]
+
+"gwater2.menu.qaccess.Reset Solvers"=[[
+重置求解器（删除所有液体）
+]]
+
+"gwater2.menu.qaccess.Give Watergun"=[[
+给自己刷水枪
+]]
+
+------------------------
+------ WATER GUN -------
+------------------------
+
+"gwater2.menu.WaterGun.Velocity"=[[
+粒子速度
+]]
+
+"gwater2.menu.WaterGun.Velocity.Explanation"=[[
+粒子飞出武器的速度。
+]]
+
+"gwater2.menu.WaterGun.Distance"=[[
+最大距离
+]]
+
+"gwater2.menu.WaterGun.Distance.Explanation"=[[
+粒子初始位置应该向前多远。
+]]
+
+"gwater2.menu.WaterGun.Spread"=[[
+粒子扩散
+]]
+
+"gwater2.menu.WaterGun.Spread.Explanation"=[[
+粒子散布的程度。
+]]
+
+"gwater2.menu.WaterGun.SpawnMode"=[[
+射击模式
+]]
+
+"gwater2.menu.WaterGun.SpawnMode.Explanation"=[[
+1=圆形，2=方形
+不同模式下，同样的参数会有不同效果。
+]]

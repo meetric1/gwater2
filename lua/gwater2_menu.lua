@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 if SERVER or not gwater2 then return end
 
-gwater2.VERSION = "0.6b"
+gwater2.VERSION = "1.0"
 
 local just_closed = false
 
@@ -36,6 +36,15 @@ gwater2.options = gwater2.options or {
 
 	initialised = {},
 }
+
+-- kinda hacky
+gwater2.parameters.blur_passes = gwater2.options.blur_passes:GetInt()
+gwater2.parameters.absorption = gwater2.options.absorption:GetBool()
+gwater2.parameters.depth_fix = gwater2.options.depth_fix:GetBool()
+gwater2.parameters.simulation_fps = gwater2.options.simulation_fps:GetInt()
+gwater2.parameters.player_collision = gwater2.options.player_collision:GetBool()
+gwater2.parameters.mirror_rendering = gwater2.options.render_mirrors:GetInt()
+gwater2.parameters.diffuse_enabled = gwater2.options.diffuse_enabled:GetBool()
 
 if not file.Exists("gwater2/config.txt", "DATA") then
 	gwater2.options.write_config({
@@ -643,7 +652,7 @@ hook.Add("GUIMousePressed", "gwater2_menuclose", function(mouse_code, aim_vector
 end)
 
 hook.Add("PopulateToolMenu", "gwater2_menu", function()
-    spawnmenu.AddToolMenuOption("Utilities", "gwater2", "gwater2_menu", "Menu Options", "", "", function(panel)
+    spawnmenu.AddToolMenuOption("Utilities", "GWater2", "gwater2_menu", "Menu Options", "", "", function(panel)
 		panel:ClearControls()
 		panel:Button("Open Menu", "gwater2_menu")
         panel:KeyBinder("Menu Key", "gwater2_menukey")

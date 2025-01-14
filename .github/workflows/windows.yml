@@ -16,7 +16,7 @@ jobs:
       with:
         submodules: recursive
 
-    - name: do the shits
+    - name: Get premake5
       run: |
         cd binary
         curl https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-windows.zip -O -J -L   
@@ -32,7 +32,7 @@ jobs:
     - name: Build app for release
       run: msbuild D:\a\gwater2\gwater2\binary\gmcl_gwater2.vcxproj -t:rebuild -verbosity:diag -property:Configuration=Release -p:platform=x64
       
-    - name: check if the shits is there or its not
+    - name: Check if it compiled successfully
       run: |
         cd D:\a\gwater2\gwater2\binary\
         dir    

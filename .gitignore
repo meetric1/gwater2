@@ -30,3 +30,4 @@
 
 # gmod_require require module
 /lua/includes/modules/require.lua
+.vscode/settings.json
