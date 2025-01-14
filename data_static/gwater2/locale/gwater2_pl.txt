@@ -354,7 +354,7 @@ Lepkość
 ]]
 
 "gwater2.menu.Parameters.Viscosity.desc"=[[
-Kontroluje, jak bardzo cząsteczki opierają się ruchowi.
+Kontroluje, jak bardzo cząsteczki są lepkie.
 
 Wyższe wartości wyglądają bardziej jak miód lub syrop, podczas gdy niższe wartości wyglądają jak woda lub olej.
 
@@ -370,11 +370,11 @@ Kontroluje wielkość każdej cząsteczki.
 
 W podglądzie jest ograniczona do 15, aby uniknąć błędów.
 
-Wielkość jest mierzona w jednostkach źródłowych i jest taka sam dla wszystkich cząsteczek.
+Wielkość jest mierzona w jednostkach silnika Source i jest taka sam dla wszystkich cząsteczek.
 ]]
 
 "gwater2.menu.Parameters.Timescale"=[[
-Skala czasu
+Prędkość symulacji
 ]]
 
 "gwater2.menu.Parameters.Timescale.desc"=[[
@@ -414,7 +414,7 @@ Zauważ, że mniejsza odległość kolizji spowoduje częstsze przenikanie cząs
 ]]
 
 "gwater2.menu.Parameters.Fluid Rest Distance"=[[
-Odległość spoczynkowa cieczy
+Odległość między cząsteczkami
 ]]
 
 "gwater2.menu.Parameters.Fluid Rest Distance.desc"=[[
@@ -474,7 +474,7 @@ Czas istnienia piany
 "gwater2.menu.Visuals.Diffuse Lifetime.desc"=[[
 Kontroluje, jak długo bąbelki/cząsteczki piany trwają po ich stworzeniu.
 
-Jest to zależne od parametru Skala czasu.
+Jest to zależne od parametru Prędkość symulacji.
 
 Ustawienie tego na 0 nie stworzy żadnych cząsteczek piany.
 ]]
@@ -611,7 +611,7 @@ ZWRÓĆ UWAGĘ, ŻE TO RÓWNIEŻ WYŁĄCZY DŹWIĘK, PONIEWAŻ DŹWIĘK JEST OBL
 ]]
 
 "gwater2.menu.Performance.Simulation FPS"=[[
-Ilość FPS symulacji
+FPS symulacji
 ]]
 
 "gwater2.menu.Performance.Simulation FPS.desc"=[[
@@ -672,7 +672,7 @@ Siły reakcji musi być włączona, aby ten parametr działał
 ]]
 
 "gwater2.menu.Interactions.Force Dampening"=[[
-Tłumienie siły
+Siła tłumienia
 ]]
 
 "gwater2.menu.Interactions.Force Dampening.desc"=[[
