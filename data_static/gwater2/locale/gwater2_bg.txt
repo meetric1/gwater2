@@ -140,7 +140,7 @@ GWater2 (%s)
 ]]
 
 "gwater2.menu.About Tab.title"=[[
-За
+За добавката
 ]]
 
 "gwater2.menu.About Tab.titletext"=[[
