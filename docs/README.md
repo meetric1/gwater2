@@ -104,7 +104,7 @@
  if solver:GetActiveParticles() <= 0 then
      diffuse = 0
  end
- ```
+```
 ![cl] `FlexSolver:GetActiveDiffuseParticlesPos() -> Vector: pos` \
 &nbsp;&nbsp;   Gets average position of all active (alive and simulated) diffuse particles. \
 ![cl] `FlexSolver:GetActiveParticles() -> integer: active_particles` \
