@@ -378,6 +378,7 @@ timer.Create("gwater2_calcdiffusesound", 0.1, 0, function()
 	end
 end)
 
+local world_initialized = false	-- because apparently people think you can return values in InitPostEntity
 local function gwater_tick2()
 	local lp = LocalPlayer()
 	if !IsValid(lp) then return end
@@ -387,6 +388,17 @@ local function gwater_tick2()
 	if gwater2.solver:GetActiveParticles() <= 0 then 
 		no_lerp = true
 	else
+		if !world_initialized then 
+			world_initialized = true
+			gwater2.reset_solver()
+
+			hook.Add("OnEntityCreated", "gwater2_addprop", function(ent) 
+				timer.Simple(0, function() -- timer.0 so data values are setup correctly
+					add_prop(ent) 
+				end) 
+			end)	
+		end
+
 		gwater2.solver:ApplyContacts(limit_fps * gwater2.parameters.force_multiplier, 3, gwater2.parameters.force_buoyancy, gwater2.parameters.force_dampening)
 		gwater2.solver:IterateColliders(gwater2.update_colliders)
 
@@ -412,6 +424,4 @@ local function gwater_tick2()
 end
 
 timer.Create("gwater2_tick", 1 / gwater2.options.simulation_fps:GetInt(), 0, gwater_tick2)
-hook.Add("InitPostEntity", "!gwater2_addprop", gwater2.reset_solver)
-hook.Add("OnEntityCreated", "!gwater2_addprop", function(ent) timer.Simple(0, function() add_prop(ent) end) end)	// timer.0 so data values are setup correctly
-hook.Add("PreCleanupMap","!gwater2_cleanup",function() gwater2.ResetSolver() end)
+hook.Add("PreCleanupMap","gwater2_cleanup",function() gwater2.ResetSolver() end)
