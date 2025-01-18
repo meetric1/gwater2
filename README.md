@@ -186,6 +186,8 @@ DarkSM         | Hungarian
 ErickMaksimets | Ukrainian
 Hexak12        | Polish
 TheOnly8Z      | Simplified Chinese
+GoranRayman    | French
+Limule         | French
 ```
 
 # Extras
