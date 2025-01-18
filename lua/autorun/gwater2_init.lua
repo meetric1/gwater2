@@ -91,7 +91,7 @@ local function unfucked_get_mesh(ent, raw)
 
 	local model = ent:GetModel()
 	local is_ragdoll = util.IsValidRagdoll(model)
-	local convexes
+	local convexes = nil
 
 	if !is_ragdoll or raw then
 		local cs_ent = ents.CreateClientProp(model)
@@ -105,7 +105,7 @@ local function unfucked_get_mesh(ent, raw)
 		-- I have no idea why this happens.
 		if model == "models/police.mdl" then model = "models/combine_soldier.mdl" end
 
-		local cs_ent = ClientsideRagdoll(model)
+		local cs_ent = ClientsideRagdoll(model, 13)	
 		convexes = {}
 		for i = 0, cs_ent:GetPhysicsObjectCount() - 1 do
 			table.insert(convexes, cs_ent:GetPhysicsObjectNum(i):GetMesh())
@@ -130,7 +130,7 @@ local function add_prop(ent)
 
 	ent.GWATER2_IS_RAGDOLL = util.IsValidRagdoll(ent:GetModel())
 	
-	if #convexes < 16 then	-- too many convexes to be worth calculating
+	if #convexes <= 16 then	-- too many convexes to be worth calculating
 		for k, v in ipairs(convexes) do
 			if #v <= 64 * 3 then	-- hardcoded limits.. No more than 64 planes per convex as it is a FleX limitation
 				gwater2.solver:AddConvexCollider(ent_index, v, ent:GetPos(), ent:GetAngles())
@@ -140,6 +140,7 @@ local function add_prop(ent)
 		end
 	else
 		gwater2.solver:AddConcaveCollider(ent_index, unfucked_get_mesh(ent, true), ent:GetPos(), ent:GetAngles())
+		ent.GWATER2_IS_RAGDOLL = false
 	end
 end
 
