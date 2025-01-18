@@ -121,10 +121,15 @@ if SERVER then
 		-- does not detect instantly, can be a couple ticks behind
 		-- grenades that get exploded by other grenades (chain grenade explosions) are not detected
 	hook.Add("EntityRemoved", "gwater2_explosion", function(ent)
-		if !IsValid(ent) or ent:GetClass() != "npc_grenade_frag" then return end
+		if !IsValid(ent) then return end
 
-		-- the grenade will explode (and is not just being removed with remover tool)
-		if ent:GetInternalVariable("m_flDetonateTime") != -CurTime() then	
+		-- smg grenade, theres no way to detect whether it exploded or not, so we just assume it always does
+		if ent:GetClass() == "grenade_ar2" then
+			gwater2.AddForceField(ent:GetPos(), 250, 100, 1, true)
+		end
+
+		-- a grenade will explode (and is not just being removed with remover tool)
+		if ent:GetClass() == "npc_grenade_frag" and ent:GetInternalVariable("m_flDetonateTime") != -CurTime() then
 			gwater2.AddForceField(ent:GetPos(), 250, 100, 1, true)
 		end
 	end)
