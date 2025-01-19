@@ -84,7 +84,7 @@ print("[GWater2]: Loaded successfully with language: " .. lang)
 
 local in_water = include("gwater2_interactions.lua")
 
-local gtMoOverride = {
+local model_ovr = {
 	["models/police.mdl"] = true
 }
 
@@ -92,11 +92,15 @@ local gtMoOverride = {
 local function unfucked_get_mesh(ent, raw)
 	-- Check entity
 	if !IsValid(ent) then return nil end
+
+	-- Crashes when removed!
 	if ent:IsPlayer() then return nil end
 
 	-- Physics object exists
 	local phys = ent:GetPhysicsObject()
-	if phys and phys:IsValid() then return (raw and phys:GetMesh() or phys:GetMeshConvexes()) end
+	if phys and phys:IsValid() then
+		return (raw and phys:GetMesh() or phys:GetMeshConvexes())
+	end
 
 	local model = ent:GetModel()
 	local is_ragdoll = util.IsValidRagdoll(model)
@@ -104,6 +108,7 @@ local function unfucked_get_mesh(ent, raw)
 
 	if !is_ragdoll or raw then
 		local cs_ent = ents.CreateClientProp(model)
+		if !IsValid(cs_ent) then return nil end
 		local phys = cs_ent:GetPhysicsObject()
 		convexes = phys:IsValid() and (raw and phys:GetMesh() or phys:GetMeshConvexes())
 		cs_ent:Remove()
@@ -112,7 +117,7 @@ local function unfucked_get_mesh(ent, raw)
 		-- for whatever reason the metrocop and ONLY the metrocop model has this problem
 		-- when creating a clientside ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
 		-- I have no idea why this happens.
-		if gtMoOverride[model] then model = "models/combine_soldier.mdl" end
+		if model_ovr[model] then model = "models/combine_soldier.mdl" end
 
 		local suc, cs_ent = pcall(ClientsideRagdoll, model, 13)
 		if !suc then
@@ -120,7 +125,10 @@ local function unfucked_get_mesh(ent, raw)
 			return nil -- Print the error and return nothing
 		end
 
+		if !IsValid(cs_ent) then return nil end
+
 		convexes = {}
+
 		for i = 0, cs_ent:GetPhysicsObjectCount() - 1 do
 			table.insert(convexes, cs_ent:GetPhysicsObjectNum(i):GetMesh())
 		end
