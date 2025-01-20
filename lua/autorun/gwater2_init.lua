@@ -85,16 +85,18 @@ print("[GWater2]: Loaded successfully with language: " .. lang)
 local in_water = include("gwater2_interactions.lua")
 
 local model_ovr = {
-	["models/police.mdl"] = true
+	R = "models/combine_soldier.mdl",
+	M = {
+		["models/police.mdl"] = true
+	},
+	F = {
+		["IsPlayer"] = true
+	}
 }
-
 -- GetMeshConvexes but for client
 local function unfucked_get_mesh(ent, raw)
 	-- Check entity
 	if !IsValid(ent) then return nil end
-
-	-- Crashes when removed!
-	if ent:IsPlayer() then return nil end
 
 	-- Physics object exists
 	local phys = ent:GetPhysicsObject()
@@ -117,11 +119,23 @@ local function unfucked_get_mesh(ent, raw)
 		-- for whatever reason the metrocop and ONLY the metrocop model has this problem
 		-- when creating a clientside ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
 		-- I have no idea why this happens.
-		if model_ovr[model] then model = "models/combine_soldier.mdl" end
+		if model_ovr.M[model] then model = model_ovr.R end
+		for fnc, ret in model_ovr.F do
+			if ent[fnc] then
+				local s, r = pcall(ent[fnc], ent)
+				if !s then
+					MsgC( Color( 255, 0, 0 ), "Gwater2 error: "..tostring(cs_ent))
+					return nil -- Print the error and return nothing
+				elseif r == ret then 
+					model = model_ovr.R
+					break
+ 				end
+			end 
+		end
 
 		local suc, cs_ent = pcall(ClientsideRagdoll, model, 13)
 		if !suc then
-			MsgC( Color( 255, 0, 0 ), "Gwater error: "..tostring(cs_ent))
+			MsgC( Color( 255, 0, 0 ), "Gwater2 error: "..tostring(cs_ent))
 			return nil -- Print the error and return nothing
 		end
 
