@@ -84,13 +84,13 @@ print("[GWater2]: Loaded successfully with language: " .. lang)
 
 local in_water = include("gwater2_interactions.lua")
 
-local model_ovr = {
+local model_ovr = { -- Override model definition
 	R = "models/combine_soldier.mdl",
-	M = {
-		["models/police.mdl"] = true
+	M = { -- Models to replace with working mode
+		["models/police.mdl"] = true -- Model cache
 	},
-	F = {
-		["IsPlayer"] = true
+	F = { -- Entity category for default the model
+		["IsPlayer"] = true -- Default for players
 	}
 }
 -- GetMeshConvexes but for client
@@ -115,27 +115,28 @@ local function unfucked_get_mesh(ent, raw)
 		convexes = phys:IsValid() and (raw and phys:GetMesh() or phys:GetMeshConvexes())
 		cs_ent:Remove()
 	else
-		-- no joke this is the hackiest shit ive ever done.
-		-- for whatever reason the metrocop and ONLY the metrocop model has this problem
-		-- when creating a clientside ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
+		-- No joke this is the hackiest shit I've ever done.
+		-- For whatever reason the metrocop and ONLY the metrocop model has this problem
+		-- When creating a clientele ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
 		-- I have no idea why this happens.
-		if model_ovr.M[model] then model = model_ovr.R end
-		for fnc, ret in model_ovr.F do
-			if ent[fnc] then
-				local s, r = pcall(ent[fnc], ent)
-				if !s then
-					MsgC( Color( 255, 0, 0 ), "Gwater2 error: "..tostring(cs_ent))
-					return nil -- Print the error and return nothing
-				elseif r == ret then 
+		if model_ovr.M[model] then
+			model = model_ovr.R
+		else -- Check class methods and cache
+			for fnc, ret in model_ovr.F do
+				local suc, out = pcall(ent[fnc], ent)
+				if !suc then
+					MsgC( Color( 255, 0, 0 ), "[GWater2] Error: "..tostring(out))
+				elseif out == ret then
+					model_ovr.M[model] = true
 					model = model_ovr.R
 					break
  				end
-			end 
+			end
 		end
 
 		local suc, cs_ent = pcall(ClientsideRagdoll, model, 13)
 		if !suc then
-			MsgC( Color( 255, 0, 0 ), "Gwater2 error: "..tostring(cs_ent))
+			MsgC( Color( 255, 0, 0 ), "[GWater2] Error: "..tostring(cs_ent))
 			return nil -- Print the error and return nothing
 		end
 
