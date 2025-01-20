@@ -88,10 +88,8 @@ local model_ovr = { -- Override model definition
 	R = "models/combine_soldier.mdl",
 	M = { -- Models to replace with working mode
 		["models/police.mdl"] = true -- Model cache
-	},
-	F = { -- Entity category for default the model
-		["IsPlayer"] = true -- Default for players
-	}
+	}, -- Entity category for default the model
+	F = { "IsPlayer" } -- When return true replace model
 }
 -- GetMeshConvexes but for client
 local function unfucked_get_mesh(ent, raw)
@@ -119,16 +117,21 @@ local function unfucked_get_mesh(ent, raw)
 		-- For whatever reason the metrocop and ONLY the metrocop model has this problem
 		-- When creating a clientside ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
 		-- I have no idea why this happens.
-		if model_ovr.M[model] then
+		local moindx = model_ovr.M[model]
+		-- Check for the model flag
+		if moindx ~= nil then
 			model = model_ovr.R -- Is it worth it to just hardcode a model
 		else -- Check class methods and cache
-			for fnc, ret in model_ovr.F do
+			model_ovr.M[model] = false
+			local mometh = model_ovr.F
+			for idx = 1, #mometh do
+				local fnc = mometh[idx]
 				local suc, out = pcall(ent[fnc], ent)
 				if !suc then -- Print error and check the next
 					MsgC( Color( 255, 0, 0 ), "[GWater2] Error: "..tostring(out))
 				elseif out == ret then -- Add the processed model to the list
-					model_ovr.M[model] = true
 					model = model_ovr.R
+					model_ovr.M[model] = true
 					break
  				end
 			end
