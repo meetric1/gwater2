@@ -89,7 +89,9 @@ local model_ovr = { -- Override model definition
 	M = { -- Models to replace with working mode
 		["models/police.mdl"] = true -- Model cache
 	}, -- Entity category for default the model
-	F = { "IsPlayer" } -- When return true replace model
+	F = {
+	 ["IsPlayer"] = { O = true }
+	} -- When return true replace model
 }
 -- GetMeshConvexes but for client
 local function unfucked_get_mesh(ent, raw)
@@ -120,16 +122,17 @@ local function unfucked_get_mesh(ent, raw)
 		local moindx = model_ovr.M[model]
 		-- Check for the model flag
 		if moindx ~= nil then
-			model = model_ovr.R -- Is it worth it to just hardcode a model
+			if moindx then
+				model = model_ovr.R -- Is it worth it to just hardcode a model
+			end
 		else -- Check class methods and cache
 			model_ovr.M[model] = false
-			local mometh = model_ovr.F
-			for idx = 1, #mometh do
-				local fnc = mometh[idx]
-				local suc, out = pcall(ent[fnc], ent)
+			for fnc, rec in pairs(model_ovr.F) do
+				local arg = istable(rec.I) and rec.I or {}
+				local suc, out = pcall(ent[fnc], ent, arg[1], arg[2], arg[3])
 				if !suc then -- Print error and check the next
 					MsgC( Color( 255, 0, 0 ), "[GWater2] Error: "..tostring(out))
-				elseif out == ret then -- Add the processed model to the list
+				elseif out == rec.O then -- Add the processed model to the list
 					model = model_ovr.R
 					model_ovr.M[model] = true
 					break
