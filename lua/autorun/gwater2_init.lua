@@ -117,16 +117,16 @@ local function unfucked_get_mesh(ent, raw)
 	else
 		-- No joke this is the hackiest shit I've ever done.
 		-- For whatever reason the metrocop and ONLY the metrocop model has this problem
-		-- When creating a clientele ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
+		-- When creating a clientside ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
 		-- I have no idea why this happens.
 		if model_ovr.M[model] then
-			model = model_ovr.R
+			model = model_ovr.R -- Is it worth it to just hardcode a model
 		else -- Check class methods and cache
 			for fnc, ret in model_ovr.F do
 				local suc, out = pcall(ent[fnc], ent)
-				if !suc then
+				if !suc then -- Print error and check the next
 					MsgC( Color( 255, 0, 0 ), "[GWater2] Error: "..tostring(out))
-				elseif out == ret then
+				elseif out == ret then -- Add the processed model to the list
 					model_ovr.M[model] = true
 					model = model_ovr.R
 					break
