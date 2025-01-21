@@ -1,9 +1,29 @@
 -- The GWater 2 Render Pipeline
 
+
+local function IsInVR()
+	return vrmod and vrmod.IsPlayerInVR(LocalPlayer())
+end
+
+local function GetWidth()
+	if IsInVR() then
+		local dispinfo = VRMOD_GetDisplayInfo( 10, 25000 )
+		return dispinfo.RecommendedWidth 
+	end
+	return ScrW()
+end
+local function GetHeight()
+	if IsInVR() then
+		local dispinfo = VRMOD_GetDisplayInfo( 10, 25000 )
+		return dispinfo.RecommendedHeight
+	end
+	return ScrH()
+end
+
 local function get_gwater_rt(name, mult, depth) 
 	mult = mult or 1
-	return GetRenderTargetEx(name, ScrW() * mult, ScrH() * mult,
-		RT_SIZE_DEFAULT,
+	return GetRenderTargetEx(name, GetWidth() * mult, GetHeight() * mult,
+		RT_SIZE_LITERAL,
 		depth or 0,
 		2 + 4 + 8 + 256,
 		0,
@@ -14,9 +34,9 @@ end
 local cache_screen0 = render.GetScreenEffectTexture()
 local cache_screen1 = render.GetScreenEffectTexture(1)
 local cache_mipmap = get_gwater_rt("gwater2_mipmap", 1 / 1)
-local cache_absorption = get_gwater_rt("gwater2_absorption", 1 / 4, MATERIAL_RT_DEPTH_NONE)
+local cache_absorption = get_gwater_rt("gwater2_absorption", 1 / 1, MATERIAL_RT_DEPTH_NONE)
 local cache_normals = get_gwater_rt("gwater2_normals", 1 / 1, MATERIAL_RT_DEPTH_SEPARATE)
-local cache_blur = get_gwater_rt("gwater2_blur", 1 / 2)
+local cache_blur = get_gwater_rt("gwater2_blur", 1 / 1)
 
 local water = Material("gwater2/finalpass")
 local water_blur = Material("gwater2/smooth")
@@ -71,14 +91,23 @@ local function do_absorption()
 			-- Render to main buffer (still has depth), and copy the contents to another rendertarget
 			-- Restore the main buffer
 
+
+			render.PushRenderTarget(cache_absorption)
+			render.SetRenderTargetEx(1, cache_absorption)
+
 		-- clear screen w/o intruding translucents depth buffer
 		render.SetMaterial(black)
 		render.DrawScreenQuad()
 
 		render.SetMaterial(water_volumetric)
 		gwater2.renderer:DrawWater()
-		render.CopyTexture(render.GetRenderTarget(), cache_absorption)
-		render.DrawTextureToScreen(cache_screen0)
+
+		
+	render.PopRenderTarget()
+	render.SetRenderTargetEx(1, nil)
+
+		--render.CopyTexture(render.GetRenderTarget(), cache_absorption)
+		--render.DrawTextureToScreen(cache_screen0)
 
 		--render.PushRenderTarget(cache_absorption)
 		--render.SetMaterial(water_volumetric)
@@ -98,12 +127,20 @@ local function do_diffuse_inside()
 	if a < 255 then
 		-- Bubble particles inside water
 		-- Make sure the water screen texture has bubbles but the normal framebuffer does not
+		
+		render.PushRenderTarget(cache_screen0)
+		render.SetRenderTargetEx(1, cache_screen0)
+
 		render.SetMaterial(water_bubble)
-		render.UpdateScreenEffectTexture(1)
+		--render.UpdateScreenEffectTexture(1)
 		gwater2.renderer:DrawDiffuse()
-		render.RenderFlashlights(function() gwater2.renderer:DrawDiffuse() end)
-		render.CopyTexture(render.GetRenderTarget(), cache_screen0)
-		render.DrawTextureToScreen(cache_screen1)
+		--render.RenderFlashlights(function() gwater2.renderer:DrawDiffuse() end)
+		--render.CopyTexture(render.GetRenderTarget(), cache_screen0)
+
+		
+	render.PopRenderTarget()
+	render.SetRenderTargetEx(1, nil)
+		--render.DrawTextureToScreen(cache_screen1)
 	end
 end
 
@@ -135,8 +172,8 @@ local function do_normals()
 	render.SetStencilEnable(false)
 	
 	-- Blur normals
-	local scrw = 1 / ScrW()
-	local scrh = 1 / ScrH()
+	local GetWidth = 1 / GetWidth()
+	local GetHeight = 1 / GetHeight()
 
 	water_blur:SetFloat("$radius", radius)
 	water_blur:SetTexture("$depthtexture", cache_mipmap)
@@ -146,7 +183,7 @@ local function do_normals()
 
 		-- Blur X
 		water_blur:SetTexture("$normaltexture", cache_normals)
-		water_blur:SetVector("$scrs", Vector(scale * scrw, 0))
+		water_blur:SetVector("$scrs", Vector(scale * GetWidth, 0))
 		render.SetStencilEnable(false)	-- cache_blur doesn't have a stencil buffer set up, so we cant use it
 		render.PushRenderTarget(cache_blur)
 		render.DrawScreenQuad()
@@ -155,7 +192,7 @@ local function do_normals()
 		-- Blur Y
 		
 		water_blur:SetTexture("$normaltexture", cache_blur)
-		water_blur:SetVector("$scrs", Vector(0, scale * scrh))
+		water_blur:SetVector("$scrs", Vector(0, scale * GetHeight))
 		render.SetStencilEnable(i < blur_passes:GetInt())	-- disable stencils on last pass
 		render.PushRenderTarget(cache_normals)
 		render.DrawScreenQuad()
@@ -173,7 +210,7 @@ local function do_finalpass()
 	water:SetFloat("$reflectance", blur_passes:GetBool() and 0.7 or 0)
 	water:SetTexture("$normaltexture", cache_normals)
 	water:SetTexture("$depthtexture", cache_absorption)
-	render.SetMaterial(water)
+	render.SetMaterial(water_final)
 	gwater2.renderer:DrawWater()
 	render.RenderFlashlights(function() gwater2.renderer:DrawWater() end)
 
@@ -190,11 +227,22 @@ hook.Add("RenderScene", "gwater2_render", function(eye_pos, eye_angles, fov)
 	cam.End3D()
 end)
 
+local function SetupVR()  
+	local htld = "62"
+	cache_screen0 = get_gwater_rt("gwater2_cache0_vr" .. htld, 1 / 1) 
+	cache_screen1 = get_gwater_rt("gwater2_cache1_vr" .. htld, 1 / 1) 
+	cache_mipmap = get_gwater_rt("gwater2_mipmap_vr" .. htld	, 1 / 1)
+	cache_absorption = get_gwater_rt("gwater2_absorption_vr" .. htld, 1 / 1, MATERIAL_RT_DEPTH_NONE)
+	cache_normals = get_gwater_rt("gwater2_normals_vr" .. htld, 1 / 1, MATERIAL_RT_DEPTH_SEPARATE)
+	cache_blur = get_gwater_rt("gwater2_blur_vr" .. htld, 1 / 1)
+end
+
 -- vrmod does not render to the main RT, force enable mirror rendering
 hook.Add("VRMod_Start", "gwater2_vrmodsupport", function(ply)
 	if ply != LocalPlayer() then return end
 
 	gwater2.options.render_mirrors:SetInt(1)
+	SetupVR()
 end)
 
 -- gwater2 shader pipeline
@@ -214,10 +262,11 @@ hook.Add("PostDrawOpaqueRenderables", "gwater2_render", function(depth, sky, sky
 
 	-- vrmod is fucked. do this for now
 	if vrmod and vrmod.IsPlayerInVR(LocalPlayer()) then
-		render.SetMaterial(vrmod_material)
-		gwater2.renderer:DrawWater()
+		SetupVR()  
+		--render.SetMaterial(vrmod_material)
+		--gwater2.renderer:DrawWater()
 
-		return 
+		--return 
 	end
 	
 	-- Clear render targets
@@ -233,11 +282,11 @@ hook.Add("PostDrawOpaqueRenderables", "gwater2_render", function(depth, sky, sky
 
 	-- Debug Draw
 	local dbg = 0
-	if debug_absorption:GetBool() then render.DrawTextureToScreenRect(cache_absorption, ScrW() * 0.75, (ScrH() / 4) * dbg, ScrW() / 4, ScrH() / 4); dbg = dbg + 1 end
-	if debug_normals:GetBool() then render.DrawTextureToScreenRect(cache_normals, ScrW() * 0.75, (ScrH() / 4) * dbg, ScrW() / 4, ScrH() / 4); dbg = dbg + 1 end
-	if debug_mipmap:GetBool() then render.DrawTextureToScreenRect(cache_mipmap, ScrW() * 0.75, (ScrH() / 4) * dbg, ScrW() / 4, ScrH() / 4); dbg = dbg + 1 end
+	if debug_absorption:GetBool() then render.DrawTextureToScreenRect(cache_absorption, GetWidth() * 0.75, (GetHeight() / 4) * dbg, GetWidth() / 4, GetHeight() / 4); dbg = dbg + 1 end
+	if debug_normals:GetBool() then render.DrawTextureToScreenRect(cache_normals, GetWidth() * 0.75, (GetHeight() / 4) * dbg, GetWidth() / 4, GetHeight() / 4); dbg = dbg + 1 end
+	if debug_mipmap:GetBool() then render.DrawTextureToScreenRect(cache_mipmap, GetWidth() * 0.75, (GetHeight() / 4) * dbg, GetWidth() / 4, GetHeight() / 4); dbg = dbg + 1 end
 
-	--render.DrawTextureToScreenRect(cache_absorption, 0, 0, ScrW() / 4, ScrH() / 4)
+	--render.DrawTextureToScreenRect(cache_absorption, 0, 0, GetWidth() / 4, GetHeight() / 4)
 end)
 
 --hook.Add("NeedsDepthPass", "gwater2_depth", function()
