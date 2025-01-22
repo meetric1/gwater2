@@ -96,7 +96,13 @@ local function do_cloth()
 	local dist = math.max(1, math.min(235, (tr.HitPos - tr.StartPos):Length() / 1.5))
 	local targetpos = pos + (forward * dist)
 	lightpos = LerpVector(4 * FrameTime(), lightpos, targetpos)	-- fucking hell
-	unfuck_lighting(EyePos() - (forward * 8), lightpos, vertexlit_model_water, cubemap_model_water)
+
+	local lightpos2 = gwater2.solver:GetActiveParticlesPos(50)
+
+	local finalpos = lightpos
+	if (lightpos2 != Vector(0,0,0)) then finalpos = (lightpos * (2/8)) + (lightpos2 * (6/8)) end -- (lightpos * (1/8)) + (lightpos2 * (7/8)) --lightpos2
+
+	unfuck_lighting(EyePos() - (forward * 8), finalpos, vertexlit_model_water, cubemap_model_water)
 end
 
 local function do_absorption()

@@ -236,7 +236,7 @@ LUA_FUNCTION(FLEXSOLVER_AddMesh) {
 	FlexSolver* flex = GET_FLEXSOLVER(1);
 	VMatrix transform = *LUA->GetUserType<VMatrix>(2, Type::Matrix);
 	Particle particle_data = parse_particle(LUA, 4);
-	
+
 	// Indices and vertices must be separated
 	std::vector<Vector> verts = parse_verts(LUA, 3);
 
@@ -248,7 +248,7 @@ LUA_FUNCTION(FLEXSOLVER_AddMesh) {
 
 	int* indices = (int*)malloc(verts.size() * sizeof(int));
 	for (int i = 0; i < verts.size(); i++) indices[i] = i;
-	
+
 	// Triangulate data
 	NvFlexExtAsset* asset = NvFlexExtCreateRigidFromMesh((float*)verts.data(), verts.size(), indices, verts.size(), flex->get_parameter("fluid_rest_distance"), 0);
 
@@ -280,7 +280,7 @@ LUA_FUNCTION(FLEXSOLVER_AddCloth) {
 	LUA->CheckType(2, Type::Matrix);	// pos
 	LUA->CheckType(3, Type::Vector);	// size
 	//LUA->CheckType(4, Type::Table);	// ParticleData
-	
+
 	FlexSolver* flex = GET_FLEXSOLVER(1);
 	VMatrix transform = *LUA->GetUserType<VMatrix>(2, Type::Matrix);
 	Vector size = LUA->GetVector(3);
@@ -302,7 +302,7 @@ LUA_FUNCTION(FLEXSOLVER_RemoveSphere) {
 
 	FlexSolver* flex = GET_FLEXSOLVER(1);
 	VMatrix transform = *LUA->GetUserType<VMatrix>(2, Type::Matrix);
-	VMatrix transform_inverse; 
+	VMatrix transform_inverse;
 	if (!MatrixInverseGeneral(transform, transform_inverse)) {
 		LUA->PushNumber(0);
 		return 1;
@@ -312,7 +312,7 @@ LUA_FUNCTION(FLEXSOLVER_RemoveSphere) {
 	float* particle_lifetime = flex->hosts.particle_lifetime;
 	int* particle_active = flex->hosts.particle_active;
 	int* particle_phase = flex->hosts.particle_phase;
-	
+
 	int particles_removed = 0;
 	for (int i = 0; i < flex->get_active_particles(); i++) {
 		int particle_index = particle_active[i];
@@ -653,7 +653,7 @@ LUA_FUNCTION(FLEXSOLVER_ApplyContacts) {
 
 	int* contact_count = (int*)flex->get_host("contact_count");
 	int* contact_indices = (int*)flex->get_host("contact_indices");*/
-	
+
 	//Vector4D* particle_pos = (Vector4D*)NvFlexMap(flex->get_buffer("particle_pos"), eNvFlexMapWait);
 	//Vector* particle_vel = (Vector*)NvFlexMap(flex->get_buffer("particle_vel"), eNvFlexMapWait);
 
@@ -688,13 +688,14 @@ LUA_FUNCTION(FLEXSOLVER_ApplyContacts) {
 			FlexMesh prop;
 			try {
 				prop = meshes.at(prop_id);
-			} catch (std::exception e) {
+			}
+			catch (std::exception e) {
 				Warning("[GWater2 Internal Error]: Prevented Crash! Tried to access invalid entity %i!\n", prop_id);
 				continue;
 			}
 
 			int prop_entity_id = prop.get_entity_id();
-			
+
 			Vector plane = contact_planes[plane_index].AsVector3D();
 			Vector contact_pos = particle_pos[particle_index].AsVector3D() - plane * radius * 0.5;	// Particle position is not directly *on* plane
 			Vector local_vel = particle_vel[particle_index] * flex->get_parameter("timescale");
@@ -732,7 +733,7 @@ LUA_FUNCTION(FLEXSOLVER_ApplyContacts) {
 
 		// Average the position of the force
 		force_pos /= contacts;
-		
+
 		// Apply the force
 		void* ent = UTIL_EntityByIndex(force.first);
 
@@ -749,9 +750,9 @@ LUA_FUNCTION(FLEXSOLVER_ApplyContacts) {
 			//Warning("Couldn't find entity's physics object!\n");
 			continue;
 		}
-		
+
 		Vector prop_pos; phys->GetPosition(&prop_pos, NULL);
-		
+
 		// Dampening (completely faked. not at all accurate)
 		Vector prop_vel; phys->GetVelocityAtPoint(force_pos, &prop_vel);
 		force_vel -= prop_vel * dampening_mul;
@@ -805,10 +806,11 @@ LUA_FUNCTION(FLEXSOLVER_InitBounds) {
 
 	if (LUA->GetType(2) == Type::Vector && LUA->GetType(3) == Type::Vector) {
 		flex->enable_bounds(LUA->GetVector(2), LUA->GetVector(3));
-	} else {
+	}
+	else {
 		flex->disable_bounds();
 	}
-	
+
 	return 0;
 }
 
@@ -887,7 +889,51 @@ LUA_FUNCTION(FLEXSOLVER_GetActiveDiffuseParticlesPos) {
 
 	if (divider == 0) {
 		average_pos = Vector(0, 0, 0);
-	} else {
+	}
+	else {
+		average_pos /= (float)divider;
+	}
+
+	LUA->PushVector(average_pos);
+	return 1;
+}
+
+// gets average location of all particles (used in lighting)
+LUA_FUNCTION(FLEXSOLVER_GetActiveParticlesPos) {
+	LUA->CheckType(1, FLEXSOLVER_METATABLE);
+	LUA->CheckNumber(2);
+	FlexSolver* flex = GET_FLEXSOLVER(1);
+	int iterator = LUA->GetNumber(2);
+
+	// View matrix, used in frustrum culling
+	CMatRenderContextPtr render_context(materials); 
+	VMatrix view_matrix, projection_matrix, view_projection_matrix;
+	render_context->GetMatrix(MATERIAL_VIEW, &view_matrix);
+	render_context->GetMatrix(MATERIAL_PROJECTION, &projection_matrix);
+	MatrixMultiply(projection_matrix, view_matrix, view_projection_matrix);
+	float radius = flex->get_parameter("radius");
+
+	Vector average_pos = Vector(0, 0, 0);
+	int divider = 0;
+	for (int i = 0; i < flex->get_active_particles(); i += iterator) {
+
+		Vector pos = flex->hosts.particle_pos[i].AsVector3D();
+
+		Vector4D dst;
+		Vector4DMultiply(view_projection_matrix, Vector4D(pos.x, pos.y, pos.z, 1), dst);
+		if (dst.z < radius || -dst.x - dst.w > radius || dst.x - dst.w > radius || -dst.y - dst.w > radius || dst.y - dst.w > radius) continue;
+		
+		// PVS Culling
+		if (!engine->IsBoxVisible(pos, pos)) continue;
+
+		average_pos += pos;
+		divider++;
+	}
+
+	if (divider == 0) {
+		average_pos = Vector(0, 0, 0);
+	}
+	else {
 		average_pos /= (float)divider;
 	}
 
@@ -1041,10 +1087,10 @@ LUA_FUNCTION(GWATER2_SET_CONTACTS) {
 			if (!LUA_SERVER->PCall(1, 1, 0)) {
 				if (LUA_SERVER->IsType(-1, Type::Entity)) {
 					//if (LUA_SERVER->GetMetaTable(-1)) {
-						LUA_SERVER->PushNumber(LUA->GetNumber(2));
-						LUA_SERVER->SetField(-2, "GWATER2_CONTACTS");
-						//LUA_SERVER->Pop();	// Pop metatable
-					//}
+					LUA_SERVER->PushNumber(LUA->GetNumber(2));
+					LUA_SERVER->SetField(-2, "GWATER2_CONTACTS");
+					//LUA_SERVER->Pop();	// Pop metatable
+				//}
 				}
 				else {
 					Warning("[GWater2 Internal Error]: _G.Entity() Is returning a non-entity! (%i)\n", LUA_SERVER->GetType(-1));
@@ -1111,7 +1157,7 @@ GMOD_MODULE_OPEN() {
 		&desc
 	);
 
-	if (FLEX_LIBRARY == nullptr) 
+	if (FLEX_LIBRARY == nullptr)
 		LUA->ThrowError("[GWater2 Internal Error]: Nvidia FleX Failed to load! (Does your GPU meet the minimum requirements to run FleX?)");
 
 	Msg("[GWater2]: Loading engine interface\n");
@@ -1161,6 +1207,7 @@ GMOD_MODULE_OPEN() {
 	ADD_FUNCTION(LUA, FLEXSOLVER_GetMaxParticles, "GetMaxParticles");
 	ADD_FUNCTION(LUA, FLEXSOLVER_GetMaxDiffuseParticles, "GetMaxDiffuseParticles");
 	ADD_FUNCTION(LUA, FLEXSOLVER_GetActiveDiffuseParticlesPos, "GetActiveDiffuseParticlesPos");
+	ADD_FUNCTION(LUA, FLEXSOLVER_GetActiveParticlesPos, "GetActiveParticlesPos");
 	ADD_FUNCTION(LUA, FLEXSOLVER_EnableDiffuse, "EnableDiffuse");
 	ADD_FUNCTION(LUA, FLEXSOLVER_RenderParticles, "RenderParticles");
 	ADD_FUNCTION(LUA, FLEXSOLVER_AddConcaveCollider, "AddConcaveCollider");
@@ -1197,27 +1244,27 @@ GMOD_MODULE_OPEN() {
 
 	// _G.FlexSolver = NewFlexSolver
 	LUA->PushSpecial(SPECIAL_GLOB);
-		ADD_FUNCTION(LUA, NewFlexSolver, "FlexSolver");
-		ADD_FUNCTION(LUA, NewFlexRenderer, "FlexRenderer");
-		ADD_FUNCTION(LUA, GWATER2_SET_CONTACTS, "GWATER2_SET_CONTACTS");
+	ADD_FUNCTION(LUA, NewFlexSolver, "FlexSolver");
+	ADD_FUNCTION(LUA, NewFlexRenderer, "FlexRenderer");
+	ADD_FUNCTION(LUA, GWATER2_SET_CONTACTS, "GWATER2_SET_CONTACTS");
 
-		// gwater2_hdr_fix = ConVar("gwater2_hdr_fix", hdr_on, FCVAR_NONE);
-		char hdr_on[2] = { 
-			'0' + (g_pHardwareConfig->GetHDRType() != HDR_TYPE_NONE),
-			0
-		};
+	// gwater2_hdr_fix = ConVar("gwater2_hdr_fix", hdr_on, FCVAR_NONE);
+	char hdr_on[2] = {
+		'0' + (g_pHardwareConfig->GetHDRType() != HDR_TYPE_NONE),
+		0
+	};
 
-		Msg("[GWater2]: Creating gwater_hdr_fix ConVar %c\n", hdr_on[0]);
+	Msg("[GWater2]: Creating gwater_hdr_fix ConVar %c\n", hdr_on[0]);
 
-		LUA->GetField(-1, "CreateConVar");
-		LUA->PushString("gwater2_hdr_fix");
-		LUA->PushString(hdr_on);
-		LUA->PushNumber(FCVAR_NONE);
-		LUA->Call(3, 1);
-		gwater2_hdr_fix = LUA->GetUserType<ConVar>(-1, Type::ConVar);
-		gwater2_hdr_fix->SetValue(hdr_on);
+	LUA->GetField(-1, "CreateConVar");
+	LUA->PushString("gwater2_hdr_fix");
+	LUA->PushString(hdr_on);
+	LUA->PushNumber(FCVAR_NONE);
+	LUA->Call(3, 1);
+	gwater2_hdr_fix = LUA->GetUserType<ConVar>(-1, Type::ConVar);
+	gwater2_hdr_fix->SetValue(hdr_on);
 
-		LUA->Pop();
+	LUA->Pop();
 	LUA->Pop();
 
 	Msg("[GWater2]: Finding symbol for UTIL_EntityByIndex\n");
