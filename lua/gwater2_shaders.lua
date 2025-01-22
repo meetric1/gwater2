@@ -34,29 +34,69 @@ local debug_absorption = CreateClientConVar("gwater2_debug_absorption", "0", fal
 local debug_normals = CreateClientConVar("gwater2_debug_normals", "0", false)
 local debug_mipmap = CreateClientConVar("gwater2_debug_mipmap", "0", false)
 
+-- we need these for both water and cloth.
+local cubemap_model_water
+local vertexlit_model_water
+
+local cubemap_model_cloth
+local vertexlit_model_cloth
+
+if !cubemap_model_cloth or !vertexlit_model_cloth then
+	cubemap_model_cloth = ClientsideModel("models/props_phx/gibs/flakgib1.mdl")
+	vertexlit_model_cloth = ClientsideModel("models/hunter/plates/plate1x1.mdl")
+	cubemap_model_cloth:Spawn()
+	vertexlit_model_cloth:Spawn()
+	cubemap_model_cloth:SetNoDraw(true)
+	vertexlit_model_cloth:SetNoDraw(true)
+end    
+
+if !cubemap_model_water or !vertexlit_model_water then
+	cubemap_model_water = ClientsideModel("models/props_phx/gibs/flakgib1.mdl")
+	vertexlit_model_water = ClientsideModel("models/hunter/plates/plate1x1.mdl")
+	cubemap_model_water:Spawn()
+	vertexlit_model_water:Spawn()
+	cubemap_model_water:SetNoDraw(true)
+	vertexlit_model_water:SetNoDraw(true)
+end    
+
 -- sets up a lighting origin in sourceengine
 -- TODO: cache your fucking tables and csmodels!!!
-local function unfuck_lighting(pos0, pos1)
+local function unfuck_lighting(pos0, pos1, vertexlit_model, cubemap_model)
+	-- dont do this in mirrors
+	if render.GetRenderTarget() then return end
+
 	render.OverrideColorWriteEnable(true, false)
-	render.OverrideDepthEnable(true, false)
-	render.Model({model = "models/shadertest/envballs.mdl",pos = pos0, angle = EyeAngles()})	-- cubemap
-	render.Model({model = "models/shadertest/vertexlit.mdl",pos = pos1, angle = EyeAngles()}) 	-- lighting
+	render.OverrideDepthEnable(true, false) 
+
+	cubemap_model:SetPos(pos0)
+	vertexlit_model:SetPos(pos1)
+	cubemap_model:SetAngles(EyeAngles())
+	 
+	cubemap_model:DrawModel() 
+	vertexlit_model:DrawModel() 
+
 	render.OverrideDepthEnable(false, false)
 	render.OverrideColorWriteEnable(false, false)
 end
 
 local lightpos = EyePos()
 local function do_cloth()
-	unfuck_lighting(gwater2.cloth_pos, gwater2.cloth_pos)	-- fix cloth lighting, mostly
+	unfuck_lighting(gwater2.cloth_pos, gwater2.cloth_pos, vertexlit_model_cloth, cubemap_model_cloth)	-- fix cloth lighting, mostly
 	render.SetMaterial(cloth)
 	gwater2.renderer:DrawCloth()
 	render.RenderFlashlights(function() gwater2.renderer:DrawCloth() end)
 
+	-- dont do this in mirrors
+	if render.GetRenderTarget() then return end
+
 	-- setup water lighting
-	local tr = util.QuickTrace( EyePos(), LocalPlayer():EyeAngles():Forward() * 800, LocalPlayer())
-	local dist = math.min(230, (tr.HitPos - tr.StartPos):Length() / 1.5)	
-	lightpos = LerpVector(3.6 * FrameTime(), lightpos, EyePos() + (LocalPlayer():EyeAngles():Forward() * dist))	-- fucking hell
-	unfuck_lighting(EyePos(), lightpos)
+	local pos = EyePos()
+	local forward = EyeVector()
+	local tr = util.QuickTrace( pos, forward * 800, LocalPlayer())
+	local dist = math.max(1, math.min(235, (tr.HitPos - tr.StartPos):Length() / 1.5))
+	local targetpos = pos + (forward * dist)
+	lightpos = LerpVector(4 * FrameTime(), lightpos, targetpos)	-- fucking hell
+	unfuck_lighting(EyePos() - (forward * 8), lightpos, vertexlit_model_water, cubemap_model_water)
 end
 
 local function do_absorption()
