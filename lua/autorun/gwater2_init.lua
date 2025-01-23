@@ -130,7 +130,7 @@ local function add_prop(ent)
 
 	ent.GWATER2_IS_RAGDOLL = util.IsValidRagdoll(ent:GetModel())
 	
-	if #convexes <= 16 then	-- too many convexes to be worth calculating
+	if ent.GWATER2_IS_RAGDOLL or #convexes <= 16 then	-- too many convexes to be worth calculating
 		for k, v in ipairs(convexes) do
 			if #v <= 64 * 3 then	-- hardcoded limits.. No more than 64 planes per convex as it is a FleX limitation
 				gwater2.solver:AddConvexCollider(ent_index, v, ent:GetPos(), ent:GetAngles())
@@ -139,8 +139,12 @@ local function add_prop(ent)
 			end
 		end
 	else
-		gwater2.solver:AddConcaveCollider(ent_index, unfucked_get_mesh(ent, true), ent:GetPos(), ent:GetAngles())
-		ent.GWATER2_IS_RAGDOLL = false
+		local combined = {}
+		for k, v in ipairs(convexes) do
+			table.Add(combined, v)
+		end
+
+		gwater2.solver:AddConcaveCollider(ent_index, combined, ent:GetPos(), ent:GetAngles())
 	end
 end
 
