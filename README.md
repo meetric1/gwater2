@@ -142,9 +142,10 @@ If you wish to compile it yourself, simply follow these steps.
 > See https://github.com/meetric1/gwater2/issues/1 for more information
 
 ### Shader compilation
-Custom shaders were created in HLSL, and compiled using [ShaderCompile](https://github.com/SCell555/ShaderCompile).
-
+Custom shaders were created in HLSL, and compiled using [ShaderCompile](https://github.com/SCell555/ShaderCompile).\
 Documentation on how to compile them can be found here: https://developer.valvesoftware.com/wiki/Shader_Authoring
+
+You could also potentially compile them via this repo: https://github.com/ficool2/sdk_screenspace_shaders
 
 # Credits
 ```
@@ -182,6 +183,12 @@ googer_        | Russian
 pigeondriver45 | Turkish
 Cast_E         | Brazilian Portuguese
 SCRENG R       | Spanish
+DarkSM         | Hungarian
+ErickMaksimets | Ukrainian
+Hexak12        | Polish
+TheOnly8Z      | Simplified Chinese
+GoranRayman    | French
+Limule         | French
 ```
 
 # Extras

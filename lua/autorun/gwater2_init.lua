@@ -100,7 +100,7 @@ local function unfucked_get_mesh(ent, raw)
 
 	local model = ent:GetModel()
 	local is_ragdoll = util.IsValidRagdoll(model)
-	local convexes
+	local convexes = nil
 
 	if !is_ragdoll or raw then
 		local cs_ent = ents.CreateClientProp(model)
@@ -114,7 +114,7 @@ local function unfucked_get_mesh(ent, raw)
 		-- I have no idea why this happens.
 		if model == "models/police.mdl" then model = "models/combine_soldier.mdl" end
 
-		local cs_ent = ClientsideRagdoll(model)
+		local cs_ent = ClientsideRagdoll(model, 13)	
 		convexes = {}
 		for i = 0, cs_ent:GetPhysicsObjectCount() - 1 do
 			table.insert(convexes, cs_ent:GetPhysicsObjectNum(i):GetMesh())
@@ -139,7 +139,7 @@ local function add_prop(ent)
 
 	ent.GWATER2_IS_RAGDOLL = util.IsValidRagdoll(ent:GetModel())
 	
-	if #convexes < 16 then	-- too many convexes to be worth calculating
+	if ent.GWATER2_IS_RAGDOLL or #convexes <= 16 then	-- too many convexes to be worth calculating
 		for k, v in ipairs(convexes) do
 			if #v <= 64 * 3 then	-- hardcoded limits.. No more than 64 planes per convex as it is a FleX limitation
 				gwater2.solver:AddConvexCollider(ent_index, v, ent:GetPos(), ent:GetAngles())
@@ -148,7 +148,12 @@ local function add_prop(ent)
 			end
 		end
 	else
-		gwater2.solver:AddConcaveCollider(ent_index, unfucked_get_mesh(ent, true), ent:GetPos(), ent:GetAngles())
+		local combined = {}
+		for k, v in ipairs(convexes) do
+			table.Add(combined, v)
+		end
+
+		gwater2.solver:AddConcaveCollider(ent_index, combined, ent:GetPos(), ent:GetAngles())
 	end
 end
 
@@ -386,6 +391,7 @@ timer.Create("gwater2_calcdiffusesound", 0.1, 0, function()
 	end
 end)
 
+local world_initialized = false	-- because apparently people think you can return values in InitPostEntity
 local function gwater_tick2()
 	local lp = LocalPlayer()
 	if !IsValid(lp) then return end
@@ -395,6 +401,17 @@ local function gwater_tick2()
 	if gwater2.solver:GetActiveParticles() <= 0 then 
 		no_lerp = true
 	else
+		if !world_initialized then 
+			world_initialized = true
+			gwater2.reset_solver()
+
+			hook.Add("OnEntityCreated", "gwater2_addprop", function(ent) 
+				timer.Simple(0, function() -- timer.0 so data values are setup correctly
+					add_prop(ent) 
+				end) 
+			end)	
+		end
+
 		gwater2.solver:ApplyContacts(limit_fps * gwater2.parameters.force_multiplier, 3, gwater2.parameters.force_buoyancy, gwater2.parameters.force_dampening)
 		gwater2.solver:IterateColliders(gwater2.update_colliders)
 
@@ -420,6 +437,4 @@ local function gwater_tick2()
 end
 
 timer.Create("gwater2_tick", 1 / gwater2.options.simulation_fps:GetInt(), 0, gwater_tick2)
-hook.Add("InitPostEntity", "!gwater2_addprop", gwater2.reset_solver)
-hook.Add("OnEntityCreated", "!gwater2_addprop", function(ent) timer.Simple(0, function() add_prop(ent) end) end)	// timer.0 so data values are setup correctly
-hook.Add("PreCleanupMap","!gwater2_cleanup",function() gwater2.ResetSolver() end)
+hook.Add("PreCleanupMap","gwater2_cleanup",function() gwater2.ResetSolver() end)

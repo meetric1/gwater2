@@ -1,0 +1,1216 @@
+
+This is the gwater localization file. Everything in this file is added as a language string to gmod.
+Note that the translation cannot be longer than 4000 bytes (1 english character is 1 byte).
+
+Input format:
+"gwater2.key_here"=[[
+Your translation here
+]]
+
+Do NOT edit 'gwater2.key_here'
+
+Use decent language, be literate and don't be a barbarian. :)
+
+------------------------
+-------- ERRORS --------
+------------------------
+
+"gwater2.error.modulenotinstalled"=[[
+!!!KÉRLEK OLVASS EL!!!
+
+GWATER2 NEM TALÁLTA A MODULT!
+
+Ez valószínűleg azt jelenti, hogy nem telepítetted a GWater2 DLL fájlokat.
+Telepítsd a bináris fájlokat, és győződjd meg róla, hogy a GWater2 DLL fájlok a GarrysMod/garrysmod/lua/bin könyvtárban vannak.
+Vegye figyelembe, hogy a GWater2 NEM működik natívan Linux vagy Mac rendszereken.
+]]
+
+"gwater2.error.modulefailedtoload.1"=[[
+!!!KÉRLEK OLVASS EL!!!
+
+GWATER2 NEM TALÁLTA A MODULT!
+
+Ez valószínűleg azt jelenti, hogy nem megfelelően telepítetted a FleX fájlokat a GarrysMod/ mappába.
+Ellenőrizd a telepítést, és indítsd újra a játékot.
+]]
+
+"gwater2.error.modulefailedtoload.2"=[[
+Ha 100%%-ig biztos vagy benne, hogy helyesen telepítetted, indítsd újra a játékot néhányszor. Ez egy Garry kódjával kapcsolatos probléma, és nem tudom kijavítani.
+]]
+
+"gwater2.error.modulefailedtoload.3"=[[
+Kérj bátran segítséget, ha a probléma továbbra is fennáll. KÉRLEK add meg a következő 3 sort, amikor segítséget kér:
+
+Error: %s
+BRANCH: %s
+jit.arch: %s
+]]
+
+"gwater2.error.chatlog"=[[
+Nem sikerült betölteni! További információkért nézze meg a Problémák menüt (ESC menü -> balra lent).
+]]
+
+"gwater2.gun.adv.notloaded"=[[
+GWater2 nem sikerült betölteni!
+További információkért nézze meg a Problémák menüt (ESC menü -> balra lent).
+]]
+
+------------------------
+------ WATER GUN -------
+------------------------
+
+"gwater2.gun.adv.controls.lclk"=[[
+Bal-kattintás a részecskék létrehozásához
+]]
+
+"gwater2.gun.adv.controls.rclk"=[[
+Jobb-kattintás a fegyver menü megnyitásához
+]]
+
+"gwater2.gun.adv.controls.reload"=[[
+Újratöltés az összes eltávolításához
+]]
+
+------------------------
+------- ENTITIES -------
+------------------------
+
+"gwater2.ent.drain.side"=[[
+EZ AZ OLDAL
+FOLYADÉKOT SZÍV
+]]
+
+"gwater2.ent.emitter.side"=[[
+EZ AZ OLDAL
+FOLYADÉKOT BOCSÁT KI
+]]
+
+"gwater2.ent.on"=[[
+Be
+]]
+
+"gwater2.ent.off"=[[
+Ki
+]]
+
+"gwater2.ent.radius"=[[
+%s sugár
+]]
+
+"gwater2.ent.radius2"=[[
+%sx%s sugár
+]]
+
+"gwater2.ent.strength"=[[
+%s erősség
+]]
+
+"gwater2.ent.spread"=[[
+%s szórás
+]]
+
+"gwater2.ent.lifetime"=[[
+%s élettartam
+]]
+
+"gwater2.ent.transporter.queue"=[[
+Sorban álló részecskék: %s
+]]
+
+"gwater2.ent.transporter.link"=[[
+Kapcsolódik: %s
+]]
+
+--------------------------------------------
+--------------------------------------------
+----                MENU                ----
+----  This section contains by far the  ----
+---- most amount of translation strings ----
+----  When translating, be careful as   ----
+----   mistakes there are more noticed  ----
+----          by the end user           ----
+--------------------------------------------
+--------------------------------------------
+
+------------------------
+------- TAB INFO -------
+------------------------
+
+"gwater2.menu.title"=[[
+GWater2 (%s)
+]]
+
+"gwater2.menu.About Tab.title"=[[
+Rólunk
+]]
+
+"gwater2.menu.About Tab.titletext"=[[
+Üdvözöljük a GWater2-ben (v%s)
+]]
+
+"gwater2.menu.About Tab.welcome"=[[
+Köszönjük a Gwater2 letöltését! Ez a menü az a felület, amelyet a Gwater minden funkciójának kezelésére fogsz használni. Szóval szokj hozzá! :D
+
+Mindenképpen olvasd el a changelogot, hogy lásd, mi lett frissítve!
+Changelog (v1.0):
+
+- Initial Release
+
+]]
+
+"gwater2.menu.About Tab.help"=[[
+Minden egyes lapon ez a terület hasznos információkat tartalmaz.
+
+Például:
+Ha a menün kívül bárhová kattint, vagy újra megnyomja a menügombot, a menü bezárul.
+
+Mindenképpen olvassa el ezt a területet!
+]]
+
+"gwater2.menu.Parameters.title"=[[
+Paraméterek
+]]
+
+"gwater2.menu.Parameters.titletext"=[[
+Paraméterek
+]]
+
+"gwater2.menu.Parameters.help"=[[
+Ezen a lapon módosíthatja, hogy a víz hogyan lépjen kölcsönhatásba önmagával és a környezettel.
+
+Vigye a mutatót egy paraméter fölé, hogy feltárja annak működését.
+]]
+
+"gwater2.menu.Visuals.title"=[[
+Kinézet
+]]
+
+"gwater2.menu.Visuals.titletext"=[[
+Kinézet
+]]
+
+"gwater2.menu.Visuals.help"=[[
+Ez a lap szabályozza a folyadék kinézetét.
+
+Vigye a mutatót egy paraméter fölé, hogy feltárja annak működését.
+]]
+
+"gwater2.menu.Performance.title"=[[
+Teljesítmény
+]]
+
+"gwater2.menu.Performance.titletext"=[[
+Teljesítmény
+]]
+
+"gwater2.menu.Performance.help"=[[
+Ez a lap olyan beállításokat tartalmaz, amelyek segíthetnek és módosíthatnak a teljesítményen.
+
+Minden egyes opció zöld és piros színnel van jelölve, hogy jelezze a teljesítményre való befolyását. Minden paraméter közvetlenül hatással van a GPU-ra.
+
+Ezek az opciók NEM szinkronizálódnak, és más játékosok NEM szerkeszthetik őket.
+
+Vigye a mutatót egy paraméter fölé, hogy feltárja annak működését.
+]]
+
+"gwater2.menu.Interactions.title"=[[
+Kölcsönhatások
+]]
+
+"gwater2.menu.Interactions.titletext"=[[
+Kölcsönhatások
+]]
+
+"gwater2.menu.Interactions.help"=[[
+Néhány paraméter, amely szabályozza a víz kölcsönhatását a játékosokkal és a tárgyakkal.
+]]
+
+"gwater2.menu.Developer.title"=[[
+Fejlesztői beállítások
+]]
+
+"gwater2.menu.Developer.titletext"=[[
+Fejlesztői beállítások
+]]
+
+"gwater2.menu.Developer.help"=[[
+Különböző beállítások, amelyek nem használatra készültek, és tönkretehetik a játékot.
+
+A legtöbb ilyen beállítás valószínűleg nem csinál semmit, vagy nincs megfelelően beállítva (pl. nagyon kicsi vagy nagy min/max értékek), és csak neked szánták őket.
+
+Mindenesetre hozzáadtam a leírásokat, úgyhogy nyugodtan játszadozhatsz, asszem..
+
+Ez a lap csak akkor jelenik meg, ha a konzolban engedélyezve van a 'developer 1'.
+]]
+
+"gwater2.menu.Presets.title"=[[
+Előbeállítások
+]]
+
+"gwater2.menu.Presets.titletext"=[[
+Előbeállítások
+]]
+
+"gwater2.menu.Presets.help"=[[
+Betölthet, szerkeszthet és menthet bármilyen folyadékot.
+
+Az előbeállításra való jobb gombnyomással törölheted vagy másolhatod az adatokat (hogy elküldhesd a barátaidnak, ha szeretnéd).
+]]
+
+"gwater2.menu.Credits.title"=[[
+Kreditek
+]]
+
+"gwater2.menu.Credits.titletext"=[[
+Kreditek
+]]
+
+"gwater2.menu.Credits.help"=[[
+Ez a lap tartalmazza azoknak az embereknek a listáját, akik közvetlenül vagy közvetve segítettek a GWater2 fejlesztésében.
+
+A Patronok listája ábécé sorrendben van rendezve, és a megjelenésig rendszeresen frissül.
+
+A projektből származó összes bevétel közvetlenül az egyetemi alapomba megy. Nagyon köszönöm srácok :)
+]]
+
+"gwater2.menu.Credits.text"=[[
+v------------+----- Fejlesztők ------------------v
+Meetric      | Fő fejlesztő
+googer       | Menü átírása, adv vízipisztoly, Wiremod támogatás, Szállító
+jn           | Víz-Játékos interakciók, Erőtér entitás
+Xenthio      | Diffúz és világítási fejlesztések, VVIS kigyomlálás
+MyUsername   | Linux segítség
+Stickrpg     | Reakcióerő jelek
+Mikey        | StarfallEx API
+Joka         | Vízipisztoly ikon
+Spanky       | Részecske nyújtási kód
+PotatoOS     | Kvaternion matematika
+AndrewEathan | GWater1 entitások
+Kodya        | Úszási kód
+Nvidia       | FleX könyvtár
+v------------+------- Patronok -------------------v
+]]
+
+------------------------
+------ PARAMETERS ------
+------------------------
+
+"gwater2.menu.Parameters.Physics Parameters"=[[
+Fizikai paraméterek
+]]
+
+"gwater2.menu.Parameters.Advanced Physics Parameters"=[[
+Haladó Fizikai paraméterek
+]]
+
+"gwater2.menu.Parameters.Sound Parameters"=[[
+Hangparaméterek
+]]
+
+"gwater2.menu.Parameters.Adhesion"=[[
+Tapadás
+]]
+
+"gwater2.menu.Parameters.Adhesion.desc"=[[
+Szabályozza, hogy a részecskék mennyire tapadnak a felületekhez.
+
+Vedd figyelembe, hogy ez a konkrét paraméter az előnézeti részen nem jelenik meg tökéletesen és lehet, hogy inkább gyakorlatban kell megnézned.
+]]
+
+"gwater2.menu.Parameters.Gravity"=[[
+Gravitáció
+]]
+
+"gwater2.menu.Parameters.Gravity.desc"=[[
+Szabályozza, hogy a folyadék milyen erősen húzódjon lefelé. Ezt az értéket m/s mérik.
+
+Vegye figyelembe, hogy az alapértelmezett gravitáció -15.24, ami NEM azonos a Föld -9.81-es gravitációjával.
+]]
+
+"gwater2.menu.Parameters.Cohesion"=[[
+Összetartás
+]]
+
+"gwater2.menu.Parameters.Cohesion.desc"=[[
+Szabályozza, hogy a részecskék mennyire állnak össze.
+
+A magasabb értékek szilárdabbá/merevebbé teszik a folyadékot, míg az alacsonyabb értékek folyékonyabbá és lazábbá.
+]]
+
+"gwater2.menu.Parameters.Surface Tension"=[[
+Felületfeszültség
+]]
+
+"gwater2.menu.Parameters.Surface Tension.desc"=[[
+Szabályozza, hogy a részecskék milyen erősen minimalizálják a felületet.
+
+Ha túl magasra állítja ezt a paramétert, akkor a részecskék furcsán viselkednek.
+
+Általában a kohézióval van összekapcsolva.
+]]
+
+"gwater2.menu.Parameters.Viscosity"=[[
+Viszkozitás
+]]
+
+"gwater2.menu.Parameters.Viscosity.desc"=[[
+Szabályozza, hogy a részecskék mennyire álljanak ellen a mozgásnak.
+
+A magasabb értékek inkább mézre vagy szirupra, míg az alacsonyabbak vízre vagy olajra hasonlítanak.
+
+Ez a paraméter a folyadékot nyúlósabbá teszi.
+]]
+
+"gwater2.menu.Parameters.Radius"=[[
+Sugár
+]]
+
+"gwater2.menu.Parameters.Radius.desc"=[[
+Az egyes szemcsék méretét szabályozza.
+
+Az előnézetben 15-re van korlátozva a furcsaságok elkerülése érdekében.
+
+A sugarat source egységben mérjük, és minden részecske esetében ugyanaz.
+]]
+
+"gwater2.menu.Parameters.Timescale"=[[
+Időskála
+]]
+
+"gwater2.menu.Parameters.Timescale.desc"=[[
+A szimuláció sebességének beállítása.
+
+Vegye figyelembe, hogy egyes paraméterek, mint például a Kohézió és a Felületfeszültség másképp viselkedhetnek a kisebb vagy nagyobb számítási idők miatt.
+]]
+
+"gwater2.menu.Parameters.Dynamic Friction"=[[
+Dinamikus súrlódás
+]]
+
+"gwater2.menu.Parameters.Dynamic Friction.desc"=[[
+Szabályozza a felületeken a részecskék súrlódásának mértékét.
+
+A Tapadás furcsán viselkedik, ha 0-ra van állítva.
+]]
+
+"gwater2.menu.Parameters.Vorticity Confinement"=[[
+Örvényesség-korlátozás
+]]
+
+"gwater2.menu.Parameters.Vorticity Confinement.desc"=[[
+Növeli az örvényhatást a részecskékre ható forgási erők alkalmazásával.
+
+Ez azért létezik, mert a légnyomás nem szimulálható hatékonyan.
+]]
+
+"gwater2.menu.Parameters.Collision Distance"=[[
+Ütközési távolság
+]]
+
+"gwater2.menu.Parameters.Collision Distance.desc"=[[
+A részecskék és az objektumok közötti ütközési távolságot szabályozza.
+
+Vegye figyelembe, hogy az alacsonyabb ütközési távolság hatására a részecskék gyakrabban vágódnak át az objektumokon.
+]]
+
+"gwater2.menu.Parameters.Fluid Rest Distance"=[[
+Folyadék pihenési távolság
+]]
+
+"gwater2.menu.Parameters.Fluid Rest Distance.desc"=[[
+A részecskék közötti ütközési távolságot szabályozza.
+
+A magasabb értékek göröngyösebb folyadékokat, míg az alacsonyabb értékek simább folyadékokat eredményeznek.
+
+Vegye figyelembe, hogy az alacsonyabb értékek kissé befolyásolhatják a teljesítményt.
+]]
+
+"gwater2.menu.Parameters.Sound Pitch"=[[
+Hangmagasság
+]]
+
+"gwater2.menu.Parameters.Sound Pitch.desc"=[[
+A folyadék hangmagasságát szabályozza.
+]]
+
+"gwater2.menu.Parameters.Sound Volume"=[[
+Hangerősség
+]]
+
+"gwater2.menu.Parameters.Sound Volume.desc"=[[
+A folyadék hangerejét szabályozza. 
+
+A 0-ra állítás kikapcsolja a vízhangokat.
+]]
+
+------------------------
+------- VISUALS --------
+------------------------
+
+"gwater2.menu.Visuals.Diffuse Threshold"=[[
+Hab küszöbérték
+]]
+
+"gwater2.menu.Visuals.Diffuse Threshold.desc"=[[
+Meghatározza a buborék/habrészecske létrehozásához szükséges erő nagyságát.
+]]
+
+"gwater2.menu.Visuals.Color"=[[
+Szín
+]]
+
+"gwater2.menu.Visuals.Color.desc"=[[
+A folyadék színét szabályozza.
+
+Az alfa (átlátszóság) csatorna szabályozza a színelnyelés mértékét.
+
+A 255-ös alfa-érték (teljesen felfelé) átlátszatlanná teszi a folyadékot.
+]]
+
+"gwater2.menu.Visuals.Diffuse Lifetime"=[[
+Hab élettartam
+]]
+
+"gwater2.menu.Visuals.Diffuse Lifetime.desc"=[[
+Szabályozza, hogy a buborékok/habrészecskék létrehozása után mennyi ideig tartson.
+
+Ezt a Időskála paraméter befolyásolja.
+
+Ha 0-ra állítjuk, akkor nem fognak diffúz részecskék keletkezni.
+]]
+
+"gwater2.menu.Visuals.Reflectance"=[[
+Fénytörés
+]]
+
+"gwater2.menu.Visuals.Reflectance.desc"=[[
+Megváltoztatja a víz fénytörési erejét.
+
+Belsőleg ez az IOR-hoz (törésmutató) kapcsolódik. Víz -> 1.333
+]]
+
+"gwater2.menu.Visuals.Color Value Multiplier"=[[
+Fényerő
+]]
+
+"gwater2.menu.Visuals.Color Value Multiplier.desc"=[[
+Megtöbbszörözi a jelenlegi víz színét.
+
+Ha ezt 1-nél nagyobb értékre állítod, akkor a folyadék ragyogni fog.
+]]
+
+------------------------
+----- PERFORMANCE ------
+------------------------
+
+"gwater2.menu.Performance.Physics"=[[
+Fizika
+]]
+
+"gwater2.menu.Performance.Visuals"=[[
+Kinézet
+]]
+
+"gwater2.menu.Performance.Absorption"=[[
+Abszorpció
+]]
+
+"gwater2.menu.Performance.Absorption.desc"=[[
+Lehetővé teszi a fény elnyelését a folyadékon belüli távolságon keresztül.
+(nagyobb mélység = sötétebb szín)
+
+A teljesítményre gyakorolt hatása KÖZEPES.
+]]
+
+"gwater2.menu.Performance.Substeps"=[[
+Allépések
+]]
+
+"gwater2.menu.Performance.Substeps.desc"=[[
+Az egy tikkre elvégzett fizikai lépések számát szabályozza.
+
+Vegye figyelembe, hogy a paraméterek nem biztos, hogy megfelelően vannak beállítva a különböző allépésekhez!
+
+Ez a paraméter nem mentődik el.
+
+A teljesítményre gyakorolt hatása KÖZEPES-MAGAS.
+]]
+
+"gwater2.menu.Performance.Depth Fix"=[[
+Mélység Javítás
+]]
+
+"gwater2.menu.Performance.Depth Fix.desc"=[[
+A részecskéket lapos helyett gömb alakúvá teszi, így tisztább és simább vízfelületet hoz létre.
+
+Shader túlrajzolást okoz.
+
+A teljesítményre gyakorolt hatás KÖZEPES-MAGAS.
+]]
+
+"gwater2.menu.Performance.Particle Limit"=[[
+Részecske limit
+]]
+
+"gwater2.menu.Performance.Particle Limit.desc"=[[
+EZT A PARAMÉTERT SAJÁT FELELŐSSÉGÉRE HASZNÁLJA.
+
+Megváltoztatja a részecskék határértékét.
+
+Ez a paraméter nem mentődik el.
+
+Vegye figyelembe, hogy a magasabb limit negatívan befolyásolja a teljesítményt még azonos számú lerakott részecske esetén is.
+]]
+
+"gwater2.menu.Performance.Particle Limit.title"=[[
+A folyadék limitet %d részecskére fogod módosítani.
+Biztos vagy benne?
+]]
+
+"gwater2.menu.Performance.Particle Limit.warning"=[[
+Ez veszélyes lehet, mert minden részecskét a GPU-n kell kiosztani.
+NE állítsd be a limitet magasabbra, mint amennyit a számítógéped képes kezelni.
+NEM vállalok felelősséget bármilyen hardveres kárért, amit ez okozhat.
+]]
+
+"gwater2.menu.Performance.Iterations"=[[
+Iterációk
+]]
+
+"gwater2.menu.Performance.Iterations.desc"=[[
+Szabályozza, hogy a fizika megoldó hányszor próbál meg allépésenként konvergálni a megoldáshoz.
+
+Ez a paraméter nem ment.
+
+Közepes teljesítményre gyakorolt hatás.
+]]
+
+"gwater2.menu.Performance.Player Collision"=[[
+Játékosokkal való ütközés
+]]
+
+"gwater2.menu.Performance.Player Collision.desc"=[[
+Be- és kikapcsolja az ütközést a játékossal (veled).
+
+Ez igazából nem befolyásolja annyira a teljesítményt, de azért tettem ebbe a fülbe, mert az előbeállítások nem tudják beállítani ezt az értéket.
+]]
+
+"gwater2.menu.Performance.Diffuse Enabled"=[[
+Hab / Hang engedélyezése
+]]
+
+"gwater2.menu.Performance.Diffuse Enabled.desc"=[[
+A Hab részecskék engedélyezése / tiltása
+(hab/buborékok)
+
+Mivel ez a beállítás a teljesítmény lapon található, nem állítható be az előbeállításokon keresztül.
+
+VEGYE FIGYELEMBE, HOGY EZ A HANGOT IS LETILTJA, MIVEL A HAB RÉSZECSKÉK SEGÍTSÉGÉVEL KERÜL KISZÁMÍTÁSRA.
+
+A teljesítményre gyakorolt hatása KÖZEPES.
+]]
+
+"gwater2.menu.Performance.Simulation FPS"=[[
+Szimuláció FPS
+]]
+
+"gwater2.menu.Performance.Simulation FPS.desc"=[[
+A szimuláció képkockasebességét szabályozza (milyen gyorsan frissül).
+
+Ez a beállítás megváltoztathatja a folyadék viselkedését a kisebb vagy nagyobb számítási idők miatt.
+
+A teljesítményre gyakorolt hatása KÖZEPES-MAGAS.
+]]
+
+"gwater2.menu.Performance.Mirror Rendering"=[[
+Tükörbeli megjelenítés
+]]
+
+"gwater2.menu.Performance.Mirror Rendering.desc"=[[
+Lehetővé teszi a víz tükörképének megjelenítését.
+
+Ha a VRMod engedélyezve van, kapcsolja ezt a beállítást 1-re.
+
+0 = Nincs tükröződés
+
+1 = Olcsó tükröződések
+(Frustrum / képernyőtér)
+(Ez kikapcsolja a fluid PVS selejtezést)
+
+2 = Drága tükröződések 
+(A folyadékot többször rendereli)
+]]
+
+"gwater2.menu.Performance.Blur Passes"=[[
+Elmosási átmenetek
+]]
+
+"gwater2.menu.Performance.Blur Passes.desc"=[[
+A képkockánként végrehajtott elmosódási átmenetek számát szabályozza.
+
+Minél több átmenet, annál simább vízfelületet kapunk.
+0 átmenettel nem történik elmosódás.
+
+A teljesítményre gyakorolt hatása ALACSONY.
+]]
+
+------------------------
+----- INTERACTIONS -----
+------------------------
+
+"gwater2.menu.Interactions.Reaction Force Parameters"=[[
+Reakcióerő paraméterek
+]]
+
+"gwater2.menu.Interactions.Force Buoyancy"=[[
+Erőfelhajtóerő
+]]
+
+"gwater2.menu.Interactions.Force Buoyancy.desc"=[[
+A vízben lévő tárgyakra ható felhajtóerő.
+
+A megvalósítás semmiképpen sem pontos, és valószínűleg nem szabadna propelleres hajókra használni.
+
+A Reakcióerőknek engedélyezve kell lenniük ahhoz, hogy ez a paraméter bármit is csináljon.
+]]
+
+"gwater2.menu.Interactions.Force Dampening"=[[
+Erőcsillapítás
+]]
+
+"gwater2.menu.Interactions.Force Dampening.desc"=[[
+A tárgyakra alkalmazott csillapító erő.
+
+Segít egy kicsit, ha a tárgyak hajlamosak a vízfelületen pattogni.
+
+A Reakcióerőknek engedélyezve kell lenniük ahhoz, hogy ez a paraméter bármit is csináljon.
+]]
+
+"gwater2.menu.Interactions.Force Multiplier"=[[
+Erő szorzója
+]]
+
+"gwater2.menu.Interactions.Force Multiplier.desc"=[[
+Meghatározza a víz által kifejtett erő nagyságát a tárgyakra.
+
+A Reakcióerőknek engedélyezve kell lenniük ahhoz, hogy ez a paraméter bármit is csináljon.
+]]
+
+"gwater2.menu.Interactions.Water Interactions"=[[
+Víz kölcsönhatások
+]]
+
+"gwater2.menu.Interactions.Player Interaction"=[[
+Játékos interakció
+]]
+
+"gwater2.menu.Interactions.Player Interaction.desc"=[[
+Ha engedélyezve van, a játékosok fizikailag is kapcsolatba léphetnek a vízzel.
+
+Olyan dolgokat tesz lehetővé, mint az úszás és a séta/ugrás szorzók.
+]]
+
+"gwater2.menu.Interactions.Reaction Forces"=[[
+Kölcsönhatás a tárgyakkal
+]]
+
+"gwater2.menu.Interactions.Reaction Forces.desc"=[[
+Ha engedélyezve van, a víz a tárgyakat ide-oda mozgathatja.
+
+Ez semmiképpen sem pontos, és nagyon elrontott matematikát használ, ezért számítson instabilitásra.
+
+Nagy teljesítményt igénylő paraméter, erős számítógép szükséges.
+]]
+
+"gwater2.menu.Interactions.SwimSpeed"=[[
+Úszás sebessége
+]]
+
+"gwater2.menu.Interactions.SwimSpeed.desc"=[[
+Szabályozza, hogy milyen gyorsan úszol a víz alatt.
+]]
+
+"gwater2.menu.Interactions.SwimFriction"=[[
+Úszás súrlódása
+]]
+
+"gwater2.menu.Interactions.SwimFriction.desc"=[[
+Szabályozza, hogy mennyire nehéz a vízben úszni.
+
+Vegye figyelembe, hogy a valóságban a viszkozitás nem befolyásolja az úszási sebességet.
+]]
+
+"gwater2.menu.Interactions.SwimBuoyancy"=[[
+Úszás felhajtóereje
+]]
+
+"gwater2.menu.Interactions.SwimBuoyancy.desc"=[[
+Szabályozza a folyadék sűrűségét.
+
+A nagyobb értékek jobban kiszorítanak a vízből.
+
+A negatív értékek leszívnak a vízbe.
+]]
+
+"gwater2.menu.Interactions.MultiplyParticles"=[[
+Részecskék szorzója
+]]
+
+"gwater2.menu.Interactions.MultiplyParticles.desc"=[[
+Szabályozza, hogy hány részecskét kell megérintened, mielőtt a séta/ugrás sebessége megváltozik.
+
+Ez befolyásolja az 'Érintési sérülés' paramétert is.
+]]
+
+"gwater2.menu.Interactions.MultiplyWalk"=[[
+Séta sebességének szorzója
+]]
+
+"gwater2.menu.Interactions.MultiplyWalk.desc"=[[
+Megváltoztatja, hogy milyen gyorsan mozogsz, miközben folyadékot érintesz.
+]]
+
+"gwater2.menu.Interactions.MultiplyJump"=[[
+Ugrás erejének szorzója
+]]
+
+"gwater2.menu.Interactions.MultiplyJump.desc"=[[
+Megváltoztatja, hogy milyen magasra tudsz ugrani, miközben folyadékot érintesz.
+]]
+
+"gwater2.menu.Interactions.TouchDamage"=[[
+Érintékezési sérülés
+]]
+
+"gwater2.menu.Interactions.TouchDamage.desc"=[[
+Mennyire sérülsz meg a vízben.
+
+A negatív értékek gyógyítanak.
+]]
+
+------------------------
+------- PRESETS --------
+------------------------
+
+"gwater2.menu.Presets.import_preset"=[[
+Előbeállítás importálása
+]]
+
+"gwater2.menu.Presets.import.paste_here"=[[
+Előbeállítás beillesztése ide
+]]
+
+"gwater2.menu.Presets.import.detected"=[[
+Érzékelt: %s előbeállítás
+]]
+
+"gwater2.menu.Presets.import.detected.multiple"=[[
+Érzékelt: %s előbeállítások
+]]
+
+"gwater2.menu.Presets.import.bad_data"=[[
+Az adat rosszul formázott vagy az előbeállítás típusa ismeretlen a #%d előbeállításnál.
+]]
+
+"gwater2.menu.Presets.save"=[[
+Előbeállítás mentése
+]]
+
+"gwater2.menu.Presets.save.preset_name"=[[
+Előbeállítás neve
+]]
+
+"gwater2.menu.Presets.save.include_params"=[[
+Tartalmazott paraméterek:
+]]
+
+"gwater2.menu.Presets.copy"=[[
+Másolás vágólapra
+]]
+
+"gwater2.menu.Presets.copy.as_json"=[[
+...mint JSON
+]]
+
+"gwater2.menu.Presets.copy.as_b64pi"=[[
+...mint B64-PI
+]]
+
+"gwater2.menu.Presets.delete"=[[
+Törlés
+]]
+
+------------------------
+------ DEVELOPER -------
+------------------------
+
+"gwater2.menu.Developer.Anisotropy Max"=[[
+Anizotrópia Csúcsérték
+]]
+
+"gwater2.menu.Developer.Anisotropy Max.desc"=[[
+Szabályozza a maximális vizuális méretet, amelyet a részecskék között a részecskék nyújthatnak.
+]]
+
+"gwater2.menu.Developer.Anisotropy Min"=[[
+Anizotrópia Minimum
+]]
+
+"gwater2.menu.Developer.Anisotropy Min.desc"=[[
+Szabályozza a részecskék minimális vizuális méretét.
+]]
+
+"gwater2.menu.Developer.Anisotropy Scale"=[[
+Anizotrópia Skála
+]]
+
+"gwater2.menu.Developer.Anisotropy Scale.desc"=[[
+A részecskék közötti nyújtás vizuális méretét szabályozza.
+
+Ha ezt az értéket 0-ra állítja, a nyújtás kikapcsol.
+]]
+
+"gwater2.menu.Developer.static_friction"=[[
+static_friction
+]]
+
+"gwater2.menu.Developer.static_friction.desc"=[[
+a nyugalmi állapotban lévő részecske mozgatásához szükséges erő kezdeti nagysága
+]]
+
+"gwater2.menu.Developer.particle_friction"=[[
+particle_friction
+]]
+
+"gwater2.menu.Developer.particle_friction.desc"=[[
+részecskék közötti súrlódás
+
+sherlock.
+]]
+
+"gwater2.menu.Developer.free_surface_drag"=[[
+free_surface_drag
+]]
+
+"gwater2.menu.Developer.free_surface_drag.desc"=[[
+a határfolyadék részecskékre ható ellenállási erő
+]]
+
+"gwater2.menu.Developer.drag"=[[
+drag
+]]
+
+"gwater2.menu.Developer.drag.desc"=[[
+a dinamikus háromszögekhez tartozó részecskékre ható húzóerő.
+
+ez olyan dolgokra van hatással, mint a szövet, de soha nem definiáltam normális háromszög puffert, így ez nem csinál semmit.
+]]
+
+"gwater2.menu.Developer.lift"=[[
+lift
+]]
+
+"gwater2.menu.Developer.lift.desc"=[[
+dinamikus háromszögekre alkalmazott erő listája.
+
+ez olyan dolgokra van hatással, mint a szövet, de soha nem definiáltam normális háromszög puffert, így ez nem csinál semmit.
+]]
+
+"gwater2.menu.Developer.solid_rest_distance"=[[
+solid_rest_distance
+]]
+
+"gwater2.menu.Developer.solid_rest_distance.desc"=[[
+részecske ütközési távolság szilárd objektumokhoz (merev testek / szövet).
+
+ezt nem használjuk semmire, kivéve, hogy a szövet mennyire van széthúzva egymástól.
+]]
+
+"gwater2.menu.Developer.smoothing"=[[
+smoothing
+]]
+
+"gwater2.menu.Developer.smoothing.desc"=[[
+a részecskékkel végzett Laplacian simítás erőssége. alapvetően csak vizuálisan zsugorítja a felületet.
+
+Ezt használom a rendereléshez, ezért győződj meg róla, hogy ez az érték nem 0, különben egyik részecske sem fog mozogni.
+]]
+
+"gwater2.menu.Developer.dissipation"=[[
+dissipation
+]]
+
+"gwater2.menu.Developer.dissipation.desc"=[[
+az érintkező részecskék számával arányos tompítóerő
+]]
+
+"gwater2.menu.Developer.damping"=[[
+damping
+]]
+
+"gwater2.menu.Developer.damping.desc"=[[
+a folyadékok viszkózus ellenállási ereje, a részecskék aktuális sebességével ellentétes erőt fejt ki.
+]]
+
+"gwater2.menu.Developer.particle_collision_margin"=[[
+particle_collision_margin
+]]
+
+"gwater2.menu.Developer.particle_collision_margin.desc"=[[
+a szomszédok megtalálása során használt sugár, ez a gyorsan mozgó részecskéknél hasznos lehet.
+]]
+
+"gwater2.menu.Developer.shape_collision_margin"=[[
+shape_collision_margin
+]]
+
+"gwater2.menu.Developer.shape_collision_margin.desc"=[[
+sugár, amelyet annak felismerésére használnak, hogy mely alakzatokra kell kontaktusokat alkalmazni. Javaslom, hogy ne változtasd meg ezt az értéket, mivel sok részecske egymásba vágásához vezethet, ha helytelenül használja.
+]]
+
+"gwater2.menu.Developer.sleep_threshold"=[[
+sleep_threshold
+]]
+
+"gwater2.menu.Developer.sleep_threshold.desc"=[[
+a részecskék maximális sebességének elalvás előtt kell lennie.
+]]
+
+"gwater2.menu.Developer.shock_propagation"=[[
+shock_propagation
+]]
+
+"gwater2.menu.Developer.shock_propagation.desc"=[[
+csökkenti a részecskék tömegét egy magassági érték alapján. ez az érték nagyjából haszontalan, kivéve egy nagyon speciális tech demónál, és a részecskék felrobbanását okozza.
+]]
+
+"gwater2.menu.Developer.restitution"=[[
+restitution
+]]
+
+"gwater2.menu.Developer.restitution.desc"=[[
+a visszahatás együtthatója, amelyet az alakzatokkal való ütközéskor használnak, a nem nulla értékek a részecskéket pattogóvá teszik.
+]]
+
+"gwater2.menu.Developer.max_speed"=[[
+max_speed
+]]
+
+"gwater2.menu.Developer.max_speed.desc"=[[
+a részecskék maximális sebessége. ez elég nyilvánvaló.
+]]
+
+"gwater2.menu.Developer.max_acceleration"=[[
+max_acceleration
+]]
+
+"gwater2.menu.Developer.max_acceleration.desc"=[[
+milyen gyorsan gyorsulhatnak a részecskék egy keretben
+]]
+
+"gwater2.menu.Developer.solid_pressure"=[[
+solid_pressure
+]]
+
+"gwater2.menu.Developer.solid_pressure.desc"=[[
+hozzáadja a szilárd testek nyomását a részecskékhez. ez nem csinál semmit, mert nem definiálok merev testeket.
+]]
+
+"gwater2.menu.Developer.buoyancy"=[[
+buoyancy
+]]
+
+"gwater2.menu.Developer.buoyancy.desc"=[[
+Ez nem csinál semmit, mivel nincsenek merev testek.
+]]
+
+"gwater2.menu.Developer.diffuse_buoyancy"=[[
+diffuse_buoyancy
+]]
+
+"gwater2.menu.Developer.diffuse_buoyancy.desc"=[[
+habrészecskék felhajtóereje
+]]
+
+"gwater2.menu.Developer.diffuse_drag"=[[
+diffuse_drag
+]]
+
+"gwater2.menu.Developer.diffuse_drag.desc"=[[
+a habrészecskék ellenállási együtthatója.
+]]
+
+"gwater2.menu.Developer.Show absorption debug"=[[
+Show absorption debug
+]]
+
+"gwater2.menu.Developer.Show absorption debug.desc"=[[
+abszorpciós hibakereső textúra megjelenítése.
+]]
+
+"gwater2.menu.Developer.Show mipmap debug"=[[
+Show mipmap debug
+]]
+
+"gwater2.menu.Developer.Show mipmap debug.desc"=[[
+mipmap hibakereső textúra megjelenítése.
+]]
+
+"gwater2.menu.Developer.Show normals debug"=[[
+Show normals debug
+]]
+
+"gwater2.menu.Developer.Show normals debug.desc"=[[
+normal hibakereső textúra megjelenítése.
+]]
+
+"gwater2.menu.Developer.relaxation_mode"=[[
+relaxation_mode
+]]
+
+"gwater2.menu.Developer.relaxation_mode.desc"=[[
+meghatározza a részecskék kölcsönhatását.
+
+0=globális relaxáció (konstans, a relaxation_factor paraméter határozza meg).
+
+1=lokális relaxáció (részecskénként kiszámított)
+
+ha ez a paraméter 0, a folyadékok gyorsabban konvergálnak, de kevésbé megbízhatóan (nagyobb a robbanás valószínűsége).
+]]
+
+"gwater2.menu.Developer.relaxation_factor"=[[
+relaxation_factor
+]]
+
+"gwater2.menu.Developer.relaxation_factor.desc"=[[
+a globális részecske kölcsönhatás relaxációs tényezőjét szabályozza. robbanásokat okozhat.
+]]
+
+------------------------
+--------- MENU ---------
+------------------------
+
+"gwater2.menu.Menu.title"=[[
+Menü
+]]
+
+"gwater2.menu.Menu.titletext"=[[
+Menü
+]]
+
+"gwater2.menu.Menu.help"=[[
+Ez a lap vezérli a menü megjelenését és viselkedését.
+
+Vigye a mutatót egy paraméter fölé, hogy feltárja annak működését.
+]]
+
+"gwater2.menu.Menu.sounds"=[[
+Hangok lejátszása
+]]
+
+"gwater2.menu.Menu.sounds.desc"=[[
+A menühangok engedélyezése/letiltása
+]]
+
+"gwater2.menu.Menu.animations"=[[
+Animált menü
+]]
+
+"gwater2.menu.Menu.animations.desc"=[[
+Az egyszerű menübetöltési animációk engedélyezése/letiltása.
+]]
+
+"gwater2.menu.Menu.preview"=[[
+Folyadék előnézetének megjelenítése
+]]
+
+"gwater2.menu.Menu.preview.desc"=[[
+A folyadék előnézet engedélyezése/letiltása (balra látható)
+
+Ennek kikapcsolása segíthet egy kicsit a teljesítményen a menü használata közben.
+]]
+
+"gwater2.menu.Menu.pixelate_preview"=[[
+Pixeles folyadék előnézet
+]]
+
+"gwater2.menu.Menu.pixelate_preview.desc"=[[
+A pixeles folyékony előnézet engedélyezése/letiltása.
+]]
+
+"gwater2.menu.Menu.admin_only"=[[
+Csak adminisztrátori menü
+]]
+
+"gwater2.menu.Menu.admin_only.desc"=[[
+A menü csak adminok számára való elérhetőségének engedélyezése/letiltása.
+
+VEGYE FIGYELEMBE, HOGY EZT AZ ÉRTÉKET CSAK A SZERVER HOSZTJA TUDJA MEGVÁLTOZTATNI. HA EZ A BEÁLLÍTÁS NEM MŰKÖDIK, FUTTASSA A PARANCSOT A KONZOLBAN:
+gwater2_adminonly (0-1)
+]]
+
+"gwater2.menu.Menu.soundpack"=[[
+Menü Hangkészlet
+]]
+
+"gwater2.menu.Menu.soundpack.desc"=[[
+Kiválasztja a menü hangkészletét - a menüvel való interakció során lejátszott hangokat.
+]]
+
+------------------------
+--------- MISC ---------
+------------------------
+
+"gwater2.menu.Fluid Preview.title"=[[
+Folyadék előnézet
+]]
+
+"gwater2.menu.Explanation Area.title"=[[
+Magyarázó terület
+]]
+
+"gwater2.menu.qaccess.Reset Solvers"=[[
+Állítsa vissza a szolvereket (törölje ki az összes vizet)
+]]
+
+"gwater2.menu.qaccess.Give Watergun"=[[
+Adj magadnak vízipisztoly SWEP-et
+]]
+
+------------------------
+------ WATER GUN -------
+------------------------
+
+"gwater2.menu.WaterGun.Velocity"=[[
+Részecskék sebessége
+]]
+
+"gwater2.menu.WaterGun.Velocity.Explanation"=[[
+Milyen gyorsan kell a részecskéknek kiáramlaniuk a pisztolyból.
+]]
+
+"gwater2.menu.WaterGun.Distance"=[[
+Maximális távolság
+]]
+
+"gwater2.menu.WaterGun.Distance.Explanation"=[[
+Milyen messzire kell megpróbálnunk nyomon követni a kiindulási helyzetet
+]]
+
+"gwater2.menu.WaterGun.Spread"=[[
+Részecskék szóródása
+]]
+
+"gwater2.menu.WaterGun.Spread.Explanation"=[[
+Mennyire szóródnak szét a részecskék
+]]
+
+"gwater2.menu.WaterGun.SpawnMode"=[[
+Lövési Mód
+]]
+
+"gwater2.menu.WaterGun.SpawnMode.Explanation"=[[
+1=Kör, 2=Négyzet
+Kérjük, vegye figyelembe, hogy ugyanazok a paraméterek különböző
+módok különbözőképpen viselkednek.
+]]
