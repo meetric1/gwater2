@@ -569,14 +569,44 @@ local function create_menu(init)
 				if not gwater2.options.read_config().animations then return end
 				local children = {}
 				local function _(p)
+					children[#children+1] = p
+					if #p:GetChildren() <= 0 then
+						return
+					end
 					for __,child in pairs(p:GetChildren()) do
-						children[#children+1] = child
 						_(child)
 					end
 				end
 				_(rt.Panel:GetChildren()[1])
-				for i,v in pairs(children) do
-					v:SetAlpha((1-delta-i/500)*255*4)
+				for n, child in ipairs(children) do
+					if not child.set then 
+						child.OldPaint = child.OldPaint or child.Paint
+						child.set = true
+					end
+					function child:Paint(w, h)
+						if not self.OldPaint then return end
+						local x, y = self:LocalToScreen(0, 0)
+
+						render.ClearStencil()
+						render.SetStencilTestMask(255)
+						render.SetStencilWriteMask(255)
+						---@diagnostic disable: param-type-mismatch
+						render.SetStencilPassOperation(STENCILOPERATION_KEEP)
+						render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
+						render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_NEVER)
+						render.SetStencilReferenceValue(1)
+						render.SetStencilFailOperation(STENCILOPERATION_REPLACE)
+						render.SetStencilEnable(true)
+						draw.RoundedBox(0, 0, 0, w, h*(1-delta)*5, color_white)
+
+    					render.SetStencilFailOperation(STENCILOPERATION_KEEP)
+						render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_EQUAL)
+						--render.SetScissorRect(x, y, x+w, y+(h*(1-delta)), true)
+							self.OldPaint(self, w, h)
+						--render.SetScissorRect(0, 0, 0, 0, false)
+
+						render.SetStencilEnable(false)
+					end
 				end
 			end
 			surface.SetDrawColor(255, 255, 255, 255)
@@ -634,6 +664,7 @@ local function create_menu(init)
 	return frame
 end
 
+-- TODO: find another font / fix that one
 surface.CreateFont("GWater2TextSmall", {
 	font = (system.IsWindows() and "Titillium Web[RUS By Daymarius]" or "TitilliumWebRegular.ttf"), 
     extended = true,
