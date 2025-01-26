@@ -174,6 +174,32 @@ local slider_functions = {
 		gwater2.ChangeParameter(parameter_id, val, true)
 	end
 }
+local function COLOR_FixHex(hexstring, nooriginal)
+	local original = hexstring
+	if hexstring[1] == "#" then hexstring = string.sub(hexstring, 2) end
+    if #hexstring ~= 6 and #hexstring ~= 8 then
+		hexstring = hexstring..string.rep("0", 6-#hexstring)
+		if #hexstring > 6 then
+			hexstring = hexstring..string.rep("0", 8-#hexstring)
+		end
+	end
+	if not nooriginal and original[1] == "#" then hexstring = "#"..original end
+	return hexstring
+end
+local function COLOR_ToHex(self)
+    return (self.a == 255 and string.format("%02X%02X%02X", self.r, self.g, self.b) or
+            string.format("%02X%02X%02X%02X", self.r, self.g, self.b, self.a))
+end
+local function COLOR_FromHex(hexstring)
+	hexstring = COLOR_FixHex(hexstring, true)
+    local r, g, b, a = tonumber(string.sub(hexstring, 1, 2), 16) or 0,
+                       tonumber(string.sub(hexstring, 3, 4), 16) or 0,
+                       tonumber(string.sub(hexstring, 5, 6), 16) or 0, 255
+    if #hexstring == 8 then
+        a = tonumber(string.sub(hexstring, 7, 8), 16) or 255
+    end
+    return Color(math.Round(r), math.Round(g), math.Round(b), math.Round(a))
+end
 local color_functions = {
 	init_setvalue = function(panel)
 		local parameter_id = panel.parameter
@@ -192,6 +218,8 @@ local color_functions = {
 		-- "color" doesn't even have color metatable
 		val = Color(val.r, val.g, val.b, val.a)
 
+		self.Hex:SetValue("##"..COLOR_ToHex(val))
+
 		local parent = self:GetParent()
 		local parameter_id = parent.parameter
 
@@ -201,7 +229,11 @@ local color_functions = {
 		end
 		gwater2.ChangeParameter(parameter_id, val, true) -- TODO: ^
 	end,
-	onvaluechanged_final = empty
+	onvaluechanged_final = empty,
+	wang_paint = function(self, w, h)
+		_styling.draw_main_background(0, 0, w, h)
+		self:DrawTextEntryText(self:GetTextColor(), self:GetHighlightColor(), self:GetCursorColor())
+	end
 }
 local check_functions = {
 	init_setvalue = function(panel)
@@ -352,7 +384,6 @@ local function make_parameter_color(tab, locale_parameter_name, parameter_name, 
 	pcall(color_functions.init_setvalue, panel)
 	-- if we can't get parameter, let's hope .setup() does that for us
 
-	
 	local mixer = panel:Add("DColorMixer")
 	panel.mixer = mixer
 	mixer:Dock(FILL)
@@ -361,6 +392,56 @@ local function make_parameter_color(tab, locale_parameter_name, parameter_name, 
 	mixer:SetLabel()
 	mixer:SetAlphaBar(true)
 	mixer:SetWangs(true)
+	mixer.Hex = mixer.WangsPanel:Add("DTextEntry")
+	mixer.Hex:Dock(BOTTOM)
+	mixer.Hex:SetFont("GWater2TextSmall")
+	mixer.WangsPanel:SetWide(mixer.WangsPanel:GetWide() + 24)
+	local draw = false
+	function mixer.Hex:OnChange()
+		if draw then return end
+		local hex = self:GetValue()
+		mixer:SetColor(COLOR_FromHex(hex))
+	end
+	function mixer.Hex:Paint(w, h)
+		draw = true
+		_styling.draw_main_background(0, 0, w, h)
+
+		local text = self:GetText()
+		local real = self:GetText()
+
+		local textcolor = Color(255, 255, 255)
+
+		if text:Trim() == "" then
+			text = "##"..COLOR_ToHex(mixer:GetColor())
+			if not self:HasFocus() then
+				real = text
+				draw = false
+				self:SetValue(real)
+				draw = true
+			else
+				textcolor = Color(127, 127, 127)
+			end
+		end
+
+		if text ~= real then self:SetValue(text) self:InvalidateLayout(true) end
+		if not self:HasFocus() then
+			textcolor.r = textcolor.r - 32
+			textcolor.g = textcolor.g - 32
+			textcolor.b = textcolor.b - 32
+		end
+		self:DrawTextEntryText(textcolor, self:GetHighlightColor(), self:GetCursorColor())
+		if text ~= real then self:SetValue(real) end
+		draw = false
+	end
+
+	for _,wang in ipairs({mixer.txtR, mixer.txtG, mixer.txtB, mixer.txtA}) do
+		wang:SetTextColor(Color(
+			(_ == 1 or _ == 4) and 255 or 63,
+			(_ == 2 or _ == 4) and 255 or 63,
+			(_ == 3 or _ == 4) and 255 or 63
+		))
+		wang.Paint = color_functions.wang_paint
+	end
 	-- mixer:SetColor(gwater2.parameters[parameter_id]) 
 
 	local button = panel:Add("DImageButton")

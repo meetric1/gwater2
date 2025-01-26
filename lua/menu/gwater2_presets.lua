@@ -267,6 +267,7 @@ button_functions = {
     end,
     create_preset = function(local_presets, name, preset, write, fullid)
         if write == nil then write = true end
+        ---@type number?
         local m = 0
         for k,v in SortedPairs(presets) do m = tonumber(k:sub(1, 3)) end
         local selector = local_presets:Add("DButton")
