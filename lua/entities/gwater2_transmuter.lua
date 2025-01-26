@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field, duplicate-set-field, undefined-global
 AddCSLuaFile()
 
 ENT.Type = "anim"
@@ -84,6 +85,7 @@ function ENT:StartTouch(ent)
 	phys:EnableMotion(false)
 	ent:SetNotSolid(true)
 	ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
+	---@diagnostic disable-next-line: inject-field
 	ent.GWATER2_TOUCHED = true
 	--ent:Remove()
 

@@ -108,7 +108,7 @@ end)
 if SERVER then
 	-- explosions caused by props, rpg rockets, etc
 	hook.Add("OnEntityCreated", "gwater2_explosion", function(ent)
-		if !IsValid(ent) or ent:GetClass() != "env_explosion" then return end
+		if !IsValid(ent) or ent:GetClass() ~= "env_explosion" then return end
 
 		timer.Simple(0, function()	-- wait for datatables to be set up
 			if !IsValid(ent) then return end
@@ -121,10 +121,10 @@ if SERVER then
 		-- does not detect instantly, can be a couple ticks behind
 		-- grenades that get exploded by other grenades (chain grenade explosions) are not detected
 	hook.Add("EntityRemoved", "gwater2_explosion", function(ent)
-		if !IsValid(ent) or ent:GetClass() != "npc_grenade_frag" then return end
+		if !IsValid(ent) or ent:GetClass() ~= "npc_grenade_frag" then return end
 
 		-- the grenade will explode (and is not just being removed with remover tool)
-		if ent:GetInternalVariable("m_flDetonateTime") != -CurTime() then	
+		if ent:GetInternalVariable("m_flDetonateTime") ~= -CurTime() then	
 			gwater2.AddForceField(ent:GetPos(), 250, 100, 1, true)
 		end
 	end)

@@ -45,9 +45,9 @@ local function set_gwater_parameter(option, val, ply)
 
 	gwater2.parameters[option] = val
 
-	if IsValid(param[2]) and ply != LocalPlayer() then
+	if IsValid(param[2]) and ply ~= LocalPlayer() then
 		param[2].block = true
-		if param[1].type != "color" then 
+		if param[1].type ~= "color" then 
       		param[2]:SetValue(val)
 		else
 			param[2]:SetColor(val)

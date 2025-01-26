@@ -2,7 +2,7 @@ AddCSLuaFile()
 local checkluatype = SF.CheckLuaType
 local registerprivilege = SF.Permissions.registerPrivilege
 
--- TODO: rewrite? not sure if that's compatible with 0.6b
+-- TODO: rewrite? not sure if that's compatible with modern gw2
 
 --- Library for using gwater2
 -- @name gwaterlib

@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field, duplicate-set-field, undefined-global
 AddCSLuaFile()
 
 ENT.Type = "anim"
@@ -100,8 +101,10 @@ function ENT:SpawnFunction(ply, tr, class)
 	ent2:SetStrength(100)
 	ent2:SetCollisionGroup(COLLISION_GROUP_WORLD)
 	hook.Run("PlayerSpawnedSENT", ply, ent2)
+	---@diagnostic disable: inject-field
 	ent.link = ent2
 	ent2.link = ent
+	---@diagnostic enable: inject-field
 	ent:SetNWEntity("GWATER2_Link", ent2)
 	ent2:SetNWEntity("GWATER2_Link", ent)
 

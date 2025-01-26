@@ -35,12 +35,15 @@ local debug_normals = CreateClientConVar("gwater2_debug_normals", "0", false)
 local debug_mipmap = CreateClientConVar("gwater2_debug_mipmap", "0", false)
 
 -- sets up a lighting origin in sourceengine
--- TODO: cache your fucking tables and csmodels!!!
+local csent
 local function unfuck_lighting(pos0, pos1)
+	if not IsValid(csent) then
+		csent = ClientsideModel("error.mdl")
+	end
 	render.OverrideColorWriteEnable(true, false)
 	render.OverrideDepthEnable(true, false)
-	render.Model({model = "models/shadertest/envballs.mdl",pos = pos0, angle = EyeAngles()})	-- cubemap
-	render.Model({model = "models/shadertest/vertexlit.mdl",pos = pos1, angle = EyeAngles()}) 	-- lighting
+	render.Model({model = "models/shadertest/envballs.mdl",pos = pos0, angle = EyeAngles()}, csent)	-- cubemap
+	render.Model({model = "models/shadertest/vertexlit.mdl",pos = pos1, angle = EyeAngles()}, csent) 	-- lighting
 	render.OverrideDepthEnable(false, false)
 	render.OverrideColorWriteEnable(false, false)
 end
@@ -64,7 +67,7 @@ local function do_absorption()
 
 	-- depth absorption (disabled when opaque liquids are enabled)
 	local _, _, _, a = water:GetVector4D("$color2")
-	if water_volumetric:GetFloat("$alpha") != 0 and a > 0 and a < 255 then
+	if water_volumetric:GetFloat("$alpha") ~= 0 and a > 0 and a < 255 then
 		-- ANTIALIAS FIX! (courtesy of Xenthio)
 			-- how it works: 
 			-- Clear the main rendertarget, keeping depth
@@ -111,6 +114,7 @@ local function do_normals()
 	local radius = gwater2.solver:GetParameter("radius")
 
 	-- stencils are used to only blur the pixels we want
+	---@diagnostic disable: param-type-mismatch
 	render.SetStencilWriteMask(0xFF)
 	render.SetStencilTestMask(0xFF)
 	render.SetStencilReferenceValue(1)
@@ -163,6 +167,7 @@ local function do_normals()
 	end
 	
 	render.SetStencilEnable(false)
+	---@diagnostic enable: param-type-mismatch
 end
 
 local function do_finalpass()
@@ -183,7 +188,7 @@ local function do_finalpass()
 end
 
 hook.Add("RenderScene", "gwater2_render", function(eye_pos, eye_angles, fov)
-	if gwater2.options.render_mirrors:GetInt() != 1 then return end
+	if gwater2.options.render_mirrors:GetInt() ~= 1 then return end
 
 	cam.Start3D(eye_pos, eye_angles, fov)
 		gwater2.renderer:BuildMeshes(gwater2.solver, 0.25, false)
@@ -192,7 +197,7 @@ end)
 
 -- vrmod does not render to the main RT, force enable mirror rendering
 hook.Add("VRMod_Start", "gwater2_vrmodsupport", function(ply)
-	if ply != LocalPlayer() then return end
+	if ply ~= LocalPlayer() then return end
 
 	gwater2.options.render_mirrors:SetInt(1)
 end)
@@ -205,7 +210,7 @@ hook.Add("PostDrawOpaqueRenderables", "gwater2_render", function(depth, sky, sky
 
  	-- dont render in mirrors unless specified
 	local mirrors = gwater2.options.render_mirrors:GetInt()
-	if mirrors != 1 then
+	if mirrors ~= 1 then
 		if mirrors == 0 and render.GetRenderTarget() then return end
 		gwater2.renderer:BuildMeshes(gwater2.solver, 0.25, true)
 	end

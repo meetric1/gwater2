@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 AddCSLuaFile()
 
 if SERVER or not gwater2 then return end
@@ -445,7 +446,7 @@ local interaction = {
 				return true 
 			end,
 			setup=function(check) 
-				check:SetChecked(gwater2.solver:GetParameter("reaction_forces") != 0) 
+				check:SetChecked(gwater2.solver:GetParameter("reaction_forces") ~= 0) 
 			end
 		},
 		["002-Force Multiplier"] = {

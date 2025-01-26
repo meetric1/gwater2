@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field, duplicate-set-field, undefined-global
 AddCSLuaFile()
 
 ENT.Type = "anim"
@@ -71,6 +72,7 @@ end
 hook.Add("KeyPress", "gwater2_gravgun", function(ply, key)
 	if !IsValid(ply.GWATER2_PARENT) and is_valid_pickup(ply) then
 		local force_field = ents.Create("gwater2_pickup")
+		---@diagnostic disable-next-line: inject-field
 		force_field.GWATER2_PARENT = ply
 		ply.GWATER2_PARENT = force_field
 		force_field:UpdatePosition()

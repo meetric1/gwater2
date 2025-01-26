@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field, duplicate-set-field, undefined-global
 AddCSLuaFile()
 
 ENT.Type = "anim"
@@ -22,7 +23,7 @@ end
 
 if CLIENT then
 	function ENT:Draw()
-		render.DrawWireframeBox(self:GetPos(), Angle(), -Vector(12,12,12), Vector(12,12,12), Color(0, 255, 0), true)
+		render.DrawWireframeBox(self:GetPos(), Angle(0, 0, 0), -Vector(12,12,12), Vector(12,12,12), Color(0, 255, 0), true)
 
 		render.DrawWireframeSphere(self:GetPos(), self:GetRadius(), 15, 15, Color(0, 255, 0), true)
 	end

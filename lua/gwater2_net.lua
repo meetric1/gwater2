@@ -140,6 +140,7 @@ if SERVER then
 		ply:SetNW2Bool("GWATER2_COLLISION", net.ReadBool())
 	end)
 else	-- CLIENT
+	-- TODO: client Add* functions
 	gwater2.ChangeParameter = function(name, value, final)
 		net.Start("GWATER2_CHANGEPARAMETER", not final)
 			net.WriteString(name)

@@ -1,14 +1,11 @@
+---@diagnostic disable: inject-field, undefined-field
 AddCSLuaFile()
 
--- do return end
+include("gwater2_flags.lua")
 
 gwater2 = nil
 
 local toload = (BRANCH == "x86-64" or BRANCH == "chromium") and "gwater2" or "gwater2_main" -- carrying
-
-local load_stub = not util.IsBinaryModuleInstalled(toload) and (system.IsLinux() or system.IsOSX())
--- whether to load stub instead of actual module
--- useful for testing lua side of gw2 on native linux gmod
 
 if SERVER then 
 	include("gwater2_net.lua")
@@ -32,12 +29,12 @@ local lang = GetConVar("gmod_language"):GetString()
 local function load_language(lang)
 	local strings = file.Read("data_static/gwater2/locale/gwater2_".. lang .. ".txt", "THIRDPARTY")
 	if not strings then return false end
-	/* 
+	--[[
 	matches strings like this:
 		"KEY"=[[
 		VALUE
 		]]
-	*/
+	--]]
 	for k, v in string.gmatch(strings, '"(.-)"=%[%[%s*(.-)%s*%]%]') do 
 		language.Add(k, v) 
 	end
@@ -61,7 +58,7 @@ local function gw2_error(text)
 	)
 end
 
-if not load_stub then
+if not GWATER2_USE_STUB then
 	if !util.IsBinaryModuleInstalled(toload) then
 		gw2_error(string.format(
 			"===========================================================\n\n" ..
@@ -172,7 +169,7 @@ local no_lerp = false
 
 -- should this entity collide with water?
 local function should_collide(ent)	
-	return ent:GetCollisionGroup() != COLLISION_GROUP_WORLD and bit.band(ent:GetSolidFlags(), FSOLID_NOT_SOLID) == 0
+	return ent:GetCollisionGroup() ~= COLLISION_GROUP_WORLD and bit.band(ent:GetSolidFlags(), FSOLID_NOT_SOLID) == 0
 end
 
 gwater2 = {
@@ -191,11 +188,12 @@ gwater2 = {
 			if !ent.GWATER2_IS_RAGDOLL then
 
 				-- custom physics objects may be networked and initialized after the entity was created
-				if ent.GWATER2_PHYSOBJ or ent:GetPhysicsObjectCount() != 0 then
+				if ent.GWATER2_PHYSOBJ or ent:GetPhysicsObjectCount() ~= 0 then
 					local phys = ent:GetPhysicsObject()	-- slightly expensive operation
 
-					if !IsValid(ent.GWATER2_PHYSOBJ) or ent.GWATER2_PHYSOBJ != phys then	-- we know physics object was recreated with a PhysicsInit* function
+					if !IsValid(ent.GWATER2_PHYSOBJ) or ent.GWATER2_PHYSOBJ ~= phys then	-- we know physics object was recreated with a PhysicsInit* function
 						add_prop(ent)	-- internally cleans up entity colliders
+						
 						ent.GWATER2_PHYSOBJ = phys
 					end
 				end
@@ -275,6 +273,8 @@ hook.Add("HUDPaint", "gwater2_status", function()
 		frac = 1-math.ease.InCirc(math.min(1, CurTime()-hide_time))
 	else
 		show_time = show_time or CurTime()
+		-- luals wtf
+		---@diagnostic disable-next-line: cast-local-type
 		hide_time = nil
 		frac = math.ease.OutCirc(math.min(1, CurTime()-show_time))
 	end
@@ -421,5 +421,5 @@ end
 
 timer.Create("gwater2_tick", 1 / gwater2.options.simulation_fps:GetInt(), 0, gwater_tick2)
 hook.Add("InitPostEntity", "!gwater2_addprop", gwater2.reset_solver)
-hook.Add("OnEntityCreated", "!gwater2_addprop", function(ent) timer.Simple(0, function() add_prop(ent) end) end)	// timer.0 so data values are setup correctly
+hook.Add("OnEntityCreated", "!gwater2_addprop", function(ent) timer.Simple(0, function() add_prop(ent) end) end) -- timer.0 so data values are setup correctly
 hook.Add("PreCleanupMap","!gwater2_cleanup",function() gwater2.ResetSolver() end)
