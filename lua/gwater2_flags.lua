@@ -5,3 +5,6 @@
 -- useful for testing lua side of gw2 on native linux gmod
 local toload = (BRANCH == "x86-64" or BRANCH == "chromium") and "gwater2" or "gwater2_main" -- carrying
 GWATER2_USE_STUB = not util.IsBinaryModuleInstalled(toload) and (system.IsLinux() or system.IsOSX())
+
+-- do a popup on critical error instead of just sending chat message and error to console.
+GWATER_ERROR_POPUP = true

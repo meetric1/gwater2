@@ -47,6 +47,17 @@ if not load_language(lang) then
 end
 
 local function gw2_error(text)
+	local frame
+	if GWATER_ERROR_POPUP then
+		_, frame = pcall(function() return vgui.Create("DFrame") end)
+		if not frame then
+			timer.Simple(0, function()
+				gw2_error(text)
+			end)
+			return
+		end
+	end
+	
 	ErrorNoHalt(text) -- log to problem menu
 	chat.AddText(
 		Color(0, 0, 0), "[", 
@@ -56,6 +67,65 @@ local function gw2_error(text)
 		Color(0, 0, 0), "]: ", 
 		Color(250, 230, 20), language.GetPhrase("gwater2.error.chatlog")
 	)
+
+	if not GWATER_ERROR_POPUP then return end
+
+	surface.PlaySound("gwater2/menu/packs/default/toggle.wav")
+	frame:SetTitle("GWater 2 Error")
+	frame:SetDraggable(false)
+	frame:ShowCloseButton(false)
+	frame:SetBackgroundBlur(true)
+	frame:SetSize(600, 200)
+	local label = frame:Add("DLabel")
+	label:SetText(text)
+	label:SetContentAlignment(8)
+	label:SetWrap(true)
+	label:SetFont("Trebuchet16")
+	label:SetTextColor(color_white)
+	local button = frame:Add("DButton")
+	button:SetText("OK")
+	function button:DoClick()
+		surface.PlaySound("gwater2/menu/packs/default/select_deny.wav")
+		frame:Close()
+	end
+	label:Dock(TOP)
+	label:SetTall((#(label:GetText():Split("\n")))*16+8)
+	button:Dock(TOP)
+	frame:MakePopup()
+	frame:SetTall(36 + label:GetTall() + button:GetTall())
+	frame:Center()
+	frame.label = label
+	frame.button = button
+	function frame:Paint(w, h)
+		if self:GetBackgroundBlur() then
+			Derma_DrawBackgroundBlur(self, self.m_fCreateTime)
+		end
+		surface.SetDrawColor(0, 0, 0, 190)
+		surface.DrawRect(0, 0, w, h)
+		surface.SetDrawColor(255, 255, 255)
+		surface.DrawOutlinedRect(0, 0, w, h)
+		surface.SetDrawColor(0, 0, 0, 190)
+		surface.DrawRect(0, 0, w, 24)
+		surface.SetDrawColor(255, 255, 255)
+		surface.DrawOutlinedRect(0, 0, w, 24)
+	end
+	local washovered = false
+	button:SetTextColor(Color(255, 255, 255))
+	function button:Paint(w, h)
+		if self:IsHovered() ~= washovered then
+			washovered = self:IsHovered()
+			if not self:IsHovered() then
+				self:SetTextColor(Color(255, 255, 255))
+			else
+				surface.PlaySound("gwater2/menu/packs/default/rollover.wav")
+				self:SetTextColor(Color(0,  127, 255))
+			end
+		end
+		surface.SetDrawColor(0, 0, 0, 190)
+		surface.DrawRect(0, 0, w, h)
+		surface.SetDrawColor(255, 255, 255)
+		surface.DrawOutlinedRect(0, 0, w, h)
+	end
 end
 
 if not GWATER2_USE_STUB then
