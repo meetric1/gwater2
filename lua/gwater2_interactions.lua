@@ -129,7 +129,7 @@ if SERVER then
 		end
 
 		-- a grenade will explode (and is not just being removed with remover tool)
-		if ent:GetClass() == "npc_grenade_frag" and ent:GetInternalVariable("m_flDetonateTime") != -CurTime() then
+		if ent:GetClass() == "npc_grenade_frag" and ent:GetInternalVariable("m_flDetonateTime") ~= -CurTime() then
 			gwater2.AddForceField(ent:GetPos(), 250, 100, 1, true)
 		end
 	end)
