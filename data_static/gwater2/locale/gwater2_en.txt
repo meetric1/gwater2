@@ -46,7 +46,7 @@ jit.arch: %s
 ]]
 
 "gwater2.error.chatlog"=[[
-Failed to load! Please check the Problems menu for more information (ESC menu -> bottom left)
+Failed to load! Please check the Problems menu for more information (ESC menu -> bottom right)
 ]]
 
 "gwater2.gun.adv.notloaded"=[[

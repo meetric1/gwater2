@@ -260,8 +260,6 @@ PotatoOS     | Quaternion matematiği
 AndrewEathan | GWater1 varlıkları
 Kodya        | Yüzme kodu
 Nvidia       | FleX kütüphanesi
-v------------+------ Çeviriciler -------------------v
-pigeor       | Türkçeye Çeviren Kişi
 v------------+------- Patronlar --------------------v
 ]]
 
