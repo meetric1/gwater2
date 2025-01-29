@@ -806,7 +806,7 @@ Detected: %s presets
 ]]
 
 "gwater2.menu.Presets.import.bad_data"=[[
-Data is malformed or preset type is unknown at preset #%d
+Data is malformed or preset type is unknown
 ]]
 
 "gwater2.menu.Presets.save"=[[

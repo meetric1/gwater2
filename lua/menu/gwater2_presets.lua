@@ -551,7 +551,7 @@ button_functions = {
             local type = gwater2.options.detect_preset_type(textarea:GetValue())
             if type == nil then
                 confirm:SetEnabled(false)
-                return label_detect:SetText(_util.get_localised("Presets.import.bad_data"))
+                return label_detect:SetText(_util.get_localised("Presets.import.bad_data", 1))
             end
             confirm:SetEnabled(true)
             label_detect:SetText(_util.get_localised("Presets.import.detected", type))
