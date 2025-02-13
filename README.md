@@ -189,6 +189,7 @@ Hexak12        | Polish
 TheOnly8Z      | Simplified Chinese
 GoranRayman    | French
 Limule         | French
+dvdvideo       | Bulgarian
 ```
 
 # Extras
