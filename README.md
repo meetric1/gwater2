@@ -190,6 +190,7 @@ TheOnly8Z      | Simplified Chinese
 GoranRayman    | French
 Limule         | French
 dvdvideo       | Bulgarian
+FengHo         | Traditional Chinese
 ```
 
 # Extras
