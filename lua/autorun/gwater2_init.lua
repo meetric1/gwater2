@@ -83,20 +83,36 @@ end
 print("[GWater2]: Loaded successfully with language: " .. lang)
 local in_water = include("gwater2_interactions.lua")
 
+-- fallback incase C++ bsp parser fails
+local function get_map_vertices(ent)
+	local all_vertices = {}
+	for _, brush in ipairs((ent or game.GetWorld()):GetBrushSurfaces()) do
+		local vertices = brush:GetVertices()
+		for i = 3, #vertices do
+			all_vertices[#all_vertices + 1] = vertices[1]
+			all_vertices[#all_vertices + 1] = vertices[i - 1]
+			all_vertices[#all_vertices + 1] = vertices[i]
+		end
+	end
+
+	return all_vertices
+end
+
 -- GetMeshConvexes but for client
-local function unfucked_get_mesh(ent, raw)
+local function unfucked_get_mesh(ent)
 	-- Physics object exists
 	local phys = ent:GetPhysicsObject()
-	if phys:IsValid() then return (raw and phys:GetMesh() or phys:GetMeshConvexes()) end
+	if phys:IsValid() then return phys:GetMeshConvexes() end
 
 	local model = ent:GetModel()
 	local is_ragdoll = util.IsValidRagdoll(model)
 	local convexes = nil
 
-	if !is_ragdoll or raw then
+	if !is_ragdoll then
 		local cs_ent = ents.CreateClientProp(model)
 		local phys = cs_ent:GetPhysicsObject()
-		convexes = phys:IsValid() and (raw and phys:GetMesh() or phys:GetMeshConvexes())
+		convexes = phys:IsValid() and phys:GetMeshConvexes()
+		cs_ent:PhysicsDestroy()
 		cs_ent:Remove()
 	else 
 		-- no joke this is the hackiest shit ive ever done. 
@@ -126,7 +142,7 @@ local function add_prop(ent)
 	if !ent:IsSolid() or ent:IsWeapon() or !ent:GetModel() then return end
 
 	local convexes = unfucked_get_mesh(ent)
-	if !convexes then return end
+	if !convexes or #convexes < 1 then return end
 
 	ent.GWATER2_IS_RAGDOLL = util.IsValidRagdoll(ent:GetModel())
 	
@@ -146,21 +162,6 @@ local function add_prop(ent)
 
 		gwater2.solver:AddConcaveCollider(ent_index, combined, ent:GetPos(), ent:GetAngles())
 	end
-end
-
--- fallback incase C++ bsp parser fails
-local function get_map_vertices()
-	local all_vertices = {}
-	for _, brush in ipairs(game.GetWorld():GetBrushSurfaces()) do
-		local vertices = brush:GetVertices()
-		for i = 3, #vertices do
-			all_vertices[#all_vertices + 1] = vertices[1]
-			all_vertices[#all_vertices + 1] = vertices[i - 1]
-			all_vertices[#all_vertices + 1] = vertices[i]
-		end
-	end
-
-	return all_vertices
 end
 
 -- collisions will lerp from positions they were at a long time ago if no particles have been initialized for a while
