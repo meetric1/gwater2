@@ -6,4 +6,5 @@ GWaterFinalpass {
 	$screentexture "_rt_fullframefb"
 	$color2 "[209 237 255 25]"
 	$flashlight 1
+	$opaquelighting 0
 }

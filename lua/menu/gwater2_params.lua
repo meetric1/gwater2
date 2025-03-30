@@ -125,7 +125,7 @@ local visuals = {
 		end,
 		func=function(col)
 			local finalpass = Material("gwater2/finalpass")
-			finalpass:SetVector4D("$color2", 
+			finalpass:SetVector4D("$color2",  
 				col.r * gwater2.parameters.color_value_multiplier,
 				col.g * gwater2.parameters.color_value_multiplier,
 				col.b * gwater2.parameters.color_value_multiplier,
