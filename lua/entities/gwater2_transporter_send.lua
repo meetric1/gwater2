@@ -93,7 +93,7 @@ function ENT:Draw()
 
 	draw.DrawText("[" .. self:EntIndex() .. "]", "DermaDefault", 0, -48, color_white, TEXT_ALIGN_CENTER)
 
-	--draw.RoundedBox(0, -150, -150, 300, 300, Color(0, 0, 0))
+	--draw.RoundedBox(0, -150, -150, 300, 300, color_black)
 	draw.DrawText(language.GetPhrase("gwater2.ent.drain.side"), "DermaLarge", 0, -24, color_white, TEXT_ALIGN_CENTER)
 
 	if IsValid(self.link) then

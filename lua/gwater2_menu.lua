@@ -263,7 +263,7 @@ local function create_menu(init)
 		styling.draw_main_background_outline(0, 0, w, h)
 
 		styling.draw_main_background(0, 0, sim_preview:GetWide(), 30)
-		draw.DrawText(_util.get_localised("Fluid Preview.title"), "GWater2Title", sim_preview:GetWide() / 2 + 1, 6, Color(0, 0, 0), TEXT_ALIGN_CENTER)
+		draw.DrawText(_util.get_localised("Fluid Preview.title"), "GWater2Title", sim_preview:GetWide() / 2 + 1, 6, color_black, TEXT_ALIGN_CENTER)
 		draw.DrawText(_util.get_localised("Fluid Preview.title"), "GWater2Title", sim_preview:GetWide() / 2, 5, Color(187, 245, 255), TEXT_ALIGN_CENTER)
 	end
 	local reset = sim_preview:Add("DButton")
@@ -288,7 +288,7 @@ local function create_menu(init)
 	help_text:SetSize(frame:GetWide()*0.25, help_text:GetTall())
 	function help_text:Paint(w, h)
 		styling.draw_main_background(0, 0, w, h)
-		draw.DrawText(_util.get_localised("Explanation Area.title"), "GWater2Title", help_text:GetWide() / 2 + 1, 6, Color(0, 0, 0), TEXT_ALIGN_CENTER)
+		draw.DrawText(_util.get_localised("Explanation Area.title"), "GWater2Title", help_text:GetWide() / 2 + 1, 6, color_black, TEXT_ALIGN_CENTER)
 		draw.DrawText(_util.get_localised("Explanation Area.title"), "GWater2Title", help_text:GetWide() / 2, 5, Color(187, 245, 255), TEXT_ALIGN_CENTER)
 	end
 	--tabs:Dock(FILL)
@@ -322,7 +322,7 @@ local function create_menu(init)
 
 		local _ = tab:Add("DLabel") _:SetText(" ") _:SetFont("GWater2Title") _:Dock(TOP) _:SizeToContents()
 		function _:Paint(w, h)
-			draw.DrawText(_util.get_localised("About Tab.titletext", gwater2.VERSION), "GWater2Title", 6, 6, Color(0, 0, 0), TEXT_ALIGN_LEFT)
+			draw.DrawText(_util.get_localised("About Tab.titletext", gwater2.VERSION), "GWater2Title", 6, 6, color_black, TEXT_ALIGN_LEFT)
 			draw.DrawText(_util.get_localised("About Tab.titletext", gwater2.VERSION), "GWater2Title", 5, 5, Color(187, 245, 255), TEXT_ALIGN_LEFT)
 		end
 
@@ -358,7 +358,7 @@ local function create_menu(init)
 
 		local _ = tab:Add("DLabel") _:SetText(" ") _:SetFont("GWater2Title") _:Dock(TOP) _:SizeToContents()
 		function _:Paint(w, h)
-			draw.DrawText(_util.get_localised("Credits.titletext"), "GWater2Title", 6, 6, Color(0, 0, 0), TEXT_ALIGN_LEFT)
+			draw.DrawText(_util.get_localised("Credits.titletext"), "GWater2Title", 6, 6, color_black, TEXT_ALIGN_LEFT)
 			draw.DrawText(_util.get_localised("Credits.titletext"), "GWater2Title", 5, 5, Color(187, 245, 255), TEXT_ALIGN_LEFT)
 		end
 
@@ -411,7 +411,7 @@ local function create_menu(init)
 
 		local _ = tab:Add("DLabel") _:SetText(" ") _:SetFont("GWater2Title") _:Dock(TOP) _:SizeToContents()
 		function _:Paint(w, h)
-			draw.DrawText(_util.get_localised("Menu.titletext"), "GWater2Title", 6, 6, Color(0, 0, 0), TEXT_ALIGN_LEFT)
+			draw.DrawText(_util.get_localised("Menu.titletext"), "GWater2Title", 6, 6, color_black, TEXT_ALIGN_LEFT)
 			draw.DrawText(_util.get_localised("Menu.titletext"), "GWater2Title", 5, 5, Color(187, 245, 255), TEXT_ALIGN_LEFT)
 		end
 

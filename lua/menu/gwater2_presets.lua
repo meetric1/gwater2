@@ -650,7 +650,7 @@ local function presets_tab(tabs, params)
 	_:Dock(TOP)
 	_:SizeToContents()
 	function _:Paint(w, h)
-		draw.DrawText(_util.get_localised("Presets.titletext"), "GWater2Title", 6, 6, Color(0, 0, 0), TEXT_ALIGN_LEFT)
+		draw.DrawText(_util.get_localised("Presets.titletext"), "GWater2Title", 6, 6, color_black, TEXT_ALIGN_LEFT)
 		draw.DrawText(
 			_util.get_localised("Presets.titletext"),
 			"GWater2Title",
