@@ -161,7 +161,7 @@ local function make_scratch(frame, locale_parameter_name, default, min, max, dec
 		if self.hovered and not _util.is_hovered_any(self) then
 			hovered = nil
 			self.hovered = false
-			self.label:SetColor(Color(255, 255, 255))
+			self.label:SetColor(color_white)
 		elseif not self.hovered and _util.is_hovered_any(self) then
 			hovered = self
 			self.hovered = true
@@ -172,7 +172,7 @@ local function make_scratch(frame, locale_parameter_name, default, min, max, dec
 	panel:Dock(TOP)
 	local label = panel:Add("DLabel")
 	label:SetText(_util.get_localised(locale_parameter_name))
-	label:SetColor(Color(255, 255, 255))
+	label:SetColor(color_white)
 	label:SetFont("GWater2Param")
 	label:SetMouseInputEnabled(true)
 	label:SizeToContents()

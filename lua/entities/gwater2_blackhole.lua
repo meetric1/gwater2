@@ -32,7 +32,7 @@ if SERVER then
 		self:SetModel("models/hunter/misc/sphere075x075.mdl")
 		self:SetMaterial("lights/white")
 		
-		self:SetColor(Color(0, 0, 0))
+		self:SetColor(color_black)
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)

@@ -46,11 +46,11 @@ end
 local function gw2_error(text)
 	ErrorNoHalt(text) -- log to problem menu
 	chat.AddText(
-		Color(0, 0, 0), "[", 
+		color_black, "[", 
 		Color(50, 255, 50), "G", 
-		Color(255, 255, 255), "Water", 
+		color_white, "Water", 
 		Color(50, 150, 255), "2",
-		Color(0, 0, 0), "]: ", 
+		color_black, "]: ", 
 		Color(250, 230, 20), language.GetPhrase("gwater2.error.chatlog")
 	)
 end

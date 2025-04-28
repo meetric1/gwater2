@@ -204,7 +204,7 @@ button_functions = {
         elseif self:IsDown() then
             self:SetColor(Color(63, 190, 255, 255))
         else
-            self:SetColor(Color(255, 255, 255))
+            self:SetColor(color_white)
         end
         styling.draw_main_background(0, 0, w, h)
     end,
@@ -578,12 +578,12 @@ local function presets_tab(tabs, params)
 	tabs:AddSheet(_util.get_localised("Presets.title"), tab, "icon16/images.png").Tab.realname = "Presets"
 	tab = tab:Add("DScrollPanel")
 	tab:Dock(FILL)
-	--tab.Paint = function(s, w, h) draw.RoundedBox(0, 0, 0, w, h, Color(255, 255, 255)) end
+	--tab.Paint = function(s, w, h) draw.RoundedBox(0, 0, 0, w, h, color_white) end
 	styling.define_scrollbar(tab:GetVBar())
 
 	local _ = tab:Add("DLabel") _:SetText(" ") _:SetFont("GWater2Title") _:Dock(TOP) _:SizeToContents()
 	function _:Paint(w, h)
-		draw.DrawText(_util.get_localised("Presets.titletext"), "GWater2Title", 6, 6, Color(0, 0, 0), TEXT_ALIGN_LEFT)
+		draw.DrawText(_util.get_localised("Presets.titletext"), "GWater2Title", 6, 6, color_black, TEXT_ALIGN_LEFT)
 		draw.DrawText(_util.get_localised("Presets.titletext"), "GWater2Title", 5, 5, Color(187, 245, 255), TEXT_ALIGN_LEFT)
 	end
 
