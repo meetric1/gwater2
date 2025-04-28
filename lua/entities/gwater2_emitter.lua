@@ -115,9 +115,9 @@ function ENT:Draw()
 	pos = pos + ang:Up()*7
 
 	cam.Start3D2D(pos, ang, 0.1)
-		draw.DrawText("Emitter", "DermaDefault", 0, -72, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText("Emitter", "DermaDefault", 0, -72, color_white, TEXT_ALIGN_CENTER)
 
-		draw.DrawText(language.GetPhrase("gwater2.ent.emitter.side"), "DermaLarge", 0, -24, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText(language.GetPhrase("gwater2.ent.emitter.side"), "DermaLarge", 0, -24, color_white, TEXT_ALIGN_CENTER)
 
 		draw.DrawText(string.format(
 			language.GetPhrase("gwater2.ent."..(self:GetOn() and "on" or "off")).."  "..
@@ -126,6 +126,6 @@ function ENT:Draw()
 			language.GetPhrase("gwater2.ent.spread").."  "..
 			language.GetPhrase("gwater2.ent.lifetime"),
 			self:GetStrength() or "?", self:GetRadius() or "?", self:GetSpread() or "?", self:GetLifetime() or "?"
-		), "DermaDefault", 0, 96, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		), "DermaDefault", 0, 96, color_white, TEXT_ALIGN_CENTER)
 	cam.End3D2D()
 end
