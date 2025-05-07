@@ -69,25 +69,25 @@ function ENT:Draw()
 	pos = pos + ang:Up()*0.25
 
 	cam.Start3D2D(pos, ang, 0.05)
-		draw.DrawText("Transporter Entry", "DermaDefault", 0, -72, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText("Transporter Entry", "DermaDefault", 0, -72, color_white, TEXT_ALIGN_CENTER)
 
 
-		draw.DrawText("["..self:EntIndex().."]", "DermaDefault", 0, -48, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		draw.DrawText("["..self:EntIndex().."]", "DermaDefault", 0, -48, color_white, TEXT_ALIGN_CENTER)
 
-		--draw.RoundedBox(0, -150, -150, 300, 300, Color(0, 0, 0))
-		draw.DrawText(language.GetPhrase("gwater2.ent.drain.side"), "DermaLarge", 0, -24, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		--draw.RoundedBox(0, -150, -150, 300, 300, color_black)
+		draw.DrawText(language.GetPhrase("gwater2.ent.drain.side"), "DermaLarge", 0, -24, color_white, TEXT_ALIGN_CENTER)
 
 		if IsValid(self.link) then
 			draw.DrawText(string.format(language.GetPhrase("gwater2.ent.transporter.link"), "["..self.link:EntIndex().."]"),
-						  "DermaDefault", 0, 48, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+						  "DermaDefault", 0, 48, color_white, TEXT_ALIGN_CENTER)
 
 			draw.DrawText(string.format(language.GetPhrase("gwater2.ent.transporter.queue"), self.GWATER2_particles_drained),
-						  "DermaDefault", 0, 72, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+						  "DermaDefault", 0, 72, color_white, TEXT_ALIGN_CENTER)
 		end
 
 		draw.DrawText(string.format(
 			language.GetPhrase("gwater2.ent.strength").."  "..
 			language.GetPhrase("gwater2.ent.radius"), self:GetStrength() or "?", self:GetRadius() or "?"
-		), "DermaDefault", 0, 96, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+		), "DermaDefault", 0, 96, color_white, TEXT_ALIGN_CENTER)
 	cam.End3D2D()
 end

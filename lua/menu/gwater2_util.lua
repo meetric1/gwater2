@@ -125,7 +125,7 @@ local function panel_paint(self, w, h)
 		if tab.help_text:GetText() == get_localised(self.parameter_locale_name..".desc") then
 			tab.help_text:SetText(self.default_help_text)
 		end
-		label:SetColor(label.fancycolor or Color(255, 255, 255))
+		label:SetColor(label.fancycolor or color_white)
 	end
 end
 local slider_functions = {
@@ -268,7 +268,7 @@ local function make_parameter_scratch(tab, locale_parameter_name, parameter_name
 	label:SetFont("GWater2Param")
 	label:SizeToContents()
 	label:SetWidth(label:GetSize() * 1.1)
-	label:SetColor(Color(255, 255, 255))
+	label:SetColor(color_white)
 
 	local parameter_id = string.lower(parameter_name):gsub(" ", "_")
 	panel.parameter = parameter_id
@@ -313,7 +313,7 @@ local function make_parameter_scratch(tab, locale_parameter_name, parameter_name
 		if panel.washovered then
 			surface.SetDrawColor(panel.label.fancycolor_hovered or Color(187, 245, 255))
 		else
-			surface.SetDrawColor(panel.label.fancycolor or Color(255, 255, 255))
+			surface.SetDrawColor(panel.label.fancycolor or color_white)
 		end
 		surface.DrawOutlinedRect(w/4, 0, w/2, h)
 	end
@@ -337,7 +337,7 @@ local function make_parameter_color(tab, locale_parameter_name, parameter_name, 
 	local label = panel:Add("DLabel")
 	panel.label = label
 	label:SetText(get_localised(locale_parameter_name))
-	label:SetColor(Color(255, 255, 255))
+	label:SetColor(color_white)
 	label:SetFont("GWater2Param")
 	label:Dock(LEFT)
 	label:SetMouseInputEnabled(true)
@@ -397,7 +397,7 @@ local function make_parameter_check(tab, locale_parameter_name, parameter_name, 
 	local label = panel:Add("DLabel")
 	panel.label = label
 	label:SetText(get_localised(locale_parameter_name))
-	label:SetColor(Color(255, 255, 255))
+	label:SetColor(color_white)
 	label:SetFont("GWater2Param")
 	label:Dock(LEFT)
 	label:SetMouseInputEnabled(true)
@@ -437,7 +437,7 @@ local function make_parameter_check(tab, locale_parameter_name, parameter_name, 
 		if panel.washovered then
 			surface.SetDrawColor(panel.label.fancycolor_hovered or Color(187, 245, 255))
 		else
-			surface.SetDrawColor(panel.label.fancycolor or Color(255, 255, 255))
+			surface.SetDrawColor(panel.label.fancycolor or color_white)
 		end
 	
 		if self:GetChecked() then
