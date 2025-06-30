@@ -22,9 +22,22 @@ end
 
 if CLIENT then
 	function ENT:Draw()
-		render.DrawWireframeBox(self:GetPos(), Angle(), -Vector(12,12,12), Vector(12,12,12), Color(0, 255, 0), true)
+		-- tried a merge effect between colors but I think its too much
+		--local str = (self:GetStrength() + 200) / 2 / 200	-- (0 - 1)
+		--local red   = math.Clamp(1 - (str + 0.5)^10 + 0.5, 0, 1)
+		--local green = math.Clamp(1 - (1.5 - str)^10 + 0.5, 0, 1)
+		--local col = Color(red * 255, green * 255, 0, 255)
 
-		render.DrawWireframeSphere(self:GetPos(), self:GetRadius(), 15, 15, Color(0, 255, 0), true)
+		local str = self:GetStrength()
+		local col = Color(255, 255, 0, 255)
+		if str > 0 then
+			col.r = 0
+		elseif str < 0 then
+			col.g = 0
+		end
+		
+		render.DrawWireframeBox(self:GetPos(), Angle(), -Vector(12,12,12), Vector(12,12,12), col, true)
+		render.DrawWireframeSphere(self:GetPos(), self:GetRadius(), 15, 15, col, true)
 	end
 end
 
