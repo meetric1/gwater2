@@ -1,6 +1,7 @@
 // DYNAMIC: "OPAQUE" "0..1"
 // DYNAMIC: "NUM_LIGHTS"				"0..4"
 // DYNAMIC: "HDR"						"0..1"
+// DYNAMIC: "OPAQUE_LIGHTING"					"0..1"
 // STATIC: "FLASHLIGHT"					"0..1"
 // STATIC: "FLASHLIGHTDEPTHFILTERMODE"	"0..2"
 
@@ -15,7 +16,7 @@
 
 #include "common_flashlight_fxc.h"
 #include "shader_constant_register_map.h" 
-//#include "common_vertexlitgeneric_dx9.h"
+#include "common_vertexlitgeneric_dx9.h"
 
 float2 SCR_S			: register(c0);
 float RADIUS			: register(c1);
@@ -148,29 +149,31 @@ float3 do_cubemap(PS_INPUT i, float3 normal) {
 }
 
 float3 do_diffuse(PS_INPUT i, float3 normal) {
-	return COLOR2.xyz * (dot(normal, SUN_DIR) * 0.4 + 0.6);	// not accurate!
+	#if OPAQUE_LIGHTING
+		// include "common_vertexlitgeneric_dx9.h" to use
+		// may cause seizures
+		return COLOR2.xyz * pow(PixelShaderDoLighting(
+			i.pos, 
+			normal,
+			float3( 0.0f, 0.0f, 0.0f ), 
+			false, 
+			true, 
+			i.lightAtten,
+			cAmbientCube, 
+			NormalizeRandRotSampler, 
+			NUM_LIGHTS, 
+			cLightInfo, 
+			true,
 
-	// include "common_vertexlitgeneric_dx9.h" to use
-	// may cause seizures
-	/*return COLOR2.xyz * pow(PixelShaderDoLighting(
-		i.pos, 
-		normal,
-		float3( 0.0f, 0.0f, 0.0f ), 
-		false, 
-		true, 
-		i.lightAtten,
-		cAmbientCube, 
-		NormalizeRandRotSampler, 
-		NUM_LIGHTS, 
-		cLightInfo, 
-		true,
-
-		// These are dummy parameters:
-		false, 
-		1.0f,
-		false, 
-		NormalizeRandRotSampler //supposed to be BaseTextureSampler?
-	), 1 / 2.2);*/
+			// These are dummy parameters:
+			false, 
+			1.0f,
+			false, 
+			NormalizeRandRotSampler //supposed to be BaseTextureSampler?
+		), 1 / 2.2);
+	#else 
+		return COLOR2.xyz * (dot(normal, SUN_DIR) * 0.4 + 0.6);	// not accurate!
+	#endif
 }
 
 float3 do_refraction(PS_INPUT i, float3 normal) {

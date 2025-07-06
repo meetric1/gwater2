@@ -20,6 +20,7 @@ BEGIN_SHADER_PARAMS
 	SHADER_PARAM(REFLECTANCE, SHADER_PARAM_TYPE_FLOAT, "0.0", "Reflectance of water")
 	SHADER_PARAM(ENVMAP, SHADER_PARAM_TYPE_TEXTURE, "env_cubemap", "envmap")
 	SHADER_PARAM(FLASHLIGHTTEXTURE, SHADER_PARAM_TYPE_TEXTURE, "effects/flashlight001", "Flashlight")
+	SHADER_PARAM(OPAQUELIGHTING, SHADER_PARAM_TYPE_BOOL, "0", "Do we want opaque lighting")
 END_SHADER_PARAMS
 
 SHADER_INIT_PARAMS() {
@@ -111,6 +112,7 @@ SHADER_DRAW {
 		float reflectance = params[REFLECTANCE]->GetFloatValue();
 		const float* color2 = params[COLOR2]->GetVecValue();
 		const float color2_normalized[4] = { color2[0] / 255.0, color2[1] / 255.0, color2[2] / 255.0, color2[3] / 255.0 };
+		bool bOpaqueLighting = params[OPAQUELIGHTING]->GetIntValue() == 1;
 
 		pShaderAPI->SetPixelShaderConstant(0, scr_s);
 		pShaderAPI->SetPixelShaderConstant(1, &radius);
@@ -205,6 +207,7 @@ SHADER_DRAW {
 		DECLARE_DYNAMIC_PIXEL_SHADER(GWaterFinalpass_ps30);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(NUM_LIGHTS, lightState.m_nNumLights);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(FLASHLIGHTSHADOWS, bFlashlightShadows);
+		SET_DYNAMIC_PIXEL_SHADER_COMBO(OPAQUE_LIGHTING, bOpaqueLighting);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(OPAQUE, color2[3] > 254);
 		SET_DYNAMIC_PIXEL_SHADER_COMBO(HDR, gwater2_hdr_fix->GetInt());
 		SET_DYNAMIC_PIXEL_SHADER(GWaterFinalpass_ps30);

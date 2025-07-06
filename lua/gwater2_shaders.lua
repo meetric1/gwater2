@@ -18,7 +18,7 @@ local cache_absorption = get_gwater_rt("gwater2_absorption", 1 / 4, MATERIAL_RT_
 local cache_normals = get_gwater_rt("gwater2_normals", 1 / 1, MATERIAL_RT_DEPTH_SEPARATE)
 local cache_blur = get_gwater_rt("gwater2_blur", 1 / 2)
 
-local water = Material("gwater2/finalpass")
+local water_final = Material("gwater2/finalpass") 
 local water_blur = Material("gwater2/smooth")
 local water_volumetric = Material("gwater2/volumetric")
 local water_normals = Material("gwater2/normals")
@@ -34,36 +34,82 @@ local debug_absorption = CreateClientConVar("gwater2_debug_absorption", "0", fal
 local debug_normals = CreateClientConVar("gwater2_debug_normals", "0", false)
 local debug_mipmap = CreateClientConVar("gwater2_debug_mipmap", "0", false)
 
+-- we need these for both water and cloth.
+local cubemap_model_water
+local vertexlit_model_water
+
+local cubemap_model_cloth
+local vertexlit_model_cloth
+
+if !cubemap_model_cloth or !vertexlit_model_cloth then
+	cubemap_model_cloth = ClientsideModel("models/props_phx/gibs/flakgib1.mdl")
+	vertexlit_model_cloth = ClientsideModel("models/hunter/plates/plate1x1.mdl")
+	cubemap_model_cloth:Spawn()
+	vertexlit_model_cloth:Spawn()
+	cubemap_model_cloth:SetNoDraw(true)
+	vertexlit_model_cloth:SetNoDraw(true)
+end    
+
+if !cubemap_model_water or !vertexlit_model_water then
+	cubemap_model_water = ClientsideModel("models/props_phx/gibs/flakgib1.mdl")
+	vertexlit_model_water = ClientsideModel("models/hunter/plates/plate1x1.mdl")
+	cubemap_model_water:Spawn()
+	vertexlit_model_water:Spawn()
+	cubemap_model_water:SetNoDraw(true)
+	vertexlit_model_water:SetNoDraw(true)
+end    
+
 -- sets up a lighting origin in sourceengine
 -- TODO: cache your fucking tables and csmodels!!!
-local function unfuck_lighting(pos0, pos1)
+local function unfuck_lighting(pos0, pos1, vertexlit_model, cubemap_model)
+	-- dont do this in mirrors
+	if render.GetRenderTarget() then return end
+
 	render.OverrideColorWriteEnable(true, false)
-	render.OverrideDepthEnable(true, false)
-	render.Model({model = "models/shadertest/envballs.mdl",pos = pos0, angle = EyeAngles()})	-- cubemap
-	render.Model({model = "models/shadertest/vertexlit.mdl",pos = pos1, angle = EyeAngles()}) 	-- lighting
+	render.OverrideDepthEnable(true, false) 
+
+	cubemap_model:SetPos(pos0)
+	vertexlit_model:SetPos(pos1)
+	cubemap_model:SetAngles(EyeAngles())
+	 
+	cubemap_model:DrawModel() 
+	vertexlit_model:DrawModel() 
+
 	render.OverrideDepthEnable(false, false)
 	render.OverrideColorWriteEnable(false, false)
 end
 
 local lightpos = EyePos()
 local function do_cloth()
-	unfuck_lighting(gwater2.cloth_pos, gwater2.cloth_pos)	-- fix cloth lighting, mostly
+	unfuck_lighting(gwater2.cloth_pos, gwater2.cloth_pos, vertexlit_model_cloth, cubemap_model_cloth)	-- fix cloth lighting, mostly
 	render.SetMaterial(cloth)
 	gwater2.renderer:DrawCloth()
 	render.RenderFlashlights(function() gwater2.renderer:DrawCloth() end)
 
+	-- dont do this in mirrors
+	if render.GetRenderTarget() then return end
+
 	-- setup water lighting
-	--local tr = util.QuickTrace( EyePos(), LocalPlayer():EyeAngles():Forward() * 800, LocalPlayer())
-	--local dist = math.min(230, (tr.HitPos - tr.StartPos):Length() / 1.5)	
-	--lightpos = LerpVector(1.6 * FrameTime(), lightpos, EyePos() + (LocalPlayer():EyeAngles():Forward() * dist))	-- fucking hell
-	unfuck_lighting(EyePos(), EyePos())	
+	local pos = EyePos()
+	local forward = EyeVector()
+	local tr = util.QuickTrace( pos, forward * 800, LocalPlayer())
+	local dist = math.max(1, math.min(235, (tr.HitPos - tr.StartPos):Length() / 1.5))
+	local targetpos = pos + (forward * dist)
+	lightpos = LerpVector(4 * FrameTime(), lightpos, targetpos)	-- fucking hell
+
+	local lightpos2 = gwater2.solver:GetActiveParticlesPos(50)
+
+	local finalpos = lightpos
+	if (lightpos2 != Vector(0,0,0)) then finalpos = (lightpos * (2/8)) + (lightpos2 * (6/8)) end -- (lightpos * (1/8)) + (lightpos2 * (7/8)) --lightpos2
+
+	unfuck_lighting(EyePos() - (forward * 8), finalpos, vertexlit_model_water, cubemap_model_water)
 end
 
 local function do_absorption()
 	render.UpdateScreenEffectTexture()	-- _rt_framebuffer is used in refraction shader
 
 	-- depth absorption (disabled when opaque liquids are enabled)
-	local _, _, _, a = water:GetVector4D("$color2")
+	local _, _, _, a = water_final:GetVector4D("$color2")
 	if water_volumetric:GetFloat("$alpha") != 0 and a > 0 and a < 255 then
 		-- ANTIALIAS FIX! (courtesy of Xenthio)
 			-- how it works: 
@@ -94,7 +140,7 @@ end
 
 local function do_diffuse_inside()
 	-- dont render bubbles underwater if opaque
-	local _, _, _, a = water:GetVector4D("$color2")
+	local _, _, _, a = water_final:GetVector4D("$color2")
 	if a < 255 then
 		-- Bubble particles inside water
 		-- Make sure the water screen texture has bubbles but the normal framebuffer does not
@@ -165,15 +211,25 @@ local function do_normals()
 	render.SetStencilEnable(false)
 end
 
+
+-- Debug command to print entity info
+concommand.Add("gwater2_toggle_lighting", function()
+	if water_final:GetInt("$opaquelighting") == 1 then
+		water_final:SetInt("$opaquelighting", 0 )
+	else
+		water_final:SetInt("$opaquelighting", 1 )
+	end 
+end)
+
 local function do_finalpass()
 	local radius = gwater2.solver:GetParameter("radius")
 
 	-- Setup water material parameters
-	water:SetFloat("$radius", radius * 1.5)
-	water:SetFloat("$reflectance", blur_passes:GetBool() and 0.7 or 0)
-	water:SetTexture("$normaltexture", cache_normals)
-	water:SetTexture("$depthtexture", cache_absorption)
-	render.SetMaterial(water)
+	water_final:SetFloat("$radius", radius * 1.5)
+	water_final:SetFloat("$reflectance", blur_passes:GetBool() and 0.7 or 0)
+	water_final:SetTexture("$normaltexture", cache_normals)
+	water_final:SetTexture("$depthtexture", cache_absorption)
+	render.SetMaterial(water_final)
 	gwater2.renderer:DrawWater()
 	render.RenderFlashlights(function() gwater2.renderer:DrawWater() end)
 
