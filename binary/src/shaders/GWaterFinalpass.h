@@ -1,7 +1,7 @@
 #include <BaseVSShader.h>
 
-#include "shaders/inc/GWaterFinalpass_vs30.inc"
-#include "shaders/inc/GWaterFinalpass_ps30.inc"
+#include "shaders/inc/GWaterFinalpass_vs20.inc"
+#include "shaders/inc/GWaterFinalpass_ps20b.inc"
 #include "cpp_shader_constant_register_map.h"
 
 ConVar* gwater2_hdr_fix;

@@ -1,7 +1,7 @@
 #include <BaseVSShader.h>
 
-#include "shaders/inc/GWaterVolumetric_vs30.inc"
-#include "shaders/inc/GWaterVolumetric_ps30.inc"
+#include "shaders/inc/GWaterVolumetric_vs20.inc"
+#include "shaders/inc/GWaterVolumetric_ps20b.inc"
 
 BEGIN_VS_SHADER(GWaterVolumetric, "gwater2 helper")
 
@@ -47,11 +47,11 @@ SHADER_DRAW {
 		pShaderShadow->EnableAlphaTest(IS_FLAG_SET(MATERIAL_VAR_ALPHATEST));
 		pShaderShadow->EnableTexture(SHADER_SAMPLER0, true);
 
-		DECLARE_STATIC_VERTEX_SHADER(GWaterVolumetric_vs30);
-		SET_STATIC_VERTEX_SHADER(GWaterVolumetric_vs30);
+		DECLARE_STATIC_VERTEX_SHADER(GWaterVolumetric_vs20);
+		SET_STATIC_VERTEX_SHADER(GWaterVolumetric_vs20);
 
-		DECLARE_STATIC_PIXEL_SHADER(GWaterVolumetric_ps30);
-		SET_STATIC_PIXEL_SHADER(GWaterVolumetric_ps30);
+		DECLARE_STATIC_PIXEL_SHADER(GWaterVolumetric_ps20b);
+		SET_STATIC_PIXEL_SHADER(GWaterVolumetric_ps20b);
 	}
 
 	DYNAMIC_STATE {
@@ -61,11 +61,11 @@ SHADER_DRAW {
 		pShaderAPI->SetPixelShaderConstant(0, &alpha);
 		BindTexture(SHADER_SAMPLER0, BASETEXTURE);
 
-		DECLARE_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs30);
-		SET_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs30);
+		DECLARE_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs20);
+		SET_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs20);
 
-		DECLARE_DYNAMIC_PIXEL_SHADER(GWaterVolumetric_ps30);
-		SET_DYNAMIC_PIXEL_SHADER(GWaterVolumetric_ps30);
+		DECLARE_DYNAMIC_PIXEL_SHADER(GWaterVolumetric_ps20b);
+		SET_DYNAMIC_PIXEL_SHADER(GWaterVolumetric_ps20b);
 	}
 
 	Draw();

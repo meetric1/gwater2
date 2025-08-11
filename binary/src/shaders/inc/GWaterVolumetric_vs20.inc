@@ -3,10 +3,10 @@
 
 #pragma once
 #include "shaderlib/cshader.h"
-class GWaterVolumetric_vs30_Static_Index
+class GWaterVolumetric_vs20_Static_Index
 {
 public:
-	GWaterVolumetric_vs30_Static_Index( )
+	GWaterVolumetric_vs20_Static_Index()
 	{
 	}
 
@@ -16,13 +16,13 @@ public:
 	}
 };
 
-#define shaderStaticTest_GWaterVolumetric_vs30 1
+#define shaderStaticTest_GWaterVolumetric_vs20 1
 
 
-class GWaterVolumetric_vs30_Dynamic_Index
+class GWaterVolumetric_vs20_Dynamic_Index
 {
 public:
-	GWaterVolumetric_vs30_Dynamic_Index( )
+	GWaterVolumetric_vs20_Dynamic_Index()
 	{
 	}
 
@@ -32,5 +32,5 @@ public:
 	}
 };
 
-#define shaderDynamicTest_GWaterVolumetric_vs30 1
+#define shaderDynamicTest_GWaterVolumetric_vs20 1
 
