@@ -13,6 +13,12 @@
 
 #include "scanning/symbolfinder.hpp"	// for reaction forces
 
+#ifndef _LINUX
+#define INTERFACE_ENGINE "engine"
+#else
+#define INTERFACE_ENGINE "linux64/engine_client"
+#endif
+
 using namespace GarrysMod::Lua;
 
 NvFlexLibrary* FLEX_LIBRARY = nullptr;	// "The heart of all that is FleX" - AE
@@ -1080,15 +1086,10 @@ LUA_FUNCTION(GWATER2_SET_CONTACTS) {
 
 GMOD_MODULE_OPEN() {
 	Msg("[GWater2]: Module opened\n");
-	Msg("[GWater2]: Loading lua_shared interface\n");
 
-#ifdef _LINUX
-	if (!Sys_LoadInterface("lua_shared.so", GMOD_LUASHARED_INTERFACE, NULL, (void**)&GLOBAL_LUA))
+	Msg("[GWater2]: Loading lua_shared interface\n");
+	if (!Sys_LoadInterface("lua_shared", GMOD_LUASHARED_INTERFACE, NULL, (void**)&GLOBAL_LUA))
 		LUA->ThrowError("[GWater2 Internal Error]: LuaShared failed to load!");
-#else
-	if (!Sys_LoadInterface("lua_shared.dll", GMOD_LUASHARED_INTERFACE, NULL, (void**)&GLOBAL_LUA))
-		LUA->ThrowError("[GWater2 Internal Error]: LuaShared failed to load!");
-#endif
 
 	Msg("[GWater2]: Loading FleX instance\n");
 	NvFlexInitDesc desc = NvFlexInitDesc();
@@ -1115,11 +1116,11 @@ GMOD_MODULE_OPEN() {
 		LUA->ThrowError("[GWater2 Internal Error]: Nvidia FleX Failed to load! (Does your GPU meet the minimum requirements to run FleX?)");
 
 	Msg("[GWater2]: Loading engine interface\n");
-	if (!Sys_LoadInterface("engine", VENGINE_CLIENT_INTERFACE_VERSION, NULL, (void**)&engine))
+	if (!Sys_LoadInterface(INTERFACE_ENGINE, VENGINE_CLIENT_INTERFACE_VERSION, NULL, (void**)&engine))
 		LUA->ThrowError("[GWater2 Internal Error]: C++ EngineClient failed to load!");
 
 	Msg("[GWater2]: Loading materialsystem interface\n");
-	if (!Sys_LoadInterface("materialsystem", MATERIAL_SYSTEM_INTERFACE_VERSION, NULL, (void**)&materials))
+	if (!Sys_LoadInterface(INTERFACE_MATERIALSYSTEM, MATERIAL_SYSTEM_INTERFACE_VERSION, NULL, (void**)&materials))
 		LUA->ThrowError("[GWater2 Internal Error]: C++ Materialsystem failed to load!");
 
 	//if (!Sys_LoadInterface("shaderapidx9", SHADER_DEVICE_INTERFACE_VERSION, NULL, (void**)&g_pShaderDevice))
