@@ -1,7 +1,7 @@
 #include <BaseVSShader.h>
 
-#include "shaders/inc/GWaterVolumetric_vs20.inc"	// vertex shader is reused because I don't feel like recompiling another one
-#include "shaders/inc/GWaterSmooth_ps20b.inc"
+#include "shaders/inc/GWaterVolumetric_vs30.inc"	// vertex shader is reused because I don't feel like recompiling another one
+#include "shaders/inc/GWaterSmooth_ps30.inc"
 
 BEGIN_VS_SHADER(GWaterSmooth, "gwater2 helper")
 
@@ -36,11 +36,11 @@ SHADER_DRAW {
 		pShaderShadow->EnableTexture(SHADER_SAMPLER1, true);
 		pShaderShadow->EnableAlphaWrites(true);	// We use and update the alpha channel
 
-		DECLARE_STATIC_VERTEX_SHADER(GWaterVolumetric_vs20);
-		SET_STATIC_VERTEX_SHADER(GWaterVolumetric_vs20);
+		DECLARE_STATIC_VERTEX_SHADER(GWaterVolumetric_vs30);
+		SET_STATIC_VERTEX_SHADER(GWaterVolumetric_vs30);
 
-		DECLARE_STATIC_PIXEL_SHADER(GWaterSmooth_ps20b);
-		SET_STATIC_PIXEL_SHADER(GWaterSmooth_ps20b);
+		DECLARE_STATIC_PIXEL_SHADER(GWaterSmooth_ps30);
+		SET_STATIC_PIXEL_SHADER(GWaterSmooth_ps30);
 	}
 
 	DYNAMIC_STATE {
@@ -54,11 +54,11 @@ SHADER_DRAW {
 		BindTexture(SHADER_SAMPLER0, NORMALTEXTURE);
 		BindTexture(SHADER_SAMPLER1, DEPTHTEXTURE);
 
-		DECLARE_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs20);
-		SET_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs20);
+		DECLARE_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs30);
+		SET_DYNAMIC_VERTEX_SHADER(GWaterVolumetric_vs30);
 
-		DECLARE_DYNAMIC_PIXEL_SHADER(GWaterSmooth_ps20b);
-		SET_DYNAMIC_PIXEL_SHADER(GWaterSmooth_ps20b);
+		DECLARE_DYNAMIC_PIXEL_SHADER(GWaterSmooth_ps30);
+		SET_DYNAMIC_PIXEL_SHADER(GWaterSmooth_ps30);
 	}
 
 	Draw();

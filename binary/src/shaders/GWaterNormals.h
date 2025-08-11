@@ -1,7 +1,7 @@
 #include <BaseVSShader.h>
 
-#include "shaders/inc/GWaterNormals_vs20.inc"
-#include "shaders/inc/GWaterNormals_ps20b.inc"
+#include "shaders/inc/GWaterNormals_vs30.inc"
+#include "shaders/inc/GWaterNormals_ps30.inc"
 
 BEGIN_VS_SHADER(GWaterNormals, "gwater2 helper")
 
