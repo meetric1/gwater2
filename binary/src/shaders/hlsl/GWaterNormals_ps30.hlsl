@@ -7,8 +7,7 @@ struct PS_INPUT {
 	float2 P 			: VPOS;
 	float2 coord		: TEXCOORD0;
 	float3 pos			: TEXCOORD1;
-	float4x4 proj		: TEXCOORD2;
-	float3x3 normal		: NORMAL0;	
+	float3x3 normal		: TEXCOORD2;	
 };
 
 struct PS_OUTPUT {
@@ -33,7 +32,7 @@ PS_OUTPUT main(const PS_INPUT i) {
 	// Standard mipmap calculation
 	float2 uvdx = ddx(i.coord);
 	float2 uvdy = ddy(i.coord);
-	float uvdmax = 1.0 / sqrt(max(dot(uvdx, uvdx), dot(uvdy, uvdy)));	
+	float uvdmax = 1.0 / sqrt(max(dot(uvdx, uvdx), dot(uvdy, uvdy)));
 
 	// Depth calculations
 	float4 bulge_pos = mul(float4(i.pos.xyz + i.normal[1] * bulge * RADIUS, 1), PROJ);

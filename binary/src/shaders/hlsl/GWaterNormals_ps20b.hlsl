@@ -6,8 +6,7 @@ float4x4 PROJ : register(c1);
 struct PS_INPUT {
 	float2 coord		: TEXCOORD0;
 	float3 pos			: TEXCOORD1;
-	float4x4 proj		: TEXCOORD2;
-	float3x3 normal		: NORMAL0;	
+	float3x3 normal		: TEXCOORD2;	
 };
 
 struct PS_OUTPUT {
