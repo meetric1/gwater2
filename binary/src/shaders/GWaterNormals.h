@@ -47,12 +47,12 @@ SHADER_DRAW {
 		pRenderContext->GetMatrix(MATERIAL_VIEW, &viewMatrix);
 		pRenderContext->GetMatrix(MATERIAL_PROJECTION, &projectionMatrix);
 		MatrixMultiply(projectionMatrix, viewMatrix, viewProjectionMatrix);
-		MatrixInverseGeneral(viewProjectionMatrix, inverseViewProjectionMatrix);
+		//MatrixInverseGeneral(viewProjectionMatrix, inverseViewProjectionMatrix);
 		float matrix[16];
 		for (int i = 0; i < 16; i++) {
 			int x = i % 4;
 			int y = i / 4;
-			matrix[i] = inverseViewProjectionMatrix[y][x];
+			matrix[i] = viewProjectionMatrix[y][x];
 		}
 
 		pShaderAPI->SetPixelShaderConstant(0, &radius);
