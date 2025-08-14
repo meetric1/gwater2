@@ -103,6 +103,20 @@ SHADER_DRAW {
 	}
 
 	DYNAMIC_STATE {
+		// get view projection matrix
+		CMatRenderContextPtr pRenderContext(materials);
+		VMatrix viewMatrix, projectionMatrix, viewProjectionMatrix, inverseViewProjectionMatrix;
+		pRenderContext->GetMatrix(MATERIAL_VIEW, &viewMatrix);
+		pRenderContext->GetMatrix(MATERIAL_PROJECTION, &projectionMatrix);
+		MatrixMultiply(projectionMatrix, viewMatrix, viewProjectionMatrix);
+		MatrixInverseGeneral(viewProjectionMatrix, inverseViewProjectionMatrix);
+		float matrix[16];
+		for (int i = 0; i < 16; i++) {
+			int x = i % 4;
+			int y = i / 4;
+			matrix[i] = inverseViewProjectionMatrix[y][x];
+		}
+
 		// constants
 		int scr_x, scr_y; pShaderAPI->GetBackBufferDimensions(scr_x, scr_y);
 		const float scr_s[2] = { 1.0 / scr_x, 1.0 / scr_y };
@@ -117,24 +131,9 @@ SHADER_DRAW {
 		pShaderAPI->SetPixelShaderConstant(2, &ior);
 		pShaderAPI->SetPixelShaderConstant(3, &reflectance);
 		pShaderAPI->SetPixelShaderConstant(4, color2_normalized);
-		pShaderAPI->SetPixelShaderStateAmbientLightCube(5, false);
+		pShaderAPI->SetPixelShaderConstant(5, matrix, 4, true);
+		pShaderAPI->SetPixelShaderStateAmbientLightCube(9, false);
 
-		/*
-		CMatRenderContextPtr pRenderContext(materials);
-
-		// Yoinked from viewrender.cpp (in a water detection function of all things, ironic..)
-		VMatrix viewMatrix, projectionMatrix, viewProjectionMatrix, inverseViewProjectionMatrix;
-		pRenderContext->GetMatrix(MATERIAL_VIEW, &viewMatrix);
-		pRenderContext->GetMatrix(MATERIAL_PROJECTION, &projectionMatrix);
-		MatrixMultiply(projectionMatrix, viewMatrix, viewProjectionMatrix);
-		MatrixInverseGeneral(viewProjectionMatrix, inverseViewProjectionMatrix);
-
-		float matrix[16];
-		for (int i = 0; i < 16; i++) {
-			int x = i % 4;
-			int y = i / 4;
-			matrix[i] = inverseViewProjectionMatrix[y][x];
-		}*/ 
 		BindTexture(SHADER_SAMPLER0, NORMALTEXTURE);
 		BindTexture(SHADER_SAMPLER1, SCREENTEXTURE);
 		BindTexture(SHADER_SAMPLER2, ENVMAP);

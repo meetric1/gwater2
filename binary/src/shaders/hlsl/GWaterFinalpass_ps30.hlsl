@@ -22,7 +22,8 @@ float RADIUS			: register(c1);
 float IOR 				: register(c2);
 float REFLECTANCE 		: register(c3);
 float4 COLOR2			: register(c4);
-float3 cAmbientCube[6]	: register(c5);
+float4x4 PROJ			: register(c5);
+float3 cAmbientCube[6]	: register(c9);
 
 PixelShaderLightInfo cLightInfo[3]			: register(PSREG_LIGHT_INFO_ARRAY); // c20 - c25, 2 registers each - 6 registers total (4th light spread across w's)
 const float4 g_ShadowTweaks					: register(c26); // PSREG_ENVMAP_TINT__SHADOW_TWEAKS is supposed to be c2, we're using that already, so use c26 instead
@@ -43,8 +44,7 @@ struct PS_INPUT {
 	float2 coord		: TEXCOORD0;
 	float3 view_dir		: TEXCOORD1;
 	float3 pos			: TEXCOORD2;
-	float4x4 proj		: TEXCOORD3; 
-	float4 lightAtten	: TEXCOORD8; // Scalar light attenuation factors for FOUR lights
+	float4 lightAtten	: TEXCOORD3; // Scalar light attenuation factors for FOUR lights
 };
 
 #define SUN_DIR float3(-0.377821, 0.520026, 0.766044)	// TODO: get from map OR get lighting data
@@ -176,7 +176,7 @@ float3 do_diffuse(PS_INPUT i, float3 normal) {
 float3 do_refraction(PS_INPUT i, float3 normal) {
 	// Calculate refraction vector in 3d space and project it to screen
 	float3 offset = refract(i.view_dir, normal, 1.0 / IOR) * RADIUS * 2;	//normal * -RADIUS;//
-	float4 uv = mul(float4(i.pos + offset, 1), i.proj); uv.xy /= uv.w; 
+	float4 uv = mul(float4(i.pos + offset, 1), PROJ); uv.xy /= uv.w; 
 
 	float2 refract_pos = float2(uv.x / 2.0 + 0.5, 0.5 - uv.y / 2.0);	//-1,1 -> 0,1
 	return tex2D(FRAMEBUFFER, refract_pos).xyz / LINEAR_LIGHT_SCALE;

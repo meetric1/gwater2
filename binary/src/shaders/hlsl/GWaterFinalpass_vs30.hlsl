@@ -12,8 +12,7 @@ struct VS_OUTPUT {
 	float2 coord		: TEXCOORD0;
 	float3 view_dir		: TEXCOORD1;
 	float3 pos			: TEXCOORD2;
-	float4x4 proj		: TEXCOORD3;	// Used in refraction
-	float4 lightAtten	: TEXCOORD8; 	// Scalar light attenuation factors for FOUR lights
+	float4 lightAtten	: TEXCOORD3; 	// Scalar light attenuation factors for FOUR lights
 	//float psize			: PSIZE;
 };
 
@@ -30,7 +29,6 @@ VS_OUTPUT main(const VS_INPUT v) {
 	o.projPosSetup = vProjPos;
 	o.coord = v.vTexCoord;
 	o.view_dir = normalize(world_pos - cEyePos);
-	o.proj = cViewProj;	
 	o.pos = world_pos; 
 	
 	// Scalar attenuations for four lights
