@@ -40,11 +40,11 @@ sampler NormalizeRandRotSampler	: register(s5);	// Normalization / RandomRotatio
 sampler FlashlightSampler		: register(s6);	// Flashlight cookie
 
 struct PS_INPUT {
-	float2 P 			: VPOS;
 	float2 coord		: TEXCOORD0;
 	float3 view_dir		: TEXCOORD1;
 	float3 pos			: TEXCOORD2;
 	float4 lightAtten	: TEXCOORD3; // Scalar light attenuation factors for FOUR lights
+	float2 P			: TEXCOORD4;
 };
 
 #define SUN_DIR float3(-0.377821, 0.520026, 0.766044)	// TODO: get from map OR get lighting data
@@ -189,6 +189,10 @@ float4 main(PS_INPUT i) : COLOR {
 	if (radius2 > 1) discard;
 
 	//i.view_dir = normalize(i.pos - i.view_dir);
+
+	float4 uv = mul(float4(i.pos, 1), PROJ); uv.xy /= uv.w; 
+	i.P = uv.xy;	// TODO: fix sampler
+
 	float3 smoothed_normal = tex2D(NORMALS, i.P * SCR_S).xyz;
 	
 	// Weight the normals forward, as the only visible part is facing the player (INSANELY CURSED)
