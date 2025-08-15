@@ -23,7 +23,7 @@ float IOR 				: register(c2);
 float REFLECTANCE 		: register(c3);
 float4 COLOR2			: register(c4);
 float4x4 PROJ			: register(c5);
-float3 cAmbientCube[6]	: register(c9);
+//float3 cAmbientCube[6]	: register(c9);
 
 PixelShaderLightInfo cLightInfo[3]			: register(PSREG_LIGHT_INFO_ARRAY); // c20 - c25, 2 registers each - 6 registers total (4th light spread across w's)
 const float4 g_ShadowTweaks					: register(c26); // PSREG_ENVMAP_TINT__SHADOW_TWEAKS is supposed to be c2, we're using that already, so use c26 instead

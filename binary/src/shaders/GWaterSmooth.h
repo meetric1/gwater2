@@ -48,8 +48,13 @@ SHADER_DRAW {
 		const float* scr_s = params[SCRS]->GetVecValue();
 		const float radius = params[RADIUS]->GetFloatValue();
 
+		// screen res
+		int scr_x, scr_y; pShaderAPI->GetBackBufferDimensions(scr_x, scr_y);
+		const float scr_r[2] = { 1.0 / scr_x, 1.0 / scr_y };
+
 		pShaderAPI->SetPixelShaderConstant(0, scr_s);
 		pShaderAPI->SetPixelShaderConstant(1, &radius);
+		pShaderAPI->SetPixelShaderConstant(2, scr_r);
 
 		BindTexture(SHADER_SAMPLER0, NORMALTEXTURE);
 		BindTexture(SHADER_SAMPLER1, DEPTHTEXTURE);

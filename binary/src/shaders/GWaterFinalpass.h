@@ -132,7 +132,7 @@ SHADER_DRAW {
 		pShaderAPI->SetPixelShaderConstant(3, &reflectance);
 		pShaderAPI->SetPixelShaderConstant(4, color2_normalized);
 		pShaderAPI->SetPixelShaderConstant(5, matrix, 4, true);
-		pShaderAPI->SetPixelShaderStateAmbientLightCube(9, false);
+		//pShaderAPI->SetPixelShaderStateAmbientLightCube(9, false);
 
 		BindTexture(SHADER_SAMPLER0, NORMALTEXTURE);
 		BindTexture(SHADER_SAMPLER1, SCREENTEXTURE);

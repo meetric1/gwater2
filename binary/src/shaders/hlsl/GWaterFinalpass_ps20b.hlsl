@@ -85,7 +85,7 @@ float3 do_flashlight(PS_INPUT i, float3 normal) {
 			FLASHLIGHTDEPTHFILTERMODE, 
 			FLASHLIGHTSHADOWS, 
 			true, 
-			i.P * SCR_S,
+			i.P,
 			SpecularExponent, 
 			-i.view_dir, 
 			false, 
@@ -107,7 +107,7 @@ float3 do_flashlight(PS_INPUT i, float3 normal) {
 }
 
 float3 do_absorption(PS_INPUT i) {
-	float absorption_distance = tex2D(DEPTH, i.P * SCR_S).x * 100 * COLOR2.w;
+	float absorption_distance = tex2D(DEPTH, i.P).x * 100 * COLOR2.w;
 	return exp((COLOR2.xyz - float3(1, 1, 1)) * absorption_distance);	// Beers law
 }
 
@@ -190,10 +190,10 @@ float4 main(PS_INPUT i) : COLOR {
 
 	//i.view_dir = normalize(i.pos - i.view_dir);
 
-	float4 uv = mul(float4(i.pos, 1), PROJ); uv.xy /= uv.w; 
-	i.P = uv.xy;	// TODO: fix sampler
+	float4 uv = mul(float4(i.pos, 1), PROJ); uv.xy /= uv.w;
+	i.P = float2(uv.x / 2 + 0.5, -uv.y / 2 + 0.5);
 
-	float3 smoothed_normal = tex2D(NORMALS, i.P * SCR_S).xyz;
+	float3 smoothed_normal = tex2D(NORMALS, i.P).xyz;
 	
 	// Weight the normals forward, as the only visible part is facing the player (INSANELY CURSED)
 	smoothed_normal = normalize(smoothed_normal + i.view_dir * REFLECTANCE * clamp(-dot(i.view_dir, smoothed_normal), 0.5, 1));
