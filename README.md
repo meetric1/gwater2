@@ -72,10 +72,10 @@ If this is all gibberish to you, essentially any graphics card manufactured late
 | Windows | Any | Nvidia | ✅ |
 | Windows | Any | AMD    | ✅ |
 | Windows | Any | Intel  | ✅ |
-| Linux   | Any | Nvidia | ⚠️ |
+| Linux   | Any | Nvidia | ✅ |
 | Linux   | Any | AMD    | ⚠️ |
-| Linux   | Any | Intel  | ❔ |
-| MacOS   | Any | Mac    | ❔ |
+| Linux   | Any | Intel  | ⚠️ |
+| MacOS   | Any | Mac    | ❌ |
 
 # Installation
 

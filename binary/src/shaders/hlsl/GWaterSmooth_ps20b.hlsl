@@ -2,6 +2,7 @@ sampler NORMALS : register(s0);
 sampler DEPTH	: register(s1);
 float2 SCR_S	: register(c0);
 float RADIUS 	: register(c1);
+float2 SCR_R    : register(c2);	// backwards compatable, we need screen res (lua sets scr_s to weird numbers)
 
 #define RESOLUTION 4
 #define THRESHOLD 0
@@ -16,7 +17,12 @@ float4 main(PS_INPUT i) : COLOR {
 	float4 og_normal = tex2D(NORMALS, i.coord);
 	//if (og_normal.w <= RADIUS) return float4(0, 0, 0, 0);	// Dont blur if too close.
 
-	float mipmap = tex2D(DEPTH, i.coord).x;
+	//float mipmap = tex2D(DEPTH, i.coord).x;
+	// sm20 doesn't support ddx/ddy functions (Linux moment), so we need to remake them
+	float2 uvdx = tex2D(DEPTH, i.coord).xy - tex2D(DEPTH, i.coord + float2(SCR_R.x, 0)).xy;
+	float2 uvdy = tex2D(DEPTH, i.coord).xy - tex2D(DEPTH, i.coord + float2(0, SCR_R.y)).xy;
+	float mipmap = 1.0 / sqrt(max(dot(uvdx, uvdx), dot(uvdy, uvdy)));
+
 	float3 final_normal = og_normal.xyz;
 
 	// Blurring right

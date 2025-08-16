@@ -133,6 +133,7 @@ local function unfucked_get_mesh(ent)
 end
 
 -- adds entity to FlexSolver
+local max_planes = system.IsLinux() and 32 * 3 or 64 * 3
 local function add_prop(ent)
 	if !IsValid(ent) then return end
 	
@@ -148,7 +149,7 @@ local function add_prop(ent)
 	
 	if ent.GWATER2_IS_RAGDOLL or #convexes <= 16 then	-- too many convexes to be worth calculating
 		for k, v in ipairs(convexes) do
-			if #v <= 64 * 3 then	-- hardcoded limits.. No more than 64 planes per convex as it is a FleX limitation
+			if #v <= max_planes then	-- hardcoded limits..
 				gwater2.solver:AddConvexCollider(ent_index, v, ent:GetPos(), ent:GetAngles())
 			else
 				gwater2.solver:AddConcaveCollider(ent_index, v, ent:GetPos(), ent:GetAngles())

@@ -4,7 +4,6 @@ float RADIUS  : register(c0);
 float4x4 PROJ : register(c1);
 
 struct PS_INPUT {
-	float2 P 			: VPOS;
 	float2 coord		: TEXCOORD0;
 	float3 pos			: TEXCOORD1;
 	float3x3 normal		: TEXCOORD2;	
@@ -29,11 +28,6 @@ PS_OUTPUT main(const PS_INPUT i) {
 	float bulge = sqrt(1 - radius2);
 	float3 world_normal = normalize(mul(float3(offset.x, bulge, -offset.y), i.normal));
 
-	// Standard mipmap calculation
-	float2 uvdx = ddx(i.coord);
-	float2 uvdy = ddy(i.coord);
-	float uvdmax = 1.0 / sqrt(max(dot(uvdx, uvdx), dot(uvdy, uvdy)));
-
 	// Depth calculations
 	float4 bulge_pos = mul(float4(i.pos.xyz + i.normal[1] * bulge * RADIUS, 1), PROJ);
 
@@ -41,7 +35,7 @@ PS_OUTPUT main(const PS_INPUT i) {
 	PS_OUTPUT o = (PS_OUTPUT)0;
 	o.rt0 = float4(world_normal, bulge_pos.z);
 	//o.rt0 = float4(i.coord.x, i.coord.y, 0, bulge_pos.z);
-	o.rt1 = float4(uvdmax, 0, 0, 1);
+	o.rt1 = float4(i.coord.x, i.coord.y, 0, 1);
 #if DEPTH
 	o.depth = bulge_pos.z / bulge_pos.w;
 #endif

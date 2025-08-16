@@ -10,8 +10,7 @@ struct VS_OUTPUT {
 	float4 projPosSetup	: POSITION;  // Register 0
 	float4 coord		: TEXCOORD0; // Register 1
 	float3 pos			: TEXCOORD1; // Register 2
-	float4x4 proj		: TEXCOORD2; // Registers 3 4 5 6
-	float3x3 normal		: NORMAL0;	 // Registers 7 8 9
+	float3x3 normal		: TEXCOORD2; // Registers 3 4 5
 };
 
 VS_OUTPUT main(const VS_INPUT v) {
@@ -27,7 +26,6 @@ VS_OUTPUT main(const VS_INPUT v) {
 	o.projPosSetup = vProjPos;
 	o.coord = v.vTexCoord;
 	o.pos = world_pos;
-	o.proj = cViewProj;		// Used in spherical depth
 
 	float3 right = normalize(cross(world_normal, float3(0, 0, 1)));
 	float3 up = cross(world_normal, right);

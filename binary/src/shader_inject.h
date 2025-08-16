@@ -20,12 +20,18 @@ IShaderSystem* g_pSLShaderSystem; // I literally have no idea where this is defi
 CShaderSystem::ShaderDLLInfo_t* shaderlibdll = NULL;	// our shader "directory"
 //int m_ShaderDLLs_index;
 
+#ifndef _LINUX
+#define INTERFACE_MATERIALSYSTEM "materialsystem"
+#else
+#define INTERFACE_MATERIALSYSTEM "linux64/materialsystem_client"
+#endif
+
 // returns true if successful, false otherwise
 bool inject_shaders() {
 	// Load source interfaces for personal use
-	if (!Sys_LoadInterface("materialsystem", MATERIALSYSTEM_HARDWARECONFIG_INTERFACE_VERSION, NULL, (void**)&g_pHardwareConfig)) return false;
-	if (!Sys_LoadInterface("materialsystem", MATERIALSYSTEM_CONFIG_VERSION, NULL, (void**)&g_pConfig)) return false;
-	if (!Sys_LoadInterface("materialsystem", SHADERSYSTEM_INTERFACE_VERSION, NULL, (void**)&g_pSLShaderSystem)) return false;
+	if (!Sys_LoadInterface(INTERFACE_MATERIALSYSTEM, MATERIALSYSTEM_HARDWARECONFIG_INTERFACE_VERSION, NULL, (void**)&g_pHardwareConfig)) return false;
+	if (!Sys_LoadInterface(INTERFACE_MATERIALSYSTEM, MATERIALSYSTEM_CONFIG_VERSION, NULL, (void**)&g_pConfig)) return false;
+	if (!Sys_LoadInterface(INTERFACE_MATERIALSYSTEM, SHADERSYSTEM_INTERFACE_VERSION, NULL, (void**)&g_pSLShaderSystem)) return false;
 
 	// imagine not being able to run dx9
 	if (g_pHardwareConfig->GetDXSupportLevel() < 90) return false;

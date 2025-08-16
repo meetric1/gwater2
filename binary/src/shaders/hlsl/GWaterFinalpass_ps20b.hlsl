@@ -23,7 +23,7 @@ float IOR 				: register(c2);
 float REFLECTANCE 		: register(c3);
 float4 COLOR2			: register(c4);
 float4x4 PROJ			: register(c5);
-//float3 cAmbientCube[6]	: register(c9);
+float3 cAmbientCube[6]	: register(c9);
 
 PixelShaderLightInfo cLightInfo[3]			: register(PSREG_LIGHT_INFO_ARRAY); // c20 - c25, 2 registers each - 6 registers total (4th light spread across w's)
 const float4 g_ShadowTweaks					: register(c26); // PSREG_ENVMAP_TINT__SHADOW_TWEAKS is supposed to be c2, we're using that already, so use c26 instead
@@ -40,11 +40,11 @@ sampler NormalizeRandRotSampler	: register(s5);	// Normalization / RandomRotatio
 sampler FlashlightSampler		: register(s6);	// Flashlight cookie
 
 struct PS_INPUT {
-	float2 P 			: VPOS;
 	float2 coord		: TEXCOORD0;
 	float3 view_dir		: TEXCOORD1;
 	float3 pos			: TEXCOORD2;
 	float4 lightAtten	: TEXCOORD3; // Scalar light attenuation factors for FOUR lights
+	float2 P			: TEXCOORD4;
 };
 
 #define SUN_DIR float3(-0.377821, 0.520026, 0.766044)	// TODO: get from map OR get lighting data
@@ -85,7 +85,7 @@ float3 do_flashlight(PS_INPUT i, float3 normal) {
 			FLASHLIGHTDEPTHFILTERMODE, 
 			FLASHLIGHTSHADOWS, 
 			true, 
-			i.P * SCR_S,
+			i.P,
 			SpecularExponent, 
 			-i.view_dir, 
 			false, 
@@ -107,7 +107,7 @@ float3 do_flashlight(PS_INPUT i, float3 normal) {
 }
 
 float3 do_absorption(PS_INPUT i) {
-	float absorption_distance = tex2D(DEPTH, i.P * SCR_S).x * 100 * COLOR2.w;
+	float absorption_distance = tex2D(DEPTH, i.P).x * 100 * COLOR2.w;
 	return exp((COLOR2.xyz - float3(1, 1, 1)) * absorption_distance);	// Beers law
 }
 
@@ -189,7 +189,11 @@ float4 main(PS_INPUT i) : COLOR {
 	if (radius2 > 1) discard;
 
 	//i.view_dir = normalize(i.pos - i.view_dir);
-	float3 smoothed_normal = tex2D(NORMALS, i.P * SCR_S).xyz;
+
+	float4 uv = mul(float4(i.pos, 1), PROJ); uv.xy /= uv.w;
+	i.P = float2(uv.x / 2 + 0.5, -uv.y / 2 + 0.5);
+
+	float3 smoothed_normal = tex2D(NORMALS, i.P).xyz;
 	
 	// Weight the normals forward, as the only visible part is facing the player (INSANELY CURSED)
 	smoothed_normal = normalize(smoothed_normal + i.view_dir * REFLECTANCE * clamp(-dot(i.view_dir, smoothed_normal), 0.5, 1));

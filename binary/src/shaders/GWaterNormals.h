@@ -41,7 +41,22 @@ SHADER_DRAW {
 		const float radius = params[RADIUS]->GetFloatValue();
 		const bool depthfix = params[DEPTHFIX]->GetIntValue();
 
+		// get view projection matrix
+		CMatRenderContextPtr pRenderContext(materials);
+		VMatrix viewMatrix, projectionMatrix, viewProjectionMatrix, inverseViewProjectionMatrix;
+		pRenderContext->GetMatrix(MATERIAL_VIEW, &viewMatrix);
+		pRenderContext->GetMatrix(MATERIAL_PROJECTION, &projectionMatrix);
+		MatrixMultiply(projectionMatrix, viewMatrix, viewProjectionMatrix);
+		//MatrixInverseGeneral(viewProjectionMatrix, inverseViewProjectionMatrix);
+		float matrix[16];
+		for (int i = 0; i < 16; i++) {
+			int x = i % 4;
+			int y = i / 4;
+			matrix[i] = viewProjectionMatrix[y][x];
+		}
+
 		pShaderAPI->SetPixelShaderConstant(0, &radius);
+		pShaderAPI->SetPixelShaderConstant(1, matrix, 4, true);
 
 		DECLARE_DYNAMIC_VERTEX_SHADER(GWaterNormals_vs30);
 		SET_DYNAMIC_VERTEX_SHADER(GWaterNormals_vs30);
