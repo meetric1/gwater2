@@ -137,10 +137,6 @@ If you wish to compile it yourself, simply follow these steps.
 >[!NOTE]
 > Linux builds end in `.dll` __THIS IS INTENTIONAL!__ Blame Garry for the weird syntax
 
-> [!CAUTION]
-> Although Linux builds successfully, it throws errors during runtime, which I do not know how to fix. (pls help)\
-> See https://github.com/meetric1/gwater2/issues/1 for more information
-
 ### Shader compilation
 Custom shaders were created in HLSL, and compiled using [ShaderCompile](https://github.com/SCell555/ShaderCompile).\
 Documentation on how to compile them can be found here: https://developer.valvesoftware.com/wiki/Shader_Authoring
