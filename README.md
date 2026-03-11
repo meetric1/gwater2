@@ -156,7 +156,7 @@ Mikey        | StarfallEx API
 Joka         | Water gun icon
 Spanky       | Particle stretching code
 Fasteroid    | Quaternion math
-PotatoOS     | Something
+PotatoOS     | GWater1 thread loop
 AndrewEathan | GWater1 entities
 Kodya        | Swimming code
 Patrons      | Generously supporting my work :)
