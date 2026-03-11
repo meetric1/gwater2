@@ -155,7 +155,8 @@ Stickrpg     | Reaction force sigs
 Mikey        | StarfallEx API
 Joka         | Water gun icon
 Spanky       | Particle stretching code
-PotatoOS     | Quaternion math
+Fasteroid    | Quaternion math
+PotatoOS     | Something
 AndrewEathan | GWater1 entities
 Kodya        | Swimming code
 Patrons      | Generously supporting my work :)
