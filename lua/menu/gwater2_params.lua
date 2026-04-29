@@ -417,6 +417,8 @@ local performance = {
 	}
 }
 local interaction = {
+	-- enable if I decide to patch reaction forces
+	--[[
 	["001-Reaction Force Parameters"] = {
 		["001-Reaction Forces"] = {
 			type="check",
@@ -452,7 +454,7 @@ local interaction = {
 			func = function(val) return true end,
 			setup = function(scratch) scratch:SetValue(gwater2.parameters.force_dampening) end
 		}
-	},
+	},]]
 	["002-Water Interactions"] = {
 		["001-Player Interaction"] = {
 			type="check",

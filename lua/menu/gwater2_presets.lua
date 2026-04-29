@@ -185,6 +185,11 @@ local function set_parameter(param, value)
     })[param:sub(0, 4)]
     if not list_ then return end
     local param_panel = list_[param:sub(6)]
+	if not param_panel then 
+		print("[GWATER2]: Attempt to set invalid parameter " .. (param or "nil")) 
+		return 
+	end
+	
     if param_panel.mixer then return param_panel.mixer:SetColor(Color(value[1], value[2], value[3], value[4])) end
     if param_panel.check then return param_panel.check:SetChecked(value) end
     if param_panel.slider then return param_panel.slider:SetValue(value) end
