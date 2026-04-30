@@ -292,10 +292,10 @@ end)
 gwater2.parameters.color = Color(209, 237, 255, 25)
 gwater2.parameters.color_value_multiplier = 1
 
--- water interaction specific
-gwater2.parameters.force_multiplier = 0.01
-gwater2.parameters.force_buoyancy = 0
-gwater2.parameters.force_dampening = 0
+-- water interaction specific (disabled for now)
+--gwater2.parameters.force_multiplier = 0.01
+--gwater2.parameters.force_buoyancy = 0
+--gwater2.parameters.force_dampening = 0
 
 gwater2.parameters.player_interaction = true
 gwater2.parameters.swimspeed = 2
@@ -405,7 +405,7 @@ local function gwater_tick2()
 			end)	
 		end
 
-		gwater2.solver:ApplyContacts(limit_fps * gwater2.parameters.force_multiplier, 3, gwater2.parameters.force_buoyancy, gwater2.parameters.force_dampening)
+		--gwater2.solver:ApplyContacts(limit_fps * gwater2.parameters.force_multiplier, 3, gwater2.parameters.force_buoyancy, gwater2.parameters.force_dampening)
 		gwater2.solver:IterateColliders(gwater2.update_colliders)
 
 		if no_lerp then 
