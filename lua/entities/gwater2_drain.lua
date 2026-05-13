@@ -69,8 +69,11 @@ function ENT:SpawnFunction(ply, tr, class)
 	return ent
 end
 
-function ENT:Draw()
-	self:DrawModel()
+function ENT:Draw(flags)
+	self:DrawModel(flags)
+
+	local isDepthPass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 || bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+	if isDepthPass then return end
 	local pos, ang = self:GetPos(), self:GetAngles()
 	ang:RotateAroundAxis(ang:Right(), 180)
 	pos = pos + ang:Up()*0.25
