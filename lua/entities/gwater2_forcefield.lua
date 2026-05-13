@@ -21,7 +21,10 @@ function ENT:Initialize()
 end
 
 if CLIENT then
-	function ENT:Draw()
+	function ENT:Draw(flags)
+		local isDepthPass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 || bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+		if isDepthPass then return end
+		
 		-- tried a merge effect between colors but I think its too much
 		--local str = (self:GetStrength() + 200) / 2 / 200	-- (0 - 1)
 		--local red   = math.Clamp(1 - (str + 0.5)^10 + 0.5, 0, 1)
