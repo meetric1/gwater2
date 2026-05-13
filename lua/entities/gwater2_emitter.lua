@@ -107,8 +107,11 @@ function ENT:SetupDataTables()
 	end)
 end
 
-function ENT:Draw()
+function ENT:Draw(flags)
 	self:DrawModel()
+
+	local isDepthPass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 || bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+	if isDepthPass then return end
 
 	local pos, ang = self:GetPos(), self:GetAngles()
 	ang:RotateAroundAxis(ang:Up(), 180)
