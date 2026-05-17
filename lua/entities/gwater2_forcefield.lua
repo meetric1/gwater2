@@ -22,8 +22,8 @@ end
 
 if CLIENT then
 	function ENT:Draw(flags)
-		local isDepthPass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 || bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
-		if isDepthPass then return end
+		local is_depth_pass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 or bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+		if is_depth_pass then return end
 		
 		-- tried a merge effect between colors but I think its too much
 		--local str = (self:GetStrength() + 200) / 2 / 200	-- (0 - 1)
