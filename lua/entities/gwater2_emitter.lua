@@ -110,8 +110,8 @@ end
 function ENT:Draw(flags)
 	self:DrawModel(flags)
 
-	local isDepthPass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 || bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
-	if isDepthPass then return end
+	local is_depth_pass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 or bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+	if is_depth_pass then return end
 
 	local pos, ang = self:GetPos(), self:GetAngles()
 	ang:RotateAroundAxis(ang:Up(), 180)
