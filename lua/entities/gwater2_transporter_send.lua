@@ -62,7 +62,7 @@ end
 function ENT:Draw(flags)
 	self:DrawModel(flags)
 
-	local is_depth_pass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 or bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+	local is_depth_pass = (bit.band(flags, STUDIO_SSAODEPTHTEXTURE) != 0 or bit.band(flags, STUDIO_SHADOWDEPTHTEXTURE) != 0)
 	if is_depth_pass then return end
 
 	self.link = self.link or IsValid(self:GetNWEntity("GWATER2_Link")) and self:GetNWEntity("GWATER2_Link")
