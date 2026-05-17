@@ -22,7 +22,7 @@ end
 
 if CLIENT then
 	function ENT:Draw(flags)
-		local is_depth_pass = ( bit.band( flags, STUDIO_SSAODEPTHTEXTURE ) != 0 or bit.band( flags, STUDIO_SHADOWDEPTHTEXTURE ) != 0 )
+		local is_depth_pass = (bit.band(flags, STUDIO_SSAODEPTHTEXTURE) != 0 or bit.band(flags, STUDIO_SHADOWDEPTHTEXTURE) != 0)
 		if is_depth_pass then return end
 		
 		-- tried a merge effect between colors but I think its too much
