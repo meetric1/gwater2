@@ -15,7 +15,7 @@ gwater2.options = gwater2.options or {
 	menu_key = CreateClientConVar("gwater2_menukey", tostring(KEY_G), true),
 	menu_tab = CreateClientConVar("gwater2_menutab", "1", true),
 	player_collision = CreateClientConVar("gwater2_player_collision", "1", true),
-	render_mirrors = CreateClientConVar("gwater2_render_mirrors", "0", true),
+	render_mirrors = CreateClientConVar("gwater2_render_mirrors", "1", true),
 	diffuse_enabled = CreateClientConVar("gwater2_diffuse_enabled", "1", true),
 
 	config_cache = nil,

@@ -316,7 +316,7 @@ gwater2.parameters.depth_fix = true
 gwater2.parameters.player_collision = true
 gwater2.parameters.diffuse_enabled = true
 gwater2.parameters.simulation_fps = 60
-gwater2.parameters.mirror_rendering = 0
+gwater2.parameters.mirror_rendering = 1
 
 gwater2.defaults = table.Copy(gwater2.parameters)
 
