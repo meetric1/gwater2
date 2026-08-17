@@ -187,6 +187,7 @@ GoranRayman    | French
 Limule         | French
 dvdvideo       | Bulgarian
 FengHo         | Traditional Chinese
+TheRealTakoz   | Italian
 ```
 
 # Extras
