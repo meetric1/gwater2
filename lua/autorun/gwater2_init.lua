@@ -4,7 +4,7 @@ AddCSLuaFile()
 
 gwater2 = nil
 
-if SERVER then 
+if SERVER then
 	include("gwater2_net.lua")
 	include("gwater2_interactions.lua")
 
@@ -26,14 +26,14 @@ local lang = GetConVar("gmod_language"):GetString()
 local function load_language(lang)
 	local strings = file.Read("data_static/gwater2/locale/gwater2_".. lang .. ".txt", "THIRDPARTY")
 	if not strings then return false end
-	/* 
+	/*
 	matches strings like this:
 		"KEY"=[[
 		VALUE
 		]]
 	*/
-	for k, v in string.gmatch(strings, '"(.-)"=%[%[%s*(.-)%s*%]%]') do 
-		language.Add(k, v) 
+	for k, v in string.gmatch(strings, '"(.-)"=%[%[%s*(.-)%s*%]%]') do
+		language.Add(k, v)
 	end
 	return true
 end
@@ -46,24 +46,34 @@ end
 local function gw2_error(text)
 	ErrorNoHalt(text) -- log to problem menu
 	chat.AddText(
-		color_black, "[", 
-		Color(50, 255, 50), "G", 
-		color_white, "Water", 
+		color_black, "[",
+		Color(50, 255, 50), "G",
+		color_white, "Water",
 		Color(50, 150, 255), "2",
-		color_black, "]: ", 
+		color_black, "]: ",
 		Color(250, 230, 20), language.GetPhrase("gwater2.error.chatlog")
 	)
 end
 
 local toload = (BRANCH == "x86-64" or BRANCH == "chromium") and "gwater2" or "gwater2_main" -- carrying
 if !util.IsBinaryModuleInstalled(toload) then
-	gw2_error(string.format(
-		"===========================================================\n\n" ..
-		language.GetPhrase("gwater2.error.modulenotinstalled") .."\n\n" ..
-		language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
-		"===========================================================\n",
-		"NONE", BRANCH, jit.arch
-	))
+	if BRANCH == "unknown" and jit.arch == "x64" then
+		ErrorNoHalt(string.format(
+			"===========================================================\n\n" ..
+			"!!!PLEASE READ ME!!!\n\n" ..
+			"GWATER2 FAILED TO LOAD!\n\n" ..
+			"GWater2 is currently unsupported on 64 bit binaries, please either use the 32 bit\nbinaries or switch to the x86-64 branch. Otherwise, you may safely ignore this error.\n\n" ..
+			"===========================================================\n"
+		))
+	else
+		gw2_error(string.format(
+			"===========================================================\n\n" ..
+			language.GetPhrase("gwater2.error.modulenotinstalled") .."\n\n" ..
+			language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
+			"===========================================================\n",
+			"NONE", BRANCH, jit.arch
+		))
+	end
 	return
 end
 
@@ -114,14 +124,14 @@ local function unfucked_get_mesh(ent)
 		convexes = phys:IsValid() and phys:GetMeshConvexes()
 		cs_ent:PhysicsDestroy()
 		cs_ent:Remove()
-	else 
-		-- no joke this is the hackiest shit ive ever done. 
+	else
+		-- no joke this is the hackiest shit ive ever done.
 		-- for whatever reason the metrocop and ONLY the metrocop model has this problem
 		-- when creating a clientside ragdoll of the metrocop entity it will sometimes break all pistol and stunstick animations
 		-- I have no idea why this happens.
 		if model == "models/police.mdl" then model = "models/combine_soldier.mdl" end
 
-		local cs_ent = ClientsideRagdoll(model, 13)	
+		local cs_ent = ClientsideRagdoll(model, 13)
 		convexes = {}
 		for i = 0, cs_ent:GetPhysicsObjectCount() - 1 do
 			table.insert(convexes, cs_ent:GetPhysicsObjectNum(i):GetMesh())
@@ -136,7 +146,7 @@ end
 local max_planes = system.IsLinux() and 32 * 3 or 64 * 3
 local function add_prop(ent)
 	if !IsValid(ent) then return end
-	
+
 	local ent_index = ent:EntIndex()
 	gwater2.solver:RemoveCollider(ent_index) -- incase source decides to reuse the same entity index
 
@@ -146,7 +156,7 @@ local function add_prop(ent)
 	if !convexes or #convexes < 1 then return end
 
 	ent.GWATER2_IS_RAGDOLL = util.IsValidRagdoll(ent:GetModel())
-	
+
 	if ent.GWATER2_IS_RAGDOLL or #convexes <= 16 then	-- too many convexes to be worth calculating
 		for k, v in ipairs(convexes) do
 			if #v <= max_planes then	-- hardcoded limits..
@@ -169,7 +179,7 @@ end
 local no_lerp = false
 
 -- should this entity collide with water?
-local function should_collide(ent)	
+local function should_collide(ent)
 	return ent:GetCollisionGroup() != COLLISION_GROUP_WORLD and bit.band(ent:GetSolidFlags(), FSOLID_NOT_SOLID) == 0
 end
 
@@ -183,9 +193,9 @@ gwater2 = {
 		if id == 0 then return end	-- skip, entity is world
 
 		local ent = Entity(id)
-		if !IsValid(ent) then 
+		if !IsValid(ent) then
 			gwater2.solver:RemoveCollider(id)
-		else 
+		else
 			if !ent.GWATER2_IS_RAGDOLL then
 
 				-- custom physics objects may be networked and initialized after the entity was created
@@ -217,10 +227,10 @@ gwater2 = {
 				end
 				gwater2.solver:SetColliderPos(index, pos, no_lerp)
 				gwater2.solver:SetColliderAng(index, ang, no_lerp)
-				
-				if in_water(ent) then 
-					gwater2.solver:SetColliderEnabled(index, false) 
-					return 
+
+				if in_water(ent) then
+					gwater2.solver:SetColliderEnabled(index, false)
+					return
 				end
 
 				local collisions_enabled = should_collide(ent)
@@ -249,7 +259,7 @@ gwater2 = {
 
 		gwater2.solver:InitBounds(Vector(-16384, -16384, -16384), Vector(16384, 16384, 16384))	-- source bounds
 	end,
-	
+
 	-- defined on server in gwater2_net.lua
 	quick_matrix = function(pos, ang, scale)
 		local mat = Matrix()
@@ -347,7 +357,7 @@ timer.Create("gwater2_calcdiffusesound", 0.1, 0, function()
 			end
 
 			GWATER2_SET_CONTACTS(	-- defined by C++ module
-				ply:EntIndex(), 
+				ply:EntIndex(),
 				particles_in_radius
 			)
 		end
@@ -356,11 +366,11 @@ timer.Create("gwater2_calcdiffusesound", 0.1, 0, function()
 	-- sound calculation
 	soundpatch_water = soundpatch_water or CreateSound(lp, "gwater2/water_loop.wav")
 	soundpatch_goop = soundpatch_goop or CreateSound(lp, "gwater2/paint_loop.wav")
-	
-	if gwater2.solver:GetActiveParticles() <= 0 or gwater2.parameters.sound_volume <= 0 or gwater2.parameters.sound_pitch <= 0 then 
+
+	if gwater2.solver:GetActiveParticles() <= 0 or gwater2.parameters.sound_volume <= 0 or gwater2.parameters.sound_pitch <= 0 then
 		soundpatch_water:Stop()
 		soundpatch_goop:Stop()
-		return 
+		return
 	end
 
 	local percent = gwater2.solver:GetActiveDiffuseParticles() / gwater2.solver:GetMaxDiffuseParticles()
@@ -391,30 +401,30 @@ local function gwater_tick2()
 
 	local limit_fps = 1 / gwater2.options.simulation_fps:GetInt()
 
-	if gwater2.solver:GetActiveParticles() <= 0 then 
+	if gwater2.solver:GetActiveParticles() <= 0 then
 		no_lerp = true
 	else
-		if !world_initialized then 
+		if !world_initialized then
 			world_initialized = true
 			gwater2.reset_solver()
 
-			hook.Add("OnEntityCreated", "gwater2_addprop", function(ent) 
+			hook.Add("OnEntityCreated", "gwater2_addprop", function(ent)
 				timer.Simple(0, function() -- timer.0 so data values are setup correctly
-					add_prop(ent) 
-				end) 
-			end)	
+					add_prop(ent)
+				end)
+			end)
 		end
 
 		--gwater2.solver:ApplyContacts(limit_fps * gwater2.parameters.force_multiplier, 3, gwater2.parameters.force_buoyancy, gwater2.parameters.force_dampening)
 		gwater2.solver:IterateColliders(gwater2.update_colliders)
 
-		if no_lerp then 
+		if no_lerp then
 			no_lerp = false
 		end
 	end
 
 	--[[
-		for whatever reason if you drain particles before adding them it will cause 
+		for whatever reason if you drain particles before adding them it will cause
 		a problem where particles will swap velocities and positions randomly.
 
 		im 5 hours in trying to figure out what flawed logic in my code is causing this to happen, and
