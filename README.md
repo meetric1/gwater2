@@ -69,12 +69,13 @@ If this is all gibberish to you, essentially any graphics card manufactured late
 
 | OS | GMod Branch | GPU | Supported |
 | --- | --- | --- | --- |
-| Windows | Any | Nvidia | ✅ |
-| Windows | Any | AMD    | ✅ |
-| Windows | Any | Intel  | ✅ |
+| Windows | Main (32 bit) | Any | ✅ |
+| Windows | Main (64 bit) | Any | ❌ |
+| Windows | x86-64 | Any | ✅ |
+| Linux   | Main | Any | ❔ |
 | Linux   | x86-64 | Nvidia | ✅ |
-| Linux   | Any | AMD    | ⚠️ |
-| Linux   | Any | Intel  | ⚠️ |
+| Linux   | x86-64 | AMD    | ⚠️ |
+| Linux   | x86-64 | Intel  | ⚠️ |
 | MacOS   | Any | Mac    | ❌ |
 
 # Installation
