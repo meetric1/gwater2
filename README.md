@@ -70,7 +70,7 @@ If this is all gibberish to you, essentially any graphics card manufactured late
 | OS | GMod Branch | GPU | Supported |
 | --- | --- | --- | --- |
 | Windows | Main (32 bit) | Any | ✅ |
-| Windows | Main (64 bit) | Any | ❌ |
+| Windows | Main (64 bit) | Any | ✅ |
 | Windows | x86-64 | Any | ✅ |
 | Linux   | Main | Any | ❔ |
 | Linux   | x86-64 | Nvidia | ✅ |
@@ -132,8 +132,10 @@ If you wish to compile it yourself, simply follow these steps.
 > If you need help with compiling, feel free to look at the github workflow source code
 
 > [!NOTE]
-> By default, this repo builds for the x86-64 branch of GMod. If you wish to compile for the main branch, you will need to remove the gmcommon submodule and *recursively* re-clone the main branch version, found [here](https://github.com/danielga/garrysmod_common).\
-> After that, you will need to add a preprocessor definition, `GMOD_MAIN`. This can be done in visual studio by going to the project properties -> Preprocessor -> Preprocessor Definitions
+> By default, this repo builds for the x86-64 branch of GMod. To compile for the main branch on Windows (32 or 64 bit), *recursively* clone the main branch version of [garrysmod_common](https://github.com/danielga/garrysmod_common) somewhere outside this repo, then pass it to premake along with `--main`:\
+> `premake5 --main --gmcommon=path/to/garrysmod_common vs2022`\
+> This defines `GMOD_MAIN` and outputs `gmcl_gwater2_main_win32.dll` / `gmcl_gwater2_main_win64.dll`. Build the `x86` or `x86_64` platform respectively (`Win32` / `x64` when using msbuild directly).\
+> 64 bit main branch builds currently need the Source SDK from [danielga/sourcesdk-minimal#60](https://github.com/danielga/sourcesdk-minimal/pull/60) in place of garrysmod_common's `sourcesdk-minimal` submodule. See `.github/workflows/windows-main.yml` for the exact commits.
 
 >[!NOTE]
 > Linux builds end in `.dll` __THIS IS INTENTIONAL!__ Blame Garry for the weird syntax

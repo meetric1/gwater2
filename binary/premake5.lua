@@ -7,6 +7,11 @@ newoption({
 	default = "./garrysmod_common"
 })
 
+newoption({
+	trigger = "main",
+	description = "Build for the GMod main (public) branch SDK; defines GMOD_MAIN and targets gmcl_gwater2_main_*"
+})
+
 local gmcommon = assert(_OPTIONS.gmcommon or os.getenv("GARRYSMOD_COMMON"),
 	"you didn't provide a path to your garrysmod_common (https://github.com/danielga/garrysmod_common) directory")
 
@@ -39,6 +44,11 @@ CreateWorkspace({name = "gwater2", abi_compatible = true, path = ""})
 			"ThreadPool"
 		}
 
+		if _OPTIONS["main"] then
+			defines { "GMOD_MAIN" }
+			targetname("gmcl_gwater2_main")
+		end
+
 		files {
 			"BSPParser/**",
 			"GMFS/**",
@@ -69,6 +79,11 @@ CreateWorkspace({name = "gwater2", abi_compatible = true, path = ""})
 				"NvFlexReleaseD3D_x64",
 				"NvFlexExtReleaseD3D_x64",
 			}
+
+			if _OPTIONS["main"] then
+				-- sourcesdk-minimal only sets these on its own static libs, but consumers need COMPILER_MSVC64 too
+				defines { "COMPILER_MSVC64", "PLATFORM_64BITS", "WIN64" }
+			end
 			
 		filter({"system:linux", "platforms:x86_64"})
 			targetsuffix("_linux64")

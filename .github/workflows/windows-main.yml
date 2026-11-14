@@ -1,0 +1,80 @@
+name: windows (main branch)
+
+# Builds gmcl_gwater2_main_win32.dll and gmcl_gwater2_main_win64.dll for the
+# GMod main (public) branch, which ships both 32 and 64 bit binaries using the
+# older Source SDK. This needs a newer garrysmod_common than the x86-64 build uses,
+# so it's checked out separately and passed with --gmcommon.
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  GMCOMMON_SHA: f77a18d86f780a59ea30e4237016b05b790d4b70
+  # 64 bit main branch support from https://github.com/danielga/sourcesdk-minimal/pull/60
+  # TODO: switch to sourcesdk-minimal master (and drop SOURCESDK_REF) once that PR is merged
+  SOURCESDK_REF: refs/pull/60/head
+  SOURCESDK_SHA: 4b8aa9bd3f02c3212ebe15bfed65389961c66b69
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        include:
+          - platform: Win32
+            outdir: x86
+            dll: gmcl_gwater2_main_win32.dll
+          - platform: x64
+            outdir: x86_64
+            dll: gmcl_gwater2_main_win64.dll
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # only the submodules this build needs; binary/garrysmod_common is the x86-64 one
+    - name: Get submodules
+      run: git submodule update --init --recursive -- binary/FleX binary/BSPParser binary/GMFS
+
+    - name: Get garrysmod_common and Source SDK (main branch)
+      shell: bash
+      run: |
+        GMC="$RUNNER_TEMP/garrysmod_common"
+        git clone https://github.com/danielga/garrysmod_common.git "$GMC"
+        git -C "$GMC" checkout "$GMCOMMON_SHA"
+        git -C "$GMC" submodule update --init --recursive -- detouring scanning premake/premake-export-compile-commands
+        git clone https://github.com/danielga/sourcesdk-minimal.git "$GMC/sourcesdk-minimal"
+        git -C "$GMC/sourcesdk-minimal" fetch origin "$SOURCESDK_REF"
+        git -C "$GMC/sourcesdk-minimal" checkout "$SOURCESDK_SHA"
+
+    - name: Get premake5
+      shell: bash
+      run: |
+        cd binary
+        curl https://github.com/premake/premake-core/releases/download/v5.0.0/premake-5.0.0-windows.zip -O -J -L
+        7z x premake-5.0.0-windows.zip premake5.exe
+
+    - name: Generate project
+      shell: bash
+      run: |
+        cd binary
+        ./premake5.exe --main --gmcommon="$RUNNER_TEMP/garrysmod_common" vs2022
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+      with:
+          msbuild-architecture: 'x64'
+
+    - name: Build
+      run: msbuild binary\gmcl_gwater2.vcxproj -t:rebuild -property:Configuration=Release -p:platform=${{ matrix.platform }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4.3.1
+      with:
+          name: ${{ matrix.dll }}
+          path: binary/${{ matrix.outdir }}/Release/${{ matrix.dll }}
+          if-no-files-found: error
