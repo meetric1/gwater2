@@ -57,23 +57,13 @@ end
 
 local toload = (BRANCH == "x86-64" or BRANCH == "chromium") and "gwater2" or "gwater2_main" -- carrying
 if !util.IsBinaryModuleInstalled(toload) then
-	if BRANCH == "unknown" and jit.arch == "x64" then
-		ErrorNoHalt(string.format(
-			"===========================================================\n\n" ..
-			"!!!PLEASE READ ME!!!\n\n" ..
-			"GWATER2 FAILED TO LOAD!\n\n" ..
-			"GWater2 is currently unsupported on 64 bit binaries, please either use the 32 bit\nbinaries or switch to the x86-64 branch. Otherwise, you may safely ignore this error.\n\n" ..
-			"===========================================================\n"
-		))
-	else
-		gw2_error(string.format(
-			"===========================================================\n\n" ..
-			language.GetPhrase("gwater2.error.modulenotinstalled") .."\n\n" ..
-			language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
-			"===========================================================\n",
-			"NONE", BRANCH, jit.arch
-		))
-	end
+	gw2_error(string.format(
+		"===========================================================\n\n" ..
+		language.GetPhrase("gwater2.error.modulenotinstalled") .."\n\n" ..
+		language.GetPhrase("gwater2.error.modulefailedtoload.3") .."\n\n" ..
+		"===========================================================\n",
+		"NONE", BRANCH, jit.arch
+	))
 	return
 end
 
